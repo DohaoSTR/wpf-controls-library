@@ -147,27 +147,14 @@
     <Compile Include="ExtensionFunc\ScrollViewerBehavior.cs" />
     <Compile Include="ExtensionFunc\TreeViewExtension.cs" />
     <Compile Include="ExtensionFunc\ValidateBehavior.cs" />
-    <Compile Include="MyControls\Accordion\Implementation\Accordion.cs" />
-    <Compile Include="MyControls\Accordion\Implementation\AccordionItem.cs" />
-    <Compile Include="MyControls\Alert\Implementation\Alert.cs" />
     <Compile Include="MyControls\AutoComplete\Implementation\AutoCompleteBox.cs" />
-    <Compile Include="MyControls\Badge\Implementation\BadgeAdorner.cs" />
-    <Compile Include="MyControls\Badge\Implementation\Badge.cs" />
-    <Compile Include="MyControls\BusyIndicator\Implementation\BusyIndicator.cs" />
-    <Compile Include="MyControls\BusyIndicator\Implementation\BusyIndicatorAdorner.cs" />
     <Compile Include="MyControls\ButtonGroup\Implementation\ButtonGroup.cs" />
     <Compile Include="MyControls\ButtonGroup\Implementation\ButtonGroupItem.cs" />
     <Compile Include="MyControls\CheckBox\Implementation\ZCheckBox.cs" />
     <Compile Include="MyControls\CheckComboBox\Implementation\CheckComboBox.cs" />
     <Compile Include="MyControls\CheckComboBox\Implementation\CheckComboBoxItem.cs" />
     <Compile Include="MyControls\ChooseBox\Implementation\ChooseBox.cs" />
-    <Compile Include="MyControls\Clock\Implementation\Clock.cs" />
-    <Compile Include="MyControls\ContentNavigation\Implementation\ContentNavigation.cs" />
-    <Compile Include="MyControls\EmailBox\Implementation\EmailBox.cs" />
-    <Compile Include="MyControls\EmailBox\Implementation\EmailReceiverButton.cs" />
     <Compile Include="MyControls\Heading\Implementation\Heading.cs" />
-    <Compile Include="MyControls\NavigationPanel\Implementation\NavigationPanel.cs" />
-    <Compile Include="MyControls\Panel\Implementation\WaterfallPanel - 复制.cs" />
     <Compile Include="MyControls\Poptip\Implementation\Poptip.cs" />
     <Compile Include="MyControls\Popup\Implementation\PopupEx.cs" />
     <Compile Include="MyControls\Primitives\IconTextBoxBase.cs" />
@@ -180,14 +167,10 @@
     <Compile Include="MyControls\TextBox\Implementation\ZPasswordBox.cs" />
     <Compile Include="MyControls\ToggleButton\Implementation\IconToggleButton.cs" />
     <Compile Include="MyControls\ToggleButton\Implementation\ZToggleButton.cs" />
-    <Compile Include="MyControls\CascaderBox\Implementation\CascaderItem.cs" />
-    <Compile Include="MyControls\CascaderBox\Implementation\CascaderListBox.cs" />
     <Compile Include="MyControls\ColorSelector\Implementation\ColorItem.cs" />
     <Compile Include="MyControls\ColorSelector\Implementation\ColorSelector.cs" />
     <Compile Include="MyControls\ComboBox\Implementation\ZComboBox.cs" />
-    <Compile Include="MyControls\ComboTree\Implementation\ComboTree.cs" />
     <Compile Include="MyControls\ControlEnum.cs" />
-    <Compile Include="MyControls\Dashboard\Implementation\Dashboard.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZCalendar.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZCalendarButton.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZCalendarDayButton.cs" />
@@ -195,39 +178,20 @@
     <Compile Include="MyControls\DateControl\Implementation\ZDatePicker.cs" />
     <Compile Include="MyControls\Decorator\AngleBorder.cs" />
     <Compile Include="MyControls\DropDownButton\Implementation\DropDownButton.cs" />
-    <Compile Include="MyControls\FloatingActionControls\Implementation\FloatingActionButton.cs" />
-    <Compile Include="MyControls\FloatingActionControls\Implementation\FloatingActionMenu.cs" />
     <Compile Include="MyControls\Icon\Implementation\Icon.cs" />
     <Compile Include="MyControls\ListView\Implementation\FlatListView.cs" />
     <Compile Include="MyControls\ListView\Implementation\GridLineDecorator.cs" />
     <Compile Include="MyControls\ListView\Implementation\GridViewColumnHelper.cs" />
     <Compile Include="MyControls\ListView\Implementation\VisualService.cs" />
-    <Compile Include="MyControls\MusicPlayer\Implementation\MusicPlayer.cs" />
-    <Compile Include="MyControls\Panel\Implementation\WaterfallPanel.cs" />
-    <Compile Include="MyControls\RatingBar\Implementation\RatingBar.cs" />
-    <Compile Include="MyControls\RatingBar\Implementation\RatingBarButton.cs" />
-    <Compile Include="MyControls\SplitButton\Implementation\SplitButton.cs" />
-    <Compile Include="MyControls\SplitButton\Implementation\SplitButtonItem.cs" />
     <Compile Include="MyControls\Expander\Implementation\ZExpander.cs" />
-    <Compile Include="MyControls\CascaderBox\Implementation\Cascader.cs" />
-    <Compile Include="MyControls\FlyoutControl\Implementation\Flyout.cs" />
-    <Compile Include="MyControls\FlyoutControl\Implementation\FlyoutControl.cs" />
     <Compile Include="MyControls\GroupBox\Implementation\ZGroupBox.cs" />
-    <Compile Include="MyControls\Image\Implementation\GifImage.cs" />
     <Compile Include="MyControls\Loading\Implementation\Loading.cs" />
-    <Compile Include="MyControls\MessageBox\Implementation\ZMessageBox.cs" />
-    <Compile Include="MyControls\MultiComboBox\Implementation\MultiComboBox.cs" />
     <Compile Include="MyControls\CheckBox\Implementation\FlatCheckBox.cs" />
     <Compile Include="MyControls\DateControl\DateTimePicker.cs" />
     <Compile Include="MyControls\DateControl\FlatDatePicker.cs" />
     <Compile Include="MyControls\DateControl\TimePicker.cs" />
-    <Compile Include="MyControls\NavigationBar\Implementation\NavigationBar.cs" />
-    <Compile Include="MyControls\ListControl\FlatTreeView.cs" />
     <Compile Include="MyControls\NavigateMenu\Implementation\NavigateMenuItem.cs" />
     <Compile Include="MyControls\NavigateMenu\Implementation\NavigateMenu.cs" />
-    <Compile Include="MyControls\Notice\Implementation\Notice.cs" />
-    <Compile Include="MyControls\Notice\Implementation\NoticeItem.cs" />
-    <Compile Include="MyControls\Message\Implementation\NoticeMessage.cs" />
     <Compile Include="Converters\InverseBooleanVisibilityConverter.cs" />
     <Compile Include="Converters\InverseVisibilityConverter.cs" />
     <Compile Include="Converters\ValueIsZeroConverter.cs" />
@@ -241,24 +205,16 @@
     <Compile Include="MyControls\Primitives\MyEventArgs\ItemMouseRightButtonDownEventArgs.cs" />
     <Compile Include="MyControls\Primitives\MyEventArgs\ItemMouseSingleClickEventArgs.cs" />
     <Compile Include="MyControls\Primitives\NumberBox.cs" />
-    <Compile Include="MyControls\ProgressBar\Implementation\CircleProgressBar.cs" />
-    <Compile Include="MyControls\ProgressBar\Implementation\FlatProgressBar.cs" />
-    <Compile Include="MyControls\ProgressBar\Implementation\WaveProgressBar.cs" />
     <Compile Include="MyControls\RadionButton\Implementation\ZRadionButton.cs" />
     <Compile Include="MyControls\ScrollViewer\Implementation\ZScrollViewer.cs" />
     <Compile Include="MyControls\Slider\Implementation\FlatSilder.cs" />
-    <Compile Include="MyControls\NumericUpDown\Implementation\DoubleUpDown.cs" />
     <Compile Include="MyControls\SlideSwitch\Implementation\Carousel.cs" />
     <Compile Include="MyControls\SlideSwitch\Implementation\SlideSwitchPanel.cs" />
-    <Compile Include="MyControls\StepBar\Implementation\StepBar.cs" />
-    <Compile Include="MyControls\StepBar\Implementation\StepBarItem.cs" />
     <Compile Include="MyControls\SwitchMenu\Implementation\SwitchMenu.cs" />
     <Compile Include="MyControls\TabControl\Implementation\ZTabControl.cs" />
     <Compile Include="MyControls\TagControls\Implementation\Tag.cs" />
     <Compile Include="MyControls\TagControls\Implementation\TagBox.cs" />
-    <Compile Include="MyControls\TagControls\Implementation\TagInputBox.cs" />
     <Compile Include="MyControls\TextBox\Implementation\IconTextBox.cs" />
-    <Compile Include="MyControls\NumericUpDown\Implementation\IntegerUpDown.cs" />
     <Compile Include="MyControls\TextBox\Implementation\ZTextBox.cs" />
     <Compile Include="MyControls\TextBox\Implementation\TagTextBox.cs" />
     <Compile Include="MyControls\TextBox\Implementation\TitleTextBox.cs" />
@@ -273,17 +229,7 @@
     <Compile Include="MyControls\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="MyControls\ToolTip\Implementation\FlatToolTip.cs" />
     <Compile Include="MyControls\ToolTip\Implementation\ZToolTip.cs" />
-    <Compile Include="MyControls\Tree\Implementation\ZTreeView.cs" />
-    <Compile Include="MyControls\Tree\Implementation\ZTreeViewItem.cs" />
     <Compile Include="MyControls\Upload\Implementation\Upload.cs" />
-    <Compile Include="MyControls\UserControls\Notifiaction.xaml.cs">
-      <DependentUpon>Notifiaction.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyControls\VideoPlayer\Implementation\VideoPlayer.cs" />
-    <Compile Include="MyControls\Window\Implementation\AutoCloseWindow.cs" />
-    <Compile Include="MyControls\Window\Implementation\BaseWindow.cs" />
-    <Compile Include="MyControls\Window\Implementation\ZWindow.cs" />
-    <Compile Include="StyleSelectors\RatingBarStyleSelector.cs" />
     <Compile Include="StyleSelectors\NavigateBarStyleSelector.cs" />
     <Compile Include="StyleSelectors\NavigateMenuGroupStyleSelector.cs" />
     <Compile Include="Utils\CommonUtil.cs" />
@@ -296,23 +242,7 @@
     <Compile Include="Utils\UIElementEx.cs" />
     <Compile Include="Utils\VisualHelper.cs" />
     <Compile Include="Utils\VlcUtil.cs" />
-    <Page Include="MyControls\Accordion\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Alert\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\AutoComplete\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Badge\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\BusyIndicator\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -336,10 +266,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\Clock\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\ColorSelector\Themes\ColorItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -351,18 +277,6 @@
     <Page Include="MyControls\ComboBox\Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControls\ComboTree\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\ContentNavigation\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Dashboard\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\DateControl\Themes\ZCalendar.xaml">
       <SubType>Designer</SubType>
@@ -388,14 +302,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\EmailBox\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\FloatingActionControls\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Heading\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -408,27 +314,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\MusicPlayer\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\NavigationPanel\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Panel\Themes\WaterfallPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Poptip\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\RatingBar\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\RatingBar\Themes\RatingBarButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -436,23 +322,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\SplitButton\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Expander\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\CascaderBox\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\FlyoutControl\Themes\Flyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\FlyoutControl\Themes\FlyoutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -488,23 +358,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\MessageBox\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\MultiComboBox\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\NavigateMenu\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Notice\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\ProgressBar\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -524,10 +378,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\StepBar\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\SwitchMenu\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -537,10 +387,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\TagControls\Themes\TagBoxStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\TagControls\Themes\TagInputBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -600,29 +446,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\Tree\Themes\Generic - 复制.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControls\Tree\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Upload\Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControls\UserControls\Notifiaction.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\VideoPlayer\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Window\Themes\ZWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\AutoDisappearScrollViewerStyle.xaml">
       <SubType>Designer</SubType>
@@ -700,10 +526,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\NavigationBar\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Button\Themes\FlatButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -724,10 +546,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MyControls\NumericUpDown\Themes\NumericUpDownStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MyControls\TextBox\Themes\TagTextBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -737,10 +555,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\TextBox\Themes\ValidateTextBoxStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Message\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -763,10 +577,6 @@
     <Page Include="MyControls\ToggleButton\Themes\DefaultToggleButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Window\Themes\BaseWindowStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -794,10 +604,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MyControls\ColorPicker\Implementation\" />
-    <Folder Include="MyControls\ColorPicker\Themes\" />
-    <Folder Include="MyControls\DataGrid\Implementation\" />
-    <Folder Include="MyControls\DataGrid\Themes\" />
     <Folder Include="MyControls\Popup\Themes\" />
   </ItemGroup>
   <ItemGroup>
