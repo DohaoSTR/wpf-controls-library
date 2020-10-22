@@ -29,8 +29,6 @@ namespace ZdfFlatUI.Test
         {
             InitializeComponent();
 
-            Utils.PaletteHelper.SetLightDarkTheme(false);
-
             MenuList = new ObservableCollection<MenuInfo>();
 
             MenuList.Add(new MenuInfo()
