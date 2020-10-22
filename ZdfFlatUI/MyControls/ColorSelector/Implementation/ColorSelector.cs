@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
@@ -37,13 +34,13 @@ namespace ZdfFlatUI
         {
             base.PrepareContainerForItemOverride(element, item);
 
-            
-            if(!(item is ColorItem))
+
+            if (!(item is ColorItem))
             {
                 ColorItem colorItem = element as ColorItem;
-                if (!string.IsNullOrEmpty(this.DisplayMemberPath))
+                if (!string.IsNullOrEmpty(DisplayMemberPath))
                 {
-                    Binding binding = new Binding(this.DisplayMemberPath);
+                    Binding binding = new Binding(DisplayMemberPath);
                     colorItem.SetBinding(ColorItem.BackgroundProperty, binding);
                 }
                 else
@@ -78,14 +75,14 @@ namespace ZdfFlatUI
 
         public void SetItemSelected(ColorItem selectedItem)
         {
-            if(this.Items == null)
+            if (Items == null)
             {
                 return;
             }
 
-            for (int i = 0; i < this.Items.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                ColorItem colorItem = this.ItemContainerGenerator.ContainerFromIndex(i) as ColorItem;
+                ColorItem colorItem = ItemContainerGenerator.ContainerFromIndex(i) as ColorItem;
                 if (colorItem == selectedItem)
                 {
                     colorItem.SetCurrentValue(ColorItem.IsSelectedProperty, true);

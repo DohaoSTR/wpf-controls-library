@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using ZdfFlatUI.StyleSelectors;
 using ZdfFlatUI.Utils;
 
 namespace ZdfFlatUI
@@ -55,7 +49,7 @@ namespace ZdfFlatUI
 
         public NavigationBar() : base()
         {
-            this.Loaded += NavigationBar_Loaded;
+            Loaded += NavigationBar_Loaded;
         }
 
         protected override DependencyObject GetContainerForItemOverride()
@@ -69,58 +63,58 @@ namespace ZdfFlatUI
         protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
         {
             base.OnItemsChanged(e);
-            var items = this.Items;
+            var items = Items;
         }
 
         private void Item_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (!this.Check()) return;
+            if (!Check()) return;
             ScrollToSelection(((System.Windows.Controls.ContentControl)sender).Content);
         }
 
         private void NavigationBar_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this.SelectedIndex == -1)
+            if (SelectedIndex == -1)
             {
-                this.SelectedIndex = 0;
+                SelectedIndex = 0;
             }
 
-            if (!this.Check()) return;
+            if (!Check()) return;
 
-            if (this.BindScrollViewer != null)
+            if (BindScrollViewer != null)
             {
-                this.BindScrollViewer.ScrollChanged += ScrollViewer_ScrollChanged;
+                BindScrollViewer.ScrollChanged += ScrollViewer_ScrollChanged;
             }
 
-            if (this.SelectedIndex != -1 && this.SelectedIndex < this.Items.Count)
+            if (SelectedIndex != -1 && SelectedIndex < Items.Count)
             {
-                this.ScrollToSelection(this.Items[this.SelectedIndex]);
+                ScrollToSelection(Items[SelectedIndex]);
             }
 
-            this.RemoveLeftLine();
-            this.RemoveRightLine();
+            RemoveLeftLine();
+            RemoveRightLine();
         }
 
         protected override void OnChildDesiredSizeChanged(UIElement child)
         {
             base.OnChildDesiredSizeChanged(child);
 
-            this.SelectedIndex = 0;
-            this.RemoveLeftLine();
-            this.RemoveRightLine();
+            SelectedIndex = 0;
+            RemoveLeftLine();
+            RemoveRightLine();
         }
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (!this.Check()) return;
+            if (!Check()) return;
 
-            var verticalOffset = this.BindScrollViewer.VerticalOffset;
+            var verticalOffset = BindScrollViewer.VerticalOffset;
             if (verticalOffset > 0)
             {
                 double scrollOffset = 0.0;
-                for (int i = 0; i < this.BindNavigationControl.Children.Count; i++)
+                for (int i = 0; i < BindNavigationControl.Children.Count; i++)
                 {
-                    var child = this.BindNavigationControl.Children[i];
+                    var child = BindNavigationControl.Children[i];
                     if (child is FrameworkElement)
                     {
                         FrameworkElement element = child as FrameworkElement;
@@ -128,9 +122,9 @@ namespace ZdfFlatUI
 
                         scrollOffset += element.ActualHeight;
 
-                        if (scrollOffset > verticalOffset && i < this.Items.Count)
+                        if (scrollOffset > verticalOffset && i < Items.Count)
                         {
-                            this.SelectedItem = this.Items[i];
+                            SelectedItem = Items[i];
                             break;
                         }
                     }
@@ -141,13 +135,13 @@ namespace ZdfFlatUI
         private bool Check()
         {
             bool flag = true;
-            if(this.BindScrollViewer == null)
+            if (BindScrollViewer == null)
             {
                 flag = false;
                 //throw new Exception("请给BindScrollViewer属性绑定值，例：BindScrollViewer=\"{ Binding Path =.Parent, ElementName = AnchorPointPanel }\"");
             }
 
-            if (this.BindNavigationControl == null)
+            if (BindNavigationControl == null)
             {
                 flag = false;
                 //throw new Exception("请给BindNavigationControl属性绑定值，例：BindNavigationControl=\"{ Binding ElementName = AnchorPointPanel }\"");
@@ -161,15 +155,15 @@ namespace ZdfFlatUI
         /// <param name="selection"></param>
         private void ScrollToSelection(object selection)
         {
-            for (int i = 0; i < this.Items.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                if (this.Items[i] == selection)
+                if (Items[i] == selection)
                 {
-                    if (i < this.BindNavigationControl.Children.Count)
+                    if (i < BindNavigationControl.Children.Count)
                     {
-                        var vector = VisualTreeHelper.GetOffset(this.BindNavigationControl.Children[i]);
+                        var vector = VisualTreeHelper.GetOffset(BindNavigationControl.Children[i]);
                         DoubleAnimation doubleAnimation = new DoubleAnimation(0, vector.Y, new Duration(TimeSpan.FromMilliseconds(500)));
-                        this.BindScrollViewer.BeginAnimation(ZScrollViewer.VerticalOffsetExProperty, doubleAnimation);
+                        BindScrollViewer.BeginAnimation(ZScrollViewer.VerticalOffsetExProperty, doubleAnimation);
                         //this.BindScrollViewer.ScrollToVerticalOffset(vector.Y);
                     }
                 }
@@ -181,11 +175,11 @@ namespace ZdfFlatUI
         /// </summary>
         private void RemoveLeftLine()
         {
-            ListBoxItem item = (ListBoxItem)this.ItemContainerGenerator.ContainerFromIndex(0);
-            if(item != null)
+            ListBoxItem item = (ListBoxItem)ItemContainerGenerator.ContainerFromIndex(0);
+            if (item != null)
             {
                 var border = MyVisualTreeHelper.FindChild<Border>(item, "PART_LeftLine");
-                if(border != null)
+                if (border != null)
                 {
                     border.Visibility = Visibility.Collapsed;
                 }
@@ -197,7 +191,7 @@ namespace ZdfFlatUI
         /// </summary>
         private void RemoveRightLine()
         {
-            ListBoxItem item = (ListBoxItem)this.ItemContainerGenerator.ContainerFromIndex(this.Items.Count - 1);
+            ListBoxItem item = (ListBoxItem)ItemContainerGenerator.ContainerFromIndex(Items.Count - 1);
             if (item != null)
             {
                 var border = MyVisualTreeHelper.FindChild<Border>(item, "PART_RightLine");

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 
 namespace ZdfFlatUI
 {
@@ -33,7 +29,7 @@ namespace ZdfFlatUI
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
             private set { SetValue(ItemsSourceProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(NavigationPanel));
 
@@ -46,7 +42,7 @@ namespace ZdfFlatUI
             get { return (Style)GetValue(IndicatorStyleProperty); }
             set { SetValue(IndicatorStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IndicatorStyleProperty =
             DependencyProperty.Register("IndicatorStyle", typeof(Style), typeof(NavigationPanel), new PropertyMetadata(null));
 
@@ -59,7 +55,7 @@ namespace ZdfFlatUI
             get { return (Style)GetValue(IndicatorItemContainerStyleProperty); }
             set { SetValue(IndicatorItemContainerStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IndicatorItemContainerStyleProperty =
             DependencyProperty.Register("IndicatorItemContainerStyle", typeof(Style), typeof(NavigationPanel), new PropertyMetadata(null));
 
@@ -72,7 +68,7 @@ namespace ZdfFlatUI
             get { return (ItemsPanelTemplate)GetValue(IndicatorItemsPanelProperty); }
             set { SetValue(IndicatorItemsPanelProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IndicatorItemsPanelProperty =
             DependencyProperty.Register("IndicatorItemsPanel", typeof(ItemsPanelTemplate), typeof(NavigationPanel));
 
@@ -85,7 +81,7 @@ namespace ZdfFlatUI
             get { return (Dock)GetValue(IndicatorPlacementProperty); }
             set { SetValue(IndicatorPlacementProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IndicatorPlacementProperty =
             DependencyProperty.Register("IndicatorPlacement", typeof(Dock), typeof(NavigationPanel), new PropertyMetadata(Dock.Top));
 
@@ -98,7 +94,7 @@ namespace ZdfFlatUI
             get { return (Thickness)GetValue(IndicatorMarginProperty); }
             set { SetValue(IndicatorMarginProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IndicatorMarginProperty =
             DependencyProperty.Register("IndicatorMargin", typeof(Thickness), typeof(NavigationPanel));
 
@@ -111,7 +107,7 @@ namespace ZdfFlatUI
             get { return (HorizontalAlignment)GetValue(IndicatorHorizontalAlignmentProperty); }
             set { SetValue(IndicatorHorizontalAlignmentProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IndicatorHorizontalAlignmentProperty =
             DependencyProperty.Register("IndicatorHorizontalAlignment", typeof(HorizontalAlignment)
                 , typeof(NavigationPanel));
@@ -125,7 +121,7 @@ namespace ZdfFlatUI
             get { return (int)GetValue(IndicatorSelectedIndexProperty); }
             set { SetValue(IndicatorSelectedIndexProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IndicatorSelectedIndexProperty =
             DependencyProperty.Register("IndicatorSelectedIndex", typeof(int), typeof(NavigationPanel), new PropertyMetadata(0, IndicatorSelectedIndexCallback));
 
@@ -159,12 +155,12 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.Loaded += NavigationPanel_Loaded;
-            this.PART_Indicator = this.GetTemplateChild("PART_Indicator") as SegmentControl;
-            this.PART_ContentPresenter = this.GetTemplateChild("PART_ContentPresenter") as ContentPresenter;
-            if (this.PART_Indicator != null)
+            Loaded += NavigationPanel_Loaded;
+            PART_Indicator = GetTemplateChild("PART_Indicator") as SegmentControl;
+            PART_ContentPresenter = GetTemplateChild("PART_ContentPresenter") as ContentPresenter;
+            if (PART_Indicator != null)
             {
-                this.PART_Indicator.ItemClick += PART_Indicator_ItemClick;
+                PART_Indicator.ItemClick += PART_Indicator_ItemClick;
             }
         }
 
@@ -178,22 +174,22 @@ namespace ZdfFlatUI
         /// <param name="selection"></param>
         private void ScrollToSelection(object selection)
         {
-            if (this.mScrollViewer == null)
+            if (mScrollViewer == null)
             {
                 return;
             }
 
-            for (int i = 0; i < this.mHeaderList.Count; i++)
+            for (int i = 0; i < mHeaderList.Count; i++)
             {
-                if (this.mHeaderList[i] == selection)
+                if (mHeaderList[i] == selection)
                 {
                     //获取子项相对于控件的位置
-                    GeneralTransform generalTransform1 = this.mHeaderList[i].TransformToAncestor(this.PART_ContentPresenter);
+                    GeneralTransform generalTransform1 = mHeaderList[i].TransformToAncestor(PART_ContentPresenter);
                     Point currentPoint = generalTransform1.Transform(new Point(0, 0));
 
-                    double offsetY = this.mScrollViewer.VerticalOffset + currentPoint.Y;
+                    double offsetY = mScrollViewer.VerticalOffset + currentPoint.Y;
 
-                    this.mScrollViewer.ScrollToVerticalOffset(offsetY);
+                    mScrollViewer.ScrollToVerticalOffset(offsetY);
 
                     //DoubleAnimation doubleAnimation = new DoubleAnimation(this.oldOffsetY, offsetY, new Duration(TimeSpan.FromMilliseconds(500)));
                     //this.mScrollViewer.BeginAnimation(ZScrollViewer.VerticalOffsetExProperty, doubleAnimation);
@@ -211,21 +207,21 @@ namespace ZdfFlatUI
 
         private void NavigationPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            mHeaderList = Utils.VisualHelper.FindVisualChildrenEx<ZGroupBox>(this.PART_ContentPresenter);
+            mHeaderList = Utils.VisualHelper.FindVisualChildrenEx<ZGroupBox>(PART_ContentPresenter);
             if (mHeaderList != null)
             {
                 List<object> list = new List<object>();
                 mHeaderList.ForEach(p => list.Add(p));
-                this.ItemsSource = list;
+                ItemsSource = list;
             }
-            this.mScrollViewer = Utils.VisualHelper.FindVisualChild<ScrollViewer>(this.PART_ContentPresenter);
-            if (this.mScrollViewer != null)
+            mScrollViewer = Utils.VisualHelper.FindVisualChild<ScrollViewer>(PART_ContentPresenter);
+            if (mScrollViewer != null)
             {
-                this.mScrollViewer.ScrollChanged += MScrollViewer_ScrollChanged;
+                mScrollViewer.ScrollChanged += MScrollViewer_ScrollChanged;
             }
 
-            object item = this.mHeaderList[this.IndicatorSelectedIndex];
-            this.ScrollToSelection(item);
+            object item = mHeaderList[IndicatorSelectedIndex];
+            ScrollToSelection(item);
         }
 
         /// <summary>
@@ -235,8 +231,8 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Indicator_ItemClick(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            var item = this.PART_Indicator.SelectedItem;
-            this.ScrollToSelection(item);
+            var item = PART_Indicator.SelectedItem;
+            ScrollToSelection(item);
         }
 
         /// <summary>
@@ -246,13 +242,13 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void MScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            var verticalOffset = this.mScrollViewer.VerticalOffset;
+            var verticalOffset = mScrollViewer.VerticalOffset;
             if (verticalOffset > 0)
             {
                 double scrollOffset = 0.0;
-                for (int i = 0; i < this.mHeaderList.Count; i++)
+                for (int i = 0; i < mHeaderList.Count; i++)
                 {
-                    var child = this.mHeaderList[i];
+                    var child = mHeaderList[i];
                     if (child is FrameworkElement)
                     {
                         FrameworkElement element = child as FrameworkElement;
@@ -260,10 +256,10 @@ namespace ZdfFlatUI
 
                         scrollOffset += element.ActualHeight;
 
-                        if (scrollOffset > verticalOffset && i < this.mHeaderList.Count)
+                        if (scrollOffset > verticalOffset && i < mHeaderList.Count)
                         {
                             //this.IndicatorSelectedIndex = i;
-                            this.PART_Indicator.SelectedItem = this.mHeaderList[i];
+                            PART_Indicator.SelectedItem = mHeaderList[i];
                             break;
                         }
                     }

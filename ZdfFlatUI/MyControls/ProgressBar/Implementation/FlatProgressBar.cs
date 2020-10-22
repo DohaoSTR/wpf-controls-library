@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace ZdfFlatUI
 {
@@ -106,24 +101,24 @@ namespace ZdfFlatUI
             //corner.BottomLeft = this.CornerRadius.BottomLeft - this.BorderThickness.Bottom;
             //this.InnerCornerRadius = corner;
 
-            this.Indicator = GetTemplateChild("Indicator") as FrameworkElement;
+            Indicator = GetTemplateChild("Indicator") as FrameworkElement;
         }
 
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
 
-            var perWidth = this.Width / (this.Maximum - this.Minimum);
+            var perWidth = Width / (Maximum - Minimum);
             var oldWidth = oldValue * perWidth;
             var newWidth = newValue * perWidth;
 
             DoubleAnimation doubleAnimation = new DoubleAnimation();
             doubleAnimation.From = oldWidth;
-            doubleAnimation.To = newWidth - this.BorderThickness.Right * 2;
+            doubleAnimation.To = newWidth - BorderThickness.Right * 2;
             doubleAnimation.Duration = new Duration(TimeSpan.FromMilliseconds(400));
-            if (this.Indicator != null)
+            if (Indicator != null)
             {
-                this.Indicator.BeginAnimation(FrameworkElement.WidthProperty, doubleAnimation);
+                Indicator.BeginAnimation(FrameworkElement.WidthProperty, doubleAnimation);
             }
         }
         #endregion

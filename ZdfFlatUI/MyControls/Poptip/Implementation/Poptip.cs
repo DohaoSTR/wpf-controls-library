@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
 
 namespace ZdfFlatUI
 {
@@ -123,7 +119,7 @@ namespace ZdfFlatUI
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(Poptip), new PropertyMetadata(new CornerRadius(5)));
 
@@ -137,11 +133,11 @@ namespace ZdfFlatUI
         {
             base.OnInitialized(e);
 
-            this.AllowsTransparency = true;
+            AllowsTransparency = true;
             //this.StaysOpen = false;
 
-            UIElement element = this.Child;
-            this.Child = null;
+            UIElement element = Child;
+            Child = null;
 
             Grid root = new Grid()
             {
@@ -197,12 +193,12 @@ namespace ZdfFlatUI
 
             angleBorder = new AngleBorder()
             {
-                Background = this.Background,
-                CornerRadius = this.CornerRadius,
-                BorderThickness = this.BorderThickness,
-                BorderBrush = this.BorderBrush,
+                Background = Background,
+                CornerRadius = CornerRadius,
+                BorderThickness = BorderThickness,
+                BorderBrush = BorderBrush,
             };
-            switch (this.PlacementEx)
+            switch (PlacementEx)
             {
                 case EnumPlacement.LeftTop:
                     angleBorder.Placement = EnumPlacement.RightTop;
@@ -243,77 +239,77 @@ namespace ZdfFlatUI
                 default:
                     break;
             }
-            
+
             //在原有控件基础上，最外层套一个AngleBorder
             angleBorder.Child = element;
 
             root.Children.Add(angleBorder);
 
-            this.Child = root;
+            Child = root;
         }
 
         protected override void OnOpened(EventArgs e)
         {
             base.OnOpened(e);
 
-            if (this.mIsLoaded)
+            if (mIsLoaded)
             {
                 return;
             }
 
-            FrameworkElement targetElement = this.PlacementTarget as FrameworkElement;
-            FrameworkElement child = this.Child as FrameworkElement;
+            FrameworkElement targetElement = PlacementTarget as FrameworkElement;
+            FrameworkElement child = Child as FrameworkElement;
 
             if (targetElement == null || child == null) return;
 
-            switch (this.PlacementEx)
+            switch (PlacementEx)
             {
                 case EnumPlacement.LeftTop:
-                    this.Placement = PlacementMode.Left;
+                    Placement = PlacementMode.Left;
                     break;
                 case EnumPlacement.LeftBottom:
-                    this.Placement = PlacementMode.Left;
-                    this.VerticalOffset = targetElement.ActualHeight - child.ActualHeight;
+                    Placement = PlacementMode.Left;
+                    VerticalOffset = targetElement.ActualHeight - child.ActualHeight;
                     break;
                 case EnumPlacement.LeftCenter:
-                    this.Placement = PlacementMode.Left;
-                    this.VerticalOffset = this.GetOffset(targetElement.ActualHeight, child.ActualHeight);
+                    Placement = PlacementMode.Left;
+                    VerticalOffset = GetOffset(targetElement.ActualHeight, child.ActualHeight);
                     break;
                 case EnumPlacement.RightTop:
-                    this.Placement = PlacementMode.Right;
+                    Placement = PlacementMode.Right;
                     break;
                 case EnumPlacement.RightBottom:
-                    this.Placement = PlacementMode.Right;
-                    this.VerticalOffset = targetElement.ActualHeight - child.ActualHeight;
+                    Placement = PlacementMode.Right;
+                    VerticalOffset = targetElement.ActualHeight - child.ActualHeight;
                     break;
                 case EnumPlacement.RightCenter:
-                    this.Placement = PlacementMode.Right;
-                    this.VerticalOffset = this.GetOffset(targetElement.ActualHeight, child.ActualHeight);
+                    Placement = PlacementMode.Right;
+                    VerticalOffset = GetOffset(targetElement.ActualHeight, child.ActualHeight);
                     break;
                 case EnumPlacement.TopLeft:
-                    this.Placement = PlacementMode.Top;
+                    Placement = PlacementMode.Top;
                     break;
                 case EnumPlacement.TopCenter:
-                    this.Placement = PlacementMode.Top;
-                    this.HorizontalOffset = this.GetOffset(targetElement.ActualWidth, child.ActualWidth);
+                    Placement = PlacementMode.Top;
+                    HorizontalOffset = GetOffset(targetElement.ActualWidth, child.ActualWidth);
                     break;
                 case EnumPlacement.TopRight:
-                    this.Placement = PlacementMode.Top;
-                    this.HorizontalOffset = targetElement.ActualWidth - child.ActualWidth;
+                    Placement = PlacementMode.Top;
+                    HorizontalOffset = targetElement.ActualWidth - child.ActualWidth;
                     break;
                 case EnumPlacement.BottomLeft:
-                    this.Placement = PlacementMode.Bottom;
+                    Placement = PlacementMode.Bottom;
                     break;
                 case EnumPlacement.BottomCenter:
-                    this.Placement = PlacementMode.Bottom;
-                    this.HorizontalOffset = this.GetOffset(targetElement.ActualWidth, child.ActualWidth);
+                    Placement = PlacementMode.Bottom;
+                    HorizontalOffset = GetOffset(targetElement.ActualWidth, child.ActualWidth);
                     break;
                 case EnumPlacement.BottomRight:
-                    this.Placement = PlacementMode.Bottom;
-                    this.HorizontalOffset = targetElement.ActualWidth - child.ActualWidth;
+                    Placement = PlacementMode.Bottom;
+                    HorizontalOffset = targetElement.ActualWidth - child.ActualWidth;
                     break;
             }
-            this.mIsLoaded = true;
+            mIsLoaded = true;
         }
 
         #endregion

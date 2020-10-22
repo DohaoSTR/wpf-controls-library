@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
 namespace ZdfFlatUI
@@ -58,7 +54,7 @@ namespace ZdfFlatUI
         {
             RoutedPropertyChangedEventArgs<object> arg =
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, UploadEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
         #endregion
 
@@ -84,7 +80,7 @@ namespace ZdfFlatUI
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 Array files = (System.Array)e.Data.GetData(DataFormats.FileDrop);
-                this.OnFileUpload(null, files);
+                OnFileUpload(null, files);
             }
         }
 
@@ -107,13 +103,13 @@ namespace ZdfFlatUI
             base.OnClick();
 
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            openFileDialog.Multiselect = this.MultiSelect;
+            openFileDialog.Multiselect = MultiSelect;
             //"文本文件|*.*|C#文件|*.cs|所有文件|*.*"
-            openFileDialog.Filter = this.Filter;
+            openFileDialog.Filter = Filter;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string[] files = openFileDialog.FileNames;
-                this.OnFileUpload(null, files);
+                OnFileUpload(null, files);
             }
         }
         #endregion

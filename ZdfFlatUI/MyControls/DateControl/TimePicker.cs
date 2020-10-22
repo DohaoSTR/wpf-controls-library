@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -36,7 +33,7 @@ namespace ZdfFlatUI
         {
             RoutedPropertyChangedEventArgs<object> arg =
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, SelectedTimeChangedEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
         #endregion
 
@@ -113,7 +110,7 @@ namespace ZdfFlatUI
 
         public TimePicker()
         {
-            
+
         }
     }
 }

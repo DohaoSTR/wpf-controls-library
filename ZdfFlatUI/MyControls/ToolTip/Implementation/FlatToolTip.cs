@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -16,7 +12,7 @@ namespace ZdfFlatUI
             get { return (EnumPlacement)GetValue(PlacementExProperty); }
             set { SetValue(PlacementExProperty, value); }
         }
-        
+
         public static readonly DependencyProperty PlacementExProperty =
             DependencyProperty.Register("PlacementEx", typeof(EnumPlacement), typeof(FlatToolTip), new PropertyMetadata(EnumPlacement.RightCenter));
 

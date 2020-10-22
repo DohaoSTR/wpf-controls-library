@@ -36,6 +36,7 @@ namespace LibraryOfWPFControls.Test.Utils
         }
 
         private RelayCommand<object> _FileUploadCommand;
+
         public RelayCommand<object> FileUploadCommand
         {
             get

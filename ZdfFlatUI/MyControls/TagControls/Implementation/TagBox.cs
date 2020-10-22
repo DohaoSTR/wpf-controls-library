@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -25,7 +21,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsLineFeedProperty); }
             set { SetValue(IsLineFeedProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsLineFeedProperty =
             DependencyProperty.Register("IsLineFeed", typeof(bool), typeof(TagBox), new PropertyMetadata(true));
 
@@ -38,7 +34,7 @@ namespace ZdfFlatUI
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(TagBox));
 

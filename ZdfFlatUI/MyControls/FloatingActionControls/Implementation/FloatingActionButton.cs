@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace ZdfFlatUI
 {
@@ -17,7 +12,7 @@ namespace ZdfFlatUI
         #region Property
         private FloatingActionMenu ParentItemsControl
         {
-            get { return this.ParentSelector as FloatingActionMenu; }
+            get { return ParentSelector as FloatingActionMenu; }
         }
 
         internal ItemsControl ParentSelector
@@ -35,7 +30,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(TipContentProperty); }
             set { SetValue(TipContentProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TipContentProperty =
             DependencyProperty.Register("TipContent", typeof(string), typeof(FloatingActionButton), new PropertyMetadata(string.Empty));
 
@@ -58,15 +53,15 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.MouseLeftButtonDown += FloatingActionButton_MouseLeftButtonDown;
+            MouseLeftButtonDown += FloatingActionButton_MouseLeftButtonDown;
         }
 
         private void FloatingActionButton_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if(this.ParentItemsControl != null)
+            if (ParentItemsControl != null)
             {
-                this.ParentItemsControl.OnItemClick(this.Content, this.Content);
-                this.ParentItemsControl.IsDropDownOpen = false;
+                ParentItemsControl.OnItemClick(Content, Content);
+                ParentItemsControl.IsDropDownOpen = false;
             }
         }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI.Primitives
@@ -42,7 +38,7 @@ namespace ZdfFlatUI.Primitives
             get { return (bool)GetValue(IsTodayProperty); }
             set { SetValue(IsTodayProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsTodayProperty =
             DependencyProperty.Register("IsToday", typeof(bool), typeof(ZCalendarDayButton), new PropertyMetadata(false));
         #endregion
@@ -53,7 +49,7 @@ namespace ZdfFlatUI.Primitives
             get { return (bool)GetValue(IsBlackedOutProperty); }
             set { SetValue(IsBlackedOutProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsBlackedOutProperty =
             DependencyProperty.Register("IsBlackedOut", typeof(bool), typeof(ZCalendarDayButton), new PropertyMetadata(false));
         #endregion
@@ -67,7 +63,7 @@ namespace ZdfFlatUI.Primitives
             get { return (bool)GetValue(IsBelongCurrentMonthProperty); }
             set { SetValue(IsBelongCurrentMonthProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsBelongCurrentMonthProperty =
             DependencyProperty.Register("IsBelongCurrentMonth", typeof(bool), typeof(ZCalendarDayButton), new PropertyMetadata(true));
         #endregion

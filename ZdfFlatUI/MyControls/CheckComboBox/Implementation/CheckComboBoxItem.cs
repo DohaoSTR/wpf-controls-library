@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -43,9 +38,9 @@ namespace ZdfFlatUI
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            if(this.ParentCheckComboBox != null)
+            if (ParentCheckComboBox != null)
             {
-                this.ParentCheckComboBox.NotifyCheckComboBoxItemClicked(this);
+                ParentCheckComboBox.NotifyCheckComboBoxItemClicked(this);
             }
 
             base.OnMouseLeftButtonDown(e);

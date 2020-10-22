@@ -1,10 +1,6 @@
 ﻿using Microsoft.Expression.Shapes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 using System.Windows.Media.Animation;
 using ZdfFlatUI.MyControls.Primitives;
 
@@ -73,32 +69,32 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.Indicator = GetTemplateChild("Indicator") as Arc;
+            Indicator = GetTemplateChild("Indicator") as Arc;
         }
 
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
 
-            this.oldAngle = this.Angle;
+            oldAngle = Angle;
 
-            var valueDiff = this.Value - this.Minimum;
-            this.Angle = this.StartAngle + (Math.Abs(this.EndAngle - this.StartAngle)) / (this.Maximum - this.Minimum) * valueDiff;
-            this.TransformAngle(this.oldAngle, this.Angle, this.Durtion);
+            var valueDiff = Value - Minimum;
+            Angle = StartAngle + (Math.Abs(EndAngle - StartAngle)) / (Maximum - Minimum) * valueDiff;
+            TransformAngle(oldAngle, Angle, Durtion);
         }
         #endregion
 
         #region Private方法
         private void SetAngle()
         {
-            if(this.Value < this.Minimum)
+            if (Value < Minimum)
             {
-                this.Angle = this.StartAngle;
+                Angle = StartAngle;
                 return;
             }
-            if(this.Value > this.Maximum)
+            if (Value > Maximum)
             {
-                this.Angle = this.EndAngle;
+                Angle = EndAngle;
                 return;
             }
         }
@@ -108,10 +104,10 @@ namespace ZdfFlatUI
         /// </summary>
         private void TransformAngle(double From, double To, double durtion)
         {
-            if (this.Indicator != null)
+            if (Indicator != null)
             {
-                DoubleAnimation doubleAnimation = new DoubleAnimation(From, this.Angle, new Duration(TimeSpan.FromMilliseconds(durtion)));
-                this.Indicator.BeginAnimation(Arc.EndAngleProperty, doubleAnimation);
+                DoubleAnimation doubleAnimation = new DoubleAnimation(From, Angle, new Duration(TimeSpan.FromMilliseconds(durtion)));
+                Indicator.BeginAnimation(Arc.EndAngleProperty, doubleAnimation);
             }
         }
         #endregion

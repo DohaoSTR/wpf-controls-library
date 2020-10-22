@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI.StyleSelectors
@@ -20,8 +16,8 @@ namespace ZdfFlatUI.StyleSelectors
             //RatingBar ratingBar = RatingBar.ItemsControlFromItemContainer(container) as RatingBar;
             Style style = new Style();
             //int index = Convert.ToInt32(item);
-            
-            
+
+
             //if (index == 0)
             //{
             //    style = StarFullStyle;

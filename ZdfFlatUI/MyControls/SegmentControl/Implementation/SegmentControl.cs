@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -32,7 +28,7 @@ namespace ZdfFlatUI
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(SegmentControl));
 
@@ -49,7 +45,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsAllRoundProperty); }
             set { SetValue(IsAllRoundProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsAllRoundProperty =
             DependencyProperty.Register("IsAllRound", typeof(bool), typeof(SegmentControl), new PropertyMetadata(false));
 
@@ -68,18 +64,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ItemClickEvent, value);
+                AddHandler(ItemClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ItemClickEvent, value);
+                RemoveHandler(ItemClickEvent, value);
             }
         }
 
         public virtual void OnItemClick(object oldValue, object newValue)
         {
             RoutedPropertyChangedEventArgs<object> arg = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, ItemClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -99,7 +95,7 @@ namespace ZdfFlatUI
 
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
-            int index = this.ItemContainerGenerator.IndexFromContainer(element);
+            int index = ItemContainerGenerator.IndexFromContainer(element);
             SegmentItem segmentItem = element as SegmentItem;
             if (segmentItem == null)
             {
@@ -109,18 +105,18 @@ namespace ZdfFlatUI
             if (index == 0)
             {
                 segmentItem.IsFirstItem = true;
-                segmentItem.CornerRadius = new CornerRadius(this.CornerRadius.TopLeft, 0, 0, this.CornerRadius.BottomLeft);
+                segmentItem.CornerRadius = new CornerRadius(CornerRadius.TopLeft, 0, 0, CornerRadius.BottomLeft);
             }
 
-            if (index == this.Items.Count - 1)
+            if (index == Items.Count - 1)
             {
                 segmentItem.IsLastItem = true;
-                segmentItem.CornerRadius = new CornerRadius(0, this.CornerRadius.TopRight, this.CornerRadius.BottomRight, 0);
+                segmentItem.CornerRadius = new CornerRadius(0, CornerRadius.TopRight, CornerRadius.BottomRight, 0);
             }
 
-            if(this.IsAllRound)
+            if (IsAllRound)
             {
-                segmentItem.CornerRadius = this.CornerRadius;
+                segmentItem.CornerRadius = CornerRadius;
                 segmentItem.BorderThickness = new Thickness(0);
                 segmentItem.Padding = new Thickness(20, 5, 20, 5);
             }
@@ -148,23 +144,23 @@ namespace ZdfFlatUI
                 case NotifyCollectionChangedAction.Add:
                     if (e.NewStartingIndex == 0) //如果新添加项是放在第一位，则更改原来的第一位的属性值
                     {
-                        this.SetSegmentItem(e.NewStartingIndex + e.NewItems.Count);
+                        SetSegmentItem(e.NewStartingIndex + e.NewItems.Count);
                     }
 
                     //如果新添加项是放在最后一位，则更改原来的最后一位的属性值
-                    if (e.NewStartingIndex == this.Items.Count - e.NewItems.Count)
+                    if (e.NewStartingIndex == Items.Count - e.NewItems.Count)
                     {
-                        this.SetSegmentItem(e.NewStartingIndex - 1);
+                        SetSegmentItem(e.NewStartingIndex - 1);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     if (e.OldStartingIndex == 0) //如果移除的是第一个，则更改更新后的第一项的属性值
                     {
-                        this.SetSegmentItem(0);
+                        SetSegmentItem(0);
                     }
                     else
                     {
-                        this.SetSegmentItem(e.OldStartingIndex - 1);
+                        SetSegmentItem(e.OldStartingIndex - 1);
                     }
                     break;
             }
@@ -180,19 +176,19 @@ namespace ZdfFlatUI
         /// <param name="index"></param>
         private void SetSegmentItem(int index)
         {
-            if (index > this.Items.Count || index < 0)
+            if (index > Items.Count || index < 0)
             {
                 return;
             }
 
-            SegmentItem segmentItem = this.ItemContainerGenerator.ContainerFromIndex(index) as SegmentItem;
+            SegmentItem segmentItem = ItemContainerGenerator.ContainerFromIndex(index) as SegmentItem;
             if (segmentItem == null)
             {
                 return;
             }
             segmentItem.IsFirstItem = index == 0;
-            segmentItem.IsLastItem = index == this.Items.Count - 1;
-            segmentItem.IsMiddleItem = index > 0 && index < this.Items.Count - 1;
+            segmentItem.IsLastItem = index == Items.Count - 1;
+            segmentItem.IsMiddleItem = index > 0 && index < Items.Count - 1;
         }
 
         #endregion

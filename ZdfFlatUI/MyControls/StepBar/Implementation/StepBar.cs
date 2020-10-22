@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -58,7 +54,7 @@ namespace ZdfFlatUI
             get { return (double)GetValue(ItemWidthProperty); }
             set { SetValue(ItemWidthProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ItemWidthProperty =
             DependencyProperty.Register("ItemWidth", typeof(double), typeof(StepBar), new PropertyMetadata(50d));
 
@@ -98,17 +94,17 @@ namespace ZdfFlatUI
             base.OnItemsChanged(e);
 
             //ItemsControl数量变化时，重新设置各个Item的显示的数字
-            for (int i = 0; i < this.Items.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                StepBarItem stepBarItem = this.ItemContainerGenerator.ContainerFromIndex(i) as StepBarItem;
-                if(stepBarItem != null)
+                StepBarItem stepBarItem = ItemContainerGenerator.ContainerFromIndex(i) as StepBarItem;
+                if (stepBarItem != null)
                 {
                     int temp = i;
                     stepBarItem.Number = Convert.ToString(++temp);
                 }
             }
             //进度重新回到第一个
-            this.Progress = 0;
+            Progress = 0;
         }
         #endregion
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -10,7 +6,7 @@ namespace ZdfFlatUI
     public class SplitButtonItem : ContentControl
     {
         #region Private属性
-        
+
         #endregion
 
         private SplitButton ParentListBox
@@ -37,16 +33,16 @@ namespace ZdfFlatUI
 
         public SplitButtonItem()
         {
-            this.MouseEnter += DropdownButtonItem_MouseEnter;
-            this.MouseLeave += DropdownButtonItem_MouseLeave;
-            this.MouseLeftButtonUp += DropdownButtonItem_MouseLeftButtonUp;
+            MouseEnter += DropdownButtonItem_MouseEnter;
+            MouseLeave += DropdownButtonItem_MouseLeave;
+            MouseLeftButtonUp += DropdownButtonItem_MouseLeftButtonUp;
         }
 
         private void DropdownButtonItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             SplitButtonItem item = sender as SplitButtonItem;
-            this.ParentListBox.OnItemClick(item.Content, item.Content);
-            this.ParentListBox.IsDropDownOpen = false;
+            ParentListBox.OnItemClick(item.Content, item.Content);
+            ParentListBox.IsDropDownOpen = false;
             e.Handled = true;
         }
 

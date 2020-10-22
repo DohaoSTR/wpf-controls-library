@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Input;
-using System.Windows.Media;
 using ZdfFlatUI.Utils;
 
 namespace ZdfFlatUI
@@ -83,7 +77,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(TextInternalProperty); }
             private set { SetValue(TextInternalProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TextInternalProperty =
             DependencyProperty.Register("TextInternal", typeof(string), typeof(ZDatePicker), new PropertyMetadata(string.Empty));
 
@@ -121,7 +115,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsShowShortCutsProperty); }
             set { SetValue(IsShowShortCutsProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsShowShortCutsProperty =
             DependencyProperty.Register("IsShowShortCuts", typeof(bool), typeof(ZDatePicker), new PropertyMetadata(false));
         #endregion
@@ -136,7 +130,7 @@ namespace ZdfFlatUI
             get { return (DateTime?)GetValue(SelectedDateProperty); }
             set { SetValue(SelectedDateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedDateProperty =
             DependencyProperty.Register("SelectedDate", typeof(DateTime?), typeof(ZDatePicker), new PropertyMetadata(null, SelectedDateCallback, SelectedDateCoerceValueCallback));
 
@@ -147,11 +141,11 @@ namespace ZdfFlatUI
             if (dateTime.HasValue)
             {
                 DateTime dt = dateTime.Value;
-                if(datePicker.SelectedTime == null)
+                if (datePicker.SelectedTime == null)
                 {
                     datePicker.SelectedTime = dt;
                 }
-                
+
                 datePicker.SetSingleDateToTextBox(dt);
             }
             else
@@ -166,7 +160,7 @@ namespace ZdfFlatUI
             ZDatePicker datePicker = d as ZDatePicker;
 
             DateTime? dateTime = (DateTime?)value;
-            if(datePicker.PART_Calendar != null)
+            if (datePicker.PART_Calendar != null)
             {
                 datePicker.PART_Calendar.SelectedDate = dateTime;
             }
@@ -211,7 +205,7 @@ namespace ZdfFlatUI
             get { return (DateTime?)GetValue(SelectedDateStartProperty); }
             set { SetValue(SelectedDateStartProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedDateStartProperty =
             DependencyProperty.Register("SelectedDateStart", typeof(DateTime?), typeof(ZDatePicker), new PropertyMetadata(null));
 
@@ -224,7 +218,7 @@ namespace ZdfFlatUI
             get { return (DateTime?)GetValue(SelectedDateEndProperty); }
             set { SetValue(SelectedDateEndProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedDateEndProperty =
             DependencyProperty.Register("SelectedDateEnd", typeof(DateTime?), typeof(ZDatePicker), new PropertyMetadata(null, SelectedDateEndCallback, CoerceSelectedDateEnd));
 
@@ -242,7 +236,7 @@ namespace ZdfFlatUI
 
         private static void SelectedDateEndCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+
         }
 
         #endregion
@@ -256,7 +250,7 @@ namespace ZdfFlatUI
             get { return (DateTime?)GetValue(SelectedTimeProperty); }
             set { SetValue(SelectedTimeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedTimeProperty =
             DependencyProperty.Register("SelectedTime", typeof(DateTime?), typeof(ZDatePicker), new PropertyMetadata(null, SelectedTimeChangedCallback));
 
@@ -275,7 +269,7 @@ namespace ZdfFlatUI
             get { return (DateTime)GetValue(DisplayDateProperty); }
             set { SetValue(DisplayDateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayDateProperty =
             DependencyProperty.Register("DisplayDate", typeof(DateTime), typeof(ZDatePicker));
 
@@ -288,7 +282,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(DateStringFormatProperty); }
             set { SetValue(DateStringFormatProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DateStringFormatProperty =
             DependencyProperty.Register("DateStringFormat", typeof(string), typeof(ZDatePicker), new PropertyMetadata("yyyy年MM月dd日"));
 
@@ -301,7 +295,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(TimeStringFormatProperty); }
             set { SetValue(TimeStringFormatProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TimeStringFormatProperty =
             DependencyProperty.Register("TimeStringFormat", typeof(string), typeof(ZDatePicker), new PropertyMetadata("HH:mm:ss"));
 
@@ -314,7 +308,7 @@ namespace ZdfFlatUI
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(ZDatePicker));
 
@@ -329,7 +323,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsShowConfirmProperty); }
             set { SetValue(IsShowConfirmProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsShowConfirmProperty =
             DependencyProperty.Register("IsShowConfirm", typeof(bool), typeof(ZDatePicker), new PropertyMetadata(false));
 
@@ -342,7 +336,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(ZDatePicker), new PropertyMetadata(false));
 
@@ -356,7 +350,7 @@ namespace ZdfFlatUI
             get { return (DateTime?)GetValue(SelectedDateInternalProperty); }
             set { SetValue(SelectedDateInternalProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedDateInternalProperty =
             DependencyProperty.Register("SelectedDateInternal", typeof(DateTime?), typeof(ZDatePicker));
 
@@ -366,7 +360,7 @@ namespace ZdfFlatUI
             get { return (DateTime)GetValue(DisplayDateInternalProperty); }
             set { SetValue(DisplayDateInternalProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayDateInternalProperty =
             DependencyProperty.Register("DisplayDateInternal", typeof(DateTime), typeof(ZDatePicker));
 
@@ -381,151 +375,151 @@ namespace ZdfFlatUI
 
         public ZDatePicker()
         {
-            this.SelectedDates = new ObservableCollection<DateTime>();
+            SelectedDates = new ObservableCollection<DateTime>();
         }
         #endregion
 
         #region Override方法
         public override void OnApplyTemplate()
         {
-            if(this.PART_Calendar != null)
+            if (PART_Calendar != null)
             {
-                this.PART_Calendar.Owner = null;
+                PART_Calendar.Owner = null;
             }
-            if(this.PART_Calendar_Second != null)
+            if (PART_Calendar_Second != null)
             {
-                this.PART_Calendar_Second.Owner = null;
+                PART_Calendar_Second.Owner = null;
             }
 
             base.OnApplyTemplate();
 
-            this.PART_Popup_New = GetTemplateChild("PART_Popup_New") as Popup;
-            this.PART_Popup_TimeSelector = GetTemplateChild("PART_Popup_TimeSelector") as Popup;
-            this.PART_Calendar = GetTemplateChild("PART_Calendar") as ZCalendar;
-            this.PART_Calendar_Second = GetTemplateChild("PART_Calendar_Second") as ZCalendar;
-            this.PART_TimeSelector = GetTemplateChild("PART_TimeSelector") as TimeSelector;
-            this.PART_TextBox_New = GetTemplateChild("PART_TextBox_New") as TextBox;
-            this.PART_Btn_Today = GetTemplateChild("PART_Btn_Today") as Button;
-            this.PART_Btn_Yestday = GetTemplateChild("PART_Btn_Yestday") as Button;
-            this.PART_Btn_AWeekAgo = GetTemplateChild("PART_Btn_AWeekAgo") as Button;
-            this.PART_Btn_RecentlyAWeek = GetTemplateChild("PART_Btn_RecentlyAWeek") as Button;
-            this.PART_Btn_RecentlyAMonth = GetTemplateChild("PART_Btn_RecentlyAMonth") as Button;
-            this.PART_Btn_RecentlyThreeMonth = GetTemplateChild("PART_Btn_RecentlyThreeMonth") as Button;
-            this.PART_ConfirmSelected = GetTemplateChild("PART_ConfirmSelected") as Button;
-            this.PART_ClearDate = GetTemplateChild("PART_ClearDate") as Button;
+            PART_Popup_New = GetTemplateChild("PART_Popup_New") as Popup;
+            PART_Popup_TimeSelector = GetTemplateChild("PART_Popup_TimeSelector") as Popup;
+            PART_Calendar = GetTemplateChild("PART_Calendar") as ZCalendar;
+            PART_Calendar_Second = GetTemplateChild("PART_Calendar_Second") as ZCalendar;
+            PART_TimeSelector = GetTemplateChild("PART_TimeSelector") as TimeSelector;
+            PART_TextBox_New = GetTemplateChild("PART_TextBox_New") as TextBox;
+            PART_Btn_Today = GetTemplateChild("PART_Btn_Today") as Button;
+            PART_Btn_Yestday = GetTemplateChild("PART_Btn_Yestday") as Button;
+            PART_Btn_AWeekAgo = GetTemplateChild("PART_Btn_AWeekAgo") as Button;
+            PART_Btn_RecentlyAWeek = GetTemplateChild("PART_Btn_RecentlyAWeek") as Button;
+            PART_Btn_RecentlyAMonth = GetTemplateChild("PART_Btn_RecentlyAMonth") as Button;
+            PART_Btn_RecentlyThreeMonth = GetTemplateChild("PART_Btn_RecentlyThreeMonth") as Button;
+            PART_ConfirmSelected = GetTemplateChild("PART_ConfirmSelected") as Button;
+            PART_ClearDate = GetTemplateChild("PART_ClearDate") as Button;
 
-            if (this.PART_Popup_New != null)
+            if (PART_Popup_New != null)
             {
-                this.PART_Popup_New.Opened += PART_Popup_New_Opened;
+                PART_Popup_New.Opened += PART_Popup_New_Opened;
             }
 
-            if(this.PART_Popup_TimeSelector != null)
+            if (PART_Popup_TimeSelector != null)
             {
-                this.PART_Popup_TimeSelector.Opened += PART_Popup_TimeSelector_Opened;
+                PART_Popup_TimeSelector.Opened += PART_Popup_TimeSelector_Opened;
             }
 
-            if (this.PART_Calendar != null)
+            if (PART_Calendar != null)
             {
-                this.PART_Calendar.Owner = this;
-                this.PART_Calendar.DateClick += PART_Calendar_DateClick;
-                this.PART_Calendar.DisplayDateChanged += PART_Calendar_DisplayDateChanged;
-                if(this.Type == EnumDatePickerType.SingleDateRange)
+                PART_Calendar.Owner = this;
+                PART_Calendar.DateClick += PART_Calendar_DateClick;
+                PART_Calendar.DisplayDateChanged += PART_Calendar_DisplayDateChanged;
+                if (Type == EnumDatePickerType.SingleDateRange)
                 {
-                    this.PART_Calendar.DisplayDate = new DateTime(this.DisplayDate.Year, this.DisplayDate.Month, 1);
+                    PART_Calendar.DisplayDate = new DateTime(DisplayDate.Year, DisplayDate.Month, 1);
                 }
             }
 
-            if (this.PART_Calendar_Second != null)
+            if (PART_Calendar_Second != null)
             {
-                this.PART_Calendar_Second.Owner = this;
-                this.PART_Calendar_Second.DisplayMode = CalendarMode.Month;
-                this.PART_Calendar_Second.DisplayDate = this.PART_Calendar.DisplayDate.AddMonths(1);
+                PART_Calendar_Second.Owner = this;
+                PART_Calendar_Second.DisplayMode = CalendarMode.Month;
+                PART_Calendar_Second.DisplayDate = PART_Calendar.DisplayDate.AddMonths(1);
 
-                this.PART_Calendar_Second.DisplayDateChanged += PART_Calendar_Second_DisplayDateChanged;
-                this.PART_Calendar_Second.DateClick += PART_Calendar_Second_DateClick;
-            }
-
-            if(this.PART_TimeSelector != null)
-            {
-                this.PART_TimeSelector.SelectedTimeChanged += PART_TimeSelector_SelectedTimeChanged;
+                PART_Calendar_Second.DisplayDateChanged += PART_Calendar_Second_DisplayDateChanged;
+                PART_Calendar_Second.DateClick += PART_Calendar_Second_DateClick;
             }
 
-            if(this.PART_Btn_Today == null)
+            if (PART_TimeSelector != null)
             {
-                this.PART_Btn_Today.Click -= this.PART_Btn_Today_Click;
-            }
-            if(this.PART_Btn_Yestday == null)
-            {
-                this.PART_Btn_Yestday.Click -= this.PART_Btn_Yestday_Click;
-            }
-            if(this.PART_Btn_AWeekAgo == null)
-            {
-                this.PART_Btn_AWeekAgo.Click -= PART_Btn_AnWeekAgo_Click;
+                PART_TimeSelector.SelectedTimeChanged += PART_TimeSelector_SelectedTimeChanged;
             }
 
-            if (this.PART_Btn_Today != null)
+            if (PART_Btn_Today == null)
             {
-                this.PART_Btn_Today.Click += PART_Btn_Today_Click;
+                PART_Btn_Today.Click -= PART_Btn_Today_Click;
             }
-            if(this.PART_Btn_Yestday != null)
+            if (PART_Btn_Yestday == null)
             {
-                this.PART_Btn_Yestday.Click += PART_Btn_Yestday_Click;
+                PART_Btn_Yestday.Click -= PART_Btn_Yestday_Click;
             }
-            if(this.PART_Btn_AWeekAgo != null)
+            if (PART_Btn_AWeekAgo == null)
             {
-                this.PART_Btn_AWeekAgo.Click += PART_Btn_AnWeekAgo_Click;
-            }
-            if (this.PART_Btn_RecentlyAWeek != null)
-            {
-                this.PART_Btn_RecentlyAWeek.Click += PART_Btn_RecentlyAWeek_Click; ;
-            }
-            if (this.PART_Btn_RecentlyAMonth != null)
-            {
-                this.PART_Btn_RecentlyAMonth.Click += PART_Btn_RecentlyAMonth_Click; ;
-            }
-            if (this.PART_Btn_RecentlyThreeMonth != null)
-            {
-                this.PART_Btn_RecentlyThreeMonth.Click += PART_Btn_RecentlyThreeMonth_Click; ;
+                PART_Btn_AWeekAgo.Click -= PART_Btn_AnWeekAgo_Click;
             }
 
-            if(this.PART_ConfirmSelected != null)
+            if (PART_Btn_Today != null)
             {
-                this.PART_ConfirmSelected.Click += (o, e) => { this.IsDropDownOpen = false; };
+                PART_Btn_Today.Click += PART_Btn_Today_Click;
+            }
+            if (PART_Btn_Yestday != null)
+            {
+                PART_Btn_Yestday.Click += PART_Btn_Yestday_Click;
+            }
+            if (PART_Btn_AWeekAgo != null)
+            {
+                PART_Btn_AWeekAgo.Click += PART_Btn_AnWeekAgo_Click;
+            }
+            if (PART_Btn_RecentlyAWeek != null)
+            {
+                PART_Btn_RecentlyAWeek.Click += PART_Btn_RecentlyAWeek_Click; ;
+            }
+            if (PART_Btn_RecentlyAMonth != null)
+            {
+                PART_Btn_RecentlyAMonth.Click += PART_Btn_RecentlyAMonth_Click; ;
+            }
+            if (PART_Btn_RecentlyThreeMonth != null)
+            {
+                PART_Btn_RecentlyThreeMonth.Click += PART_Btn_RecentlyThreeMonth_Click; ;
             }
 
-            if(this.PART_ClearDate != null)
+            if (PART_ConfirmSelected != null)
             {
-                this.PART_ClearDate.Click += PART_ClearDate_Click;
+                PART_ConfirmSelected.Click += (o, e) => { IsDropDownOpen = false; };
             }
 
-            if(this.SelectedDate.HasValue)
+            if (PART_ClearDate != null)
             {
-                this.SetSingleDateToTextBox(this.SelectedDate);
-                this.SetSelectedDate();
+                PART_ClearDate.Click += PART_ClearDate_Click;
             }
 
-            if(this.SelectedDateStart.HasValue && this.SelectedDateEnd.HasValue)
+            if (SelectedDate.HasValue)
             {
-                this.SetRangeDateToTextBox(this.SelectedDateStart, this.SelectedDateEnd);
-                this.SetSelectedDates(this.SelectedDateStart, this.SelectedDateEnd);
+                SetSingleDateToTextBox(SelectedDate);
+                SetSelectedDate();
             }
-            this.SetSelectionMode(this, this.Type);
-            this.SetIsShowConfirm();
+
+            if (SelectedDateStart.HasValue && SelectedDateEnd.HasValue)
+            {
+                SetRangeDateToTextBox(SelectedDateStart, SelectedDateEnd);
+                SetSelectedDates(SelectedDateStart, SelectedDateEnd);
+            }
+            SetSelectionMode(this, Type);
+            SetIsShowConfirm();
         }
 
         private void PART_Popup_TimeSelector_Opened(object sender, EventArgs e)
         {
-            if(this.PART_TimeSelector != null)
+            if (PART_TimeSelector != null)
             {
-                this.PART_TimeSelector.SetButtonSelected();
+                PART_TimeSelector.SetButtonSelected();
             }
         }
 
         private void PART_TimeSelector_SelectedTimeChanged(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
         {
-            if(e.NewValue.HasValue)
+            if (e.NewValue.HasValue)
             {
-                this.SelectedTime = e.NewValue;
+                SelectedTime = e.NewValue;
             }
         }
         #endregion
@@ -534,19 +528,19 @@ namespace ZdfFlatUI
 
         private void SetSelectedDate()
         {
-            if (this.PART_Calendar != null)
+            if (PART_Calendar != null)
             {
-                this.PART_Calendar.SelectedDate = this.SelectedDate;
+                PART_Calendar.SelectedDate = SelectedDate;
             }
         }
 
         private void PART_ClearDate_Click(object sender, RoutedEventArgs e)
         {
-            if(this.PART_TextBox_New != null)
+            if (PART_TextBox_New != null)
             {
-                this.PART_TextBox_New.Text = string.Empty;
+                PART_TextBox_New.Text = string.Empty;
             }
-            this.ClearSelectedDates();
+            ClearSelectedDates();
         }
 
         /// <summary>
@@ -556,7 +550,7 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Calendar_DateClick(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
         {
-            if (this.PART_Calendar.DisplayMode == CalendarMode.Month)
+            if (PART_Calendar.DisplayMode == CalendarMode.Month)
             {
                 ZCalendar calendar = sender as ZCalendar;
                 if (calendar == null)
@@ -567,14 +561,14 @@ namespace ZdfFlatUI
                 {
                     return;
                 }
-                switch (this.Type)
+                switch (Type)
                 {
                     case EnumDatePickerType.SingleDate:
                     case EnumDatePickerType.DateTime:
-                        this.SetSelectedDate(calendar.SelectedDate.Value);
+                        SetSelectedDate(calendar.SelectedDate.Value);
                         break;
                     case EnumDatePickerType.SingleDateRange:
-                        this.HandleSingleDateRange(calendar);
+                        HandleSingleDateRange(calendar);
                         break;
                 }
             }
@@ -587,14 +581,14 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Calendar_Second_DateClick(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
         {
-            if (this.PART_Calendar_Second.SelectedDate == null)
+            if (PART_Calendar_Second.SelectedDate == null)
             {
                 return;
             }
 
             if (sender is ZCalendar)
             {
-                if (this.PART_Calendar_Second.DisplayMode == CalendarMode.Month)
+                if (PART_Calendar_Second.DisplayMode == CalendarMode.Month)
                 {
                     ZCalendar calendar = sender as ZCalendar;
                     if (calendar == null)
@@ -605,10 +599,10 @@ namespace ZdfFlatUI
                     {
                         return;
                     }
-                    switch (this.Type)
+                    switch (Type)
                     {
                         case EnumDatePickerType.SingleDateRange:
-                            this.HandleSingleDateRange(calendar);
+                            HandleSingleDateRange(calendar);
                             break;
                     }
                 }
@@ -622,38 +616,38 @@ namespace ZdfFlatUI
         private void HandleSingleDateRange(ZCalendar calendar)
         {
             DateTime? dateTime = calendar.SelectedDate;
-            if (this.SelectedDateStart != null && this.SelectedDateEnd != null)
+            if (SelectedDateStart != null && SelectedDateEnd != null)
             {
-                this.SelectedDates.Clear();
-                this.PART_Calendar.SelectedDates.Clear();
-                this.PART_Calendar_Second.SelectedDates.Clear();
-                this.SelectedDateStart = null;
-                this.SelectedDateEnd = null;
-                this.PART_Calendar.SelectedDate = null;
-                this.PART_Calendar_Second.SelectedDate = null;
+                SelectedDates.Clear();
+                PART_Calendar.SelectedDates.Clear();
+                PART_Calendar_Second.SelectedDates.Clear();
+                SelectedDateStart = null;
+                SelectedDateEnd = null;
+                PART_Calendar.SelectedDate = null;
+                PART_Calendar_Second.SelectedDate = null;
             }
 
-            if (this.SelectedDateStart == null)
+            if (SelectedDateStart == null)
             {
-                this.SelectedDateStart = dateTime;
+                SelectedDateStart = dateTime;
                 calendar.SelectedDate = dateTime;
             }
-            else if (calendar.SelectedDate < this.SelectedDateStart)
+            else if (calendar.SelectedDate < SelectedDateStart)
             {
-                this.SelectedDates.Clear();
-                this.PART_Calendar.SelectedDates.Clear();
-                this.PART_Calendar_Second.SelectedDates.Clear();
-                this.SelectedDateStart = dateTime;
-                this.PART_Calendar.SelectedDate = null;
-                this.PART_Calendar_Second.SelectedDate = null;
+                SelectedDates.Clear();
+                PART_Calendar.SelectedDates.Clear();
+                PART_Calendar_Second.SelectedDates.Clear();
+                SelectedDateStart = dateTime;
+                PART_Calendar.SelectedDate = null;
+                PART_Calendar_Second.SelectedDate = null;
                 calendar.SelectedDate = dateTime;
             }
             else
             {
-                this.SelectedDateEnd = dateTime;
-                this.SetSelectedDates(this.SelectedDateStart, this.SelectedDateEnd);
+                SelectedDateEnd = dateTime;
+                SetSelectedDates(SelectedDateStart, SelectedDateEnd);
 
-                this.SetRangeDateToTextBox(this.SelectedDateStart, this.SelectedDateEnd);
+                SetRangeDateToTextBox(SelectedDateStart, SelectedDateEnd);
             }
         }
 
@@ -674,7 +668,7 @@ namespace ZdfFlatUI
             foreach (DateTime date in datePicker.SelectedDates)
             {
                 //选中的日期段可能会跨越好几个月，因此先找出属于第一个日历的日期，然后剩余的日期都显示在第二个日历上面
-                if (DateTimeHelper.MonthIsEqual(date, this.PART_Calendar.DisplayDate))
+                if (DateTimeHelper.MonthIsEqual(date, PART_Calendar.DisplayDate))
                 {
                     dt1.Add(date);
                 }
@@ -690,19 +684,19 @@ namespace ZdfFlatUI
 
         private void PART_Popup_New_Opened(object sender, EventArgs e)
         {
-            if (this.PART_Calendar == null)
+            if (PART_Calendar == null)
             {
                 return;
             }
 
-            this.PART_Calendar.DisplayMode = CalendarMode.Month;
+            PART_Calendar.DisplayMode = CalendarMode.Month;
 
-            switch (this.Type)
+            switch (Type)
             {
                 case EnumDatePickerType.SingleDate:
                     break;
                 case EnumDatePickerType.SingleDateRange:
-                    this.PART_Calendar_Second.DisplayMode = CalendarMode.Month;
+                    PART_Calendar_Second.DisplayMode = CalendarMode.Month;
                     break;
                 default:
                     break;
@@ -722,15 +716,15 @@ namespace ZdfFlatUI
                 return;
             }
 
-            if (this.Type == EnumDatePickerType.SingleDateRange)
+            if (Type == EnumDatePickerType.SingleDateRange)
             {
-                this.PART_Calendar_Second.DisplayDate = e.NewValue.AddMonths(1);
+                PART_Calendar_Second.DisplayDate = e.NewValue.AddMonths(1);
             }
         }
 
         private void PART_Calendar_Second_DisplayDateChanged(object sender, RoutedPropertyChangedEventArgs<DateTime> e)
         {
-            if (this.PART_Calendar == null)
+            if (PART_Calendar == null)
             {
                 return;
             }
@@ -743,9 +737,9 @@ namespace ZdfFlatUI
                 return;
             }
 
-            if (this.Type == EnumDatePickerType.SingleDateRange)
+            if (Type == EnumDatePickerType.SingleDateRange)
             {
-                this.PART_Calendar.DisplayDate = e.NewValue.AddMonths(-1);
+                PART_Calendar.DisplayDate = e.NewValue.AddMonths(-1);
             }
         }
         #endregion
@@ -758,7 +752,7 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Btn_Today_Click(object sender, RoutedEventArgs e)
         {
-            this.SetSelectedDate(DateTime.Today);
+            SetSelectedDate(DateTime.Today);
         }
 
         /// <summary>
@@ -768,7 +762,7 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Btn_Yestday_Click(object sender, RoutedEventArgs e)
         {
-            this.SetSelectedDate(DateTime.Today.AddDays(-1));
+            SetSelectedDate(DateTime.Today.AddDays(-1));
         }
 
         /// <summary>
@@ -778,14 +772,14 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Btn_AnWeekAgo_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedDates.Clear();
-            this.PART_Calendar.SelectedDates.Clear();
-            this.PART_Calendar_Second.SelectedDates.Clear();
-            this.SelectedDateStart = null;
-            this.SelectedDateEnd = null;
-            this.PART_Calendar.SelectedDate = null;
-            this.PART_Calendar_Second.SelectedDate = null;
-            this.SetSelectedDate(DateTime.Today.AddDays(-7));
+            SelectedDates.Clear();
+            PART_Calendar.SelectedDates.Clear();
+            PART_Calendar_Second.SelectedDates.Clear();
+            SelectedDateStart = null;
+            SelectedDateEnd = null;
+            PART_Calendar.SelectedDate = null;
+            PART_Calendar_Second.SelectedDate = null;
+            SetSelectedDate(DateTime.Today.AddDays(-7));
         }
 
         /// <summary>
@@ -795,8 +789,8 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Btn_RecentlyAWeek_Click(object sender, RoutedEventArgs e)
         {
-            this.ClearSelectedDates();
-            this.FastSetSelectedDates(DateTime.Today.AddDays(-7), DateTime.Today);
+            ClearSelectedDates();
+            FastSetSelectedDates(DateTime.Today.AddDays(-7), DateTime.Today);
         }
 
         /// <summary>
@@ -806,8 +800,8 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Btn_RecentlyAMonth_Click(object sender, RoutedEventArgs e)
         {
-            this.ClearSelectedDates();
-            this.FastSetSelectedDates(DateTime.Today.AddMonths(-1), DateTime.Today);
+            ClearSelectedDates();
+            FastSetSelectedDates(DateTime.Today.AddMonths(-1), DateTime.Today);
         }
 
         /// <summary>
@@ -817,27 +811,27 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Btn_RecentlyThreeMonth_Click(object sender, RoutedEventArgs e)
         {
-            this.ClearSelectedDates();
-            this.FastSetSelectedDates(DateTime.Today.AddMonths(-3), DateTime.Today);
+            ClearSelectedDates();
+            FastSetSelectedDates(DateTime.Today.AddMonths(-3), DateTime.Today);
         }
         #endregion
 
         private void FastSetSelectedDates(DateTime? startDate, DateTime? endDate)
         {
-            if(this.PART_Calendar == null || this.PART_Calendar_Second == null)
+            if (PART_Calendar == null || PART_Calendar_Second == null)
             {
                 return;
             }
 
-            this.SelectedDateStart = startDate;
-            this.SelectedDateEnd = endDate;
-            this.PART_Calendar_Second.SelectedDate = null;
-            this.PART_Calendar.SelectedDate = null;
+            SelectedDateStart = startDate;
+            SelectedDateEnd = endDate;
+            PART_Calendar_Second.SelectedDate = null;
+            PART_Calendar.SelectedDate = null;
 
-            this.PART_Calendar.DisplayDate = new DateTime(startDate.Value.Date.Year, startDate.Value.Date.Month, 1);
-            this.PART_Calendar_Second.DisplayDate = new DateTime(endDate.Value.Date.Year, endDate.Value.Date.Month, 1);
+            PART_Calendar.DisplayDate = new DateTime(startDate.Value.Date.Year, startDate.Value.Date.Month, 1);
+            PART_Calendar_Second.DisplayDate = new DateTime(endDate.Value.Date.Year, endDate.Value.Date.Month, 1);
 
-            this.SetSelectedDates(this.SelectedDateStart, this.SelectedDateEnd);
+            SetSelectedDates(SelectedDateStart, SelectedDateEnd);
         }
 
         /// <summary>
@@ -847,18 +841,18 @@ namespace ZdfFlatUI
         /// <param name="selectedDateEnd"></param>
         private void SetSelectedDates(DateTime? selectedDateStart, DateTime? selectedDateEnd)
         {
-            this.SelectedDates.Clear();
+            SelectedDates.Clear();
             DateTime? dtTemp = selectedDateStart;
             while (dtTemp <= selectedDateEnd)
             {
-                this.SelectedDates.Add(dtTemp.Value);
+                SelectedDates.Add(dtTemp.Value);
                 dtTemp = dtTemp.Value.AddDays(1);
             }
-            this.HandleSelectedDatesChanged();
+            HandleSelectedDatesChanged();
 
-            if (this.PART_TextBox_New != null && selectedDateStart.HasValue && selectedDateEnd.HasValue)
+            if (PART_TextBox_New != null && selectedDateStart.HasValue && selectedDateEnd.HasValue)
             {
-                this.SetRangeDateToTextBox(selectedDateStart, selectedDateEnd);
+                SetRangeDateToTextBox(selectedDateStart, selectedDateEnd);
             }
         }
 
@@ -868,14 +862,14 @@ namespace ZdfFlatUI
         /// <param name="dateTime"></param>
         private void SetSelectedDate(DateTime dateTime)
         {
-            this.SelectedDate = dateTime;
-            this.DisplayDate = dateTime;
+            SelectedDate = dateTime;
+            DisplayDate = dateTime;
             //if(this.PART_Calendar != null)
             //{
             //    this.PART_Calendar.SelectedDate = dateTime;
             //}
             //设置弹出框是否关闭
-            this.IsDropDownOpen = this.IsShowConfirm;
+            IsDropDownOpen = IsShowConfirm;
         }
 
         /// <summary>
@@ -884,29 +878,29 @@ namespace ZdfFlatUI
         /// <param name="selectedDate"></param>
         private void SetSingleDateToTextBox(DateTime? selectedDate)
         {
-            if (this.PART_TextBox_New != null)
+            if (PART_TextBox_New != null)
             {
                 if (!selectedDate.HasValue)
                 {
                     selectedDate = new DateTime?(DateTime.Today);
                 }
-                switch (this.Type)
+                switch (Type)
                 {
                     case EnumDatePickerType.SingleDate:
-                        this.PART_TextBox_New.Text = selectedDate.Value.ToString(this.DateStringFormat);
+                        PART_TextBox_New.Text = selectedDate.Value.ToString(DateStringFormat);
                         break;
                     case EnumDatePickerType.DateTime:
-                        if (this.SelectedTime.HasValue && this.PART_TimeSelector != null)
+                        if (SelectedTime.HasValue && PART_TimeSelector != null)
                         {
-                            this.PART_TimeSelector.SelectedTime = this.SelectedTime;
-                            this.PART_TextBox_New.Text = string.Format("{0} {1}"
-                                , selectedDate.Value.ToString(this.DateStringFormat)
-                                , this.SelectedTime.Value.ToString(this.TimeStringFormat));
+                            PART_TimeSelector.SelectedTime = SelectedTime;
+                            PART_TextBox_New.Text = string.Format("{0} {1}"
+                                , selectedDate.Value.ToString(DateStringFormat)
+                                , SelectedTime.Value.ToString(TimeStringFormat));
                         }
                         break;
                 }
 
-                this.SetSelectedDate(selectedDate.Value);
+                SetSelectedDate(selectedDate.Value);
             }
         }
 
@@ -917,17 +911,17 @@ namespace ZdfFlatUI
         /// <param name="endDate"></param>
         private void SetRangeDateToTextBox(DateTime? startDate, DateTime? endDate)
         {
-            if (this.PART_TextBox_New == null)
+            if (PART_TextBox_New == null)
             {
                 return;
             }
 
             if (startDate.HasValue && endDate.HasValue)
             {
-                this.PART_TextBox_New.Text = startDate.Value.ToString(this.DateStringFormat) + " - " + endDate.Value.ToString(this.DateStringFormat);
+                PART_TextBox_New.Text = startDate.Value.ToString(DateStringFormat) + " - " + endDate.Value.ToString(DateStringFormat);
             }
             //选了两个日期之后，关闭日期选择框
-            this.IsDropDownOpen = this.IsShowConfirm;
+            IsDropDownOpen = IsShowConfirm;
         }
 
         /// <summary>
@@ -946,11 +940,11 @@ namespace ZdfFlatUI
                     }
                     break;
                 case EnumDatePickerType.SingleDateRange:
-                    if(datePicker.PART_Calendar != null)
+                    if (datePicker.PART_Calendar != null)
                     {
                         datePicker.PART_Calendar.SelectionMode = CalendarSelectionMode.SingleRange;
                     }
-                    if(datePicker.PART_Calendar_Second != null)
+                    if (datePicker.PART_Calendar_Second != null)
                     {
                         datePicker.PART_Calendar_Second.SelectionMode = CalendarSelectionMode.SingleRange;
                     }
@@ -974,11 +968,11 @@ namespace ZdfFlatUI
         private void SetIsShowConfirm()
         {
             //当控件可以选择时间的时候，默认显示确认框
-            switch (this.Type)
+            switch (Type)
             {
                 case EnumDatePickerType.DateTime:
                 case EnumDatePickerType.DateTimeRange:
-                    this.IsShowConfirm = true;
+                    IsShowConfirm = true;
                     break;
                 default:
                     break;
@@ -990,19 +984,19 @@ namespace ZdfFlatUI
         /// </summary>
         private void ClearSelectedDates()
         {
-            this.SelectedDates.Clear();
-            this.SelectedDateStart = null;
-            this.SelectedDateEnd = null;
+            SelectedDates.Clear();
+            SelectedDateStart = null;
+            SelectedDateEnd = null;
 
-            if(this.PART_Calendar != null)
+            if (PART_Calendar != null)
             {
-                this.PART_Calendar.SelectedDate = null;
-                this.PART_Calendar.SelectedDates.Clear();
+                PART_Calendar.SelectedDate = null;
+                PART_Calendar.SelectedDates.Clear();
             }
-            if(this.PART_Calendar_Second != null)
+            if (PART_Calendar_Second != null)
             {
-                this.PART_Calendar_Second.SelectedDate = null;
-                this.PART_Calendar_Second.SelectedDates.Clear();
+                PART_Calendar_Second.SelectedDate = null;
+                PART_Calendar_Second.SelectedDates.Clear();
             }
         }
         #endregion

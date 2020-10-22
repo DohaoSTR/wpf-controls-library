@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI.StyleSelectors
@@ -22,7 +18,7 @@ namespace ZdfFlatUI.StyleSelectors
 
             ListBox.GetItemsOwner(container);
             int index = listbox.ItemContainerGenerator.IndexFromContainer(container);
-            
+
             if (index == 0)
             {
                 style = LeftItemStyle;

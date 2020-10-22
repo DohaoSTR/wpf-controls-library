@@ -1,8 +1,6 @@
 ﻿using Microsoft.Expression.Shapes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -262,7 +260,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(ContentTemplateProperty); }
             set { SetValue(ContentTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ContentTemplateProperty =
             DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(Dashboard));
         #endregion
@@ -357,7 +355,7 @@ namespace ZdfFlatUI
             private set { SetValue(NumberListProperty, value); }
         }
         #endregion
-        
+
         #endregion
 
         #region 重载
@@ -365,11 +363,11 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_IncreaseCircle = GetTemplateChild("PART_IncreaseCircle") as Arc;
+            PART_IncreaseCircle = GetTemplateChild("PART_IncreaseCircle") as Arc;
 
-            this.SetTicks();
-            this.SetAngle();
-            this.TransformAngle();
+            SetTicks();
+            SetAngle();
+            TransformAngle();
         }
         #endregion
 
@@ -383,20 +381,20 @@ namespace ZdfFlatUI
             List<object> shortticks = new List<object>();
             List<object> longticks = new List<object>();
 
-            for (int i = 0; i < this.LongTickCount; i++)
+            for (int i = 0; i < LongTickCount; i++)
             {
-                numbers.Add(Math.Round(this.Minimum + (this.Maximum - this.Minimum) / (this.LongTickCount - 1) * i));
+                numbers.Add(Math.Round(Minimum + (Maximum - Minimum) / (LongTickCount - 1) * i));
                 longticks.Add(new object());
             }
 
-            for (int i = 0; i < (this.LongTickCount - 1) * (this.ShortTickCount + 1) + 1; i++)
+            for (int i = 0; i < (LongTickCount - 1) * (ShortTickCount + 1) + 1; i++)
             {
                 shortticks.Add(new object());
             }
 
-            this.ShortTicks = shortticks;
-            this.LongTicks = longticks;
-            this.NumberList = numbers;
+            ShortTicks = shortticks;
+            LongTicks = longticks;
+            NumberList = numbers;
         }
 
         /// <summary>
@@ -404,21 +402,21 @@ namespace ZdfFlatUI
         /// </summary>
         private void SetAngle()
         {
-            if(this.Value < this.Minimum)
+            if (Value < Minimum)
             {
-                this.Angle = this.StartAngle;
+                Angle = StartAngle;
                 return;
             }
 
-            if(this.Value > this.Maximum)
+            if (Value > Maximum)
             {
-                this.Angle = this.EndAngle;
+                Angle = EndAngle;
                 return;
             }
 
-            var diff = this.Maximum - this.Minimum;
-            var valueDiff = this.Value - this.Minimum;
-            this.Angle = this.StartAngle + (this.EndAngle - this.StartAngle) / diff * valueDiff;
+            var diff = Maximum - Minimum;
+            var valueDiff = Value - Minimum;
+            Angle = StartAngle + (EndAngle - StartAngle) / diff * valueDiff;
         }
 
         /// <summary>
@@ -426,10 +424,10 @@ namespace ZdfFlatUI
         /// </summary>
         private void TransformAngle()
         {
-            if (this.PART_IncreaseCircle != null)
+            if (PART_IncreaseCircle != null)
             {
-                DoubleAnimation doubleAnimation = new DoubleAnimation(this.OldAngle, this.Angle, this.TickDurtion);
-                this.PART_IncreaseCircle.BeginAnimation(Arc.EndAngleProperty, doubleAnimation);
+                DoubleAnimation doubleAnimation = new DoubleAnimation(OldAngle, Angle, TickDurtion);
+                PART_IncreaseCircle.BeginAnimation(Arc.EndAngleProperty, doubleAnimation);
             }
         }
         #endregion

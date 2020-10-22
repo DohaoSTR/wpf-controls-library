@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
 
 namespace ZdfFlatUI
 {
@@ -22,7 +18,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsFirstItemProperty); }
             set { SetValue(IsFirstItemProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsFirstItemProperty =
             DependencyProperty.Register("IsFirstItem", typeof(bool), typeof(TimelineItem), new PropertyMetadata(false));
 
@@ -55,7 +51,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsLastItemProperty); }
             set { SetValue(IsLastItemProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsLastItemProperty =
             DependencyProperty.Register("IsLastItem", typeof(bool), typeof(TimelineItem), new PropertyMetadata(false));
 

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup;
 
 namespace ZdfFlatUI
 {
@@ -51,16 +45,16 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PreviewKeyDown += EmailBox_PreviewKeyDown;
+            PreviewKeyDown += EmailBox_PreviewKeyDown;
             //解决所有的通过InlineUIContainer添加的控件的Enable都为false的问题
-            this.IsDocumentEnabled = true;
+            IsDocumentEnabled = true;
         }
 
         private void EmailBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                TextRange tr = new TextRange(this.Document.ContentStart, this.Document.ContentEnd);
+                TextRange tr = new TextRange(Document.ContentStart, Document.ContentEnd);
                 string text = tr.Text.Trim();
 
                 //this.Document.Blocks.Clear();
@@ -74,7 +68,7 @@ namespace ZdfFlatUI
                 //TextPointer pointer = TextPointer.
 
                 //Paragraph p = new Paragraph();
-                InlineUIContainer container = new InlineUIContainer(btn, this.Selection.End);
+                InlineUIContainer container = new InlineUIContainer(btn, Selection.End);
                 //p.Inlines.Add(container);
                 container.SetValue(FocusManager.IsFocusScopeProperty, true);
             }
@@ -87,7 +81,7 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void EmailReceiverButton_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var block in this.Document.Blocks)
+            foreach (var block in Document.Blocks)
             {
                 var paragraph = block as Paragraph;
                 if (paragraph == null)

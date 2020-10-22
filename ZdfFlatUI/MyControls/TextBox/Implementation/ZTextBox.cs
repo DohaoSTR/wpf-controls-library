@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -24,9 +20,9 @@ namespace ZdfFlatUI
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ZTextBox), new FrameworkPropertyMetadata(typeof(ZTextBox)));
 
-            CornerRadiusProperty = DependencyProperty.Register("CornerRadius", 
+            CornerRadiusProperty = DependencyProperty.Register("CornerRadius",
                 typeof(System.Windows.CornerRadius), typeof(ZTextBox));
-            WatermarkProperty = DependencyProperty.Register("Watermark", 
+            WatermarkProperty = DependencyProperty.Register("Watermark",
                 typeof(string), typeof(ZTextBox));
             MultiRowProperty = DependencyProperty.Register("MultiRow",
                 typeof(bool), typeof(ZTextBox));

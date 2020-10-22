@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,19 +15,19 @@ namespace ZdfFlatUI
 
         public SlideSwitchPanel()
         {
-            this.RenderTransform = translate;
-            this.Loaded += SlideSwitchPanel_Loaded;
+            RenderTransform = translate;
+            Loaded += SlideSwitchPanel_Loaded;
         }
 
         private void SlideSwitchPanel_Loaded(object sender, RoutedEventArgs e)
         {
-            this.ChildCount = this.InternalChildren.Count;
+            ChildCount = InternalChildren.Count;
         }
 
         #region 依赖属性
-        public static readonly DependencyProperty IndexProperty = DependencyProperty.Register("Index", 
-            typeof(int), 
-            typeof(SlideSwitchPanel), 
+        public static readonly DependencyProperty IndexProperty = DependencyProperty.Register("Index",
+            typeof(int),
+            typeof(SlideSwitchPanel),
             new FrameworkPropertyMetadata(1, new PropertyChangedCallback(OnIndexChanged)));
 
         /// <summary>
@@ -53,11 +50,11 @@ namespace ZdfFlatUI
         #region Override
         protected override Size MeasureOverride(Size constraint)
         {
-            Size size = new Size(this.initWidth, this.initHeight);
+            Size size = new Size(initWidth, initHeight);
 
             foreach (UIElement e in InternalChildren)
             {
-                e.Measure(new Size(this.initWidth, this.initHeight));
+                e.Measure(new Size(initWidth, initHeight));
             }
 
             return size;
@@ -65,9 +62,9 @@ namespace ZdfFlatUI
 
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            for (int i = 0; i < this.InternalChildren.Count; i++)
+            for (int i = 0; i < InternalChildren.Count; i++)
             {
-                this.InternalChildren[i].Arrange(new Rect(i * this.initWidth, 0, this.initWidth, this.initHeight));
+                InternalChildren[i].Arrange(new Rect(i * initWidth, 0, initWidth, initHeight));
             }
             return arrangeSize;
         }
@@ -77,7 +74,7 @@ namespace ZdfFlatUI
         private static void OnIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             SlideSwitchPanel panel = d as SlideSwitchPanel;
-            if(e.Property == SlideSwitchPanel.IndexProperty)
+            if (e.Property == SlideSwitchPanel.IndexProperty)
             {
                 int newValue = (int)e.NewValue;
                 int oldValue = (int)e.OldValue;
@@ -91,15 +88,15 @@ namespace ZdfFlatUI
             args.RoutedEvent = IndexChangedEvent;
             RaiseEvent(args);
 
-            this.Switch(newValue);
+            Switch(newValue);
         }
 
         private void Switch(int index)
         {
-            DoubleAnimation animation = new DoubleAnimation(-(index - 1) * this.initWidth, TimeSpan.FromMilliseconds(300));
+            DoubleAnimation animation = new DoubleAnimation(-(index - 1) * initWidth, TimeSpan.FromMilliseconds(300));
             animation.DecelerationRatio = 0.2;
             animation.AccelerationRatio = 0.2;
-            this.translate.BeginAnimation(TranslateTransform.XProperty, animation);
+            translate.BeginAnimation(TranslateTransform.XProperty, animation);
         }
     }
 }

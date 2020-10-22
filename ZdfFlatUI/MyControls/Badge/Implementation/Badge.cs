@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace ZdfFlatUI
 {
@@ -55,12 +50,12 @@ namespace ZdfFlatUI
 
         public Badge()
         {
-            
+
         }
         #endregion
 
         #region Override方法
-      
+
         #endregion
 
         #region Private方法

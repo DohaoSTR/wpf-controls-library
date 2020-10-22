@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using ZdfFlatUI.BaseControl;
 
 namespace ZdfFlatUI
-{ 
+{
     public class NoticeItem : ContentControl
     {
         #region Private属性
@@ -53,23 +48,23 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_CloseButton = this.GetTemplateChild("PART_CloseButton") as Button;
-            if(this.PART_CloseButton != null)
+            PART_CloseButton = GetTemplateChild("PART_CloseButton") as Button;
+            if (PART_CloseButton != null)
             {
-                this.PART_CloseButton.Click += PART_CloseButton_Click;
+                PART_CloseButton.Click += PART_CloseButton_Click;
             }
         }
 
         private void PART_CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         ~NoticeItem()
         {
-            if (this.PART_CloseButton != null)
+            if (PART_CloseButton != null)
             {
-                this.PART_CloseButton.Click -= PART_CloseButton_Click;
+                PART_CloseButton.Click -= PART_CloseButton_Click;
             }
         }
         #endregion

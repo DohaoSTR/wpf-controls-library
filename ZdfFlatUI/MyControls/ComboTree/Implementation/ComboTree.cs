@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 
 namespace ZdfFlatUI
 {
@@ -27,7 +24,7 @@ namespace ZdfFlatUI
             get { return (double)GetValue(MaxDropDownHeightProperty); }
             set { SetValue(MaxDropDownHeightProperty, value); }
         }
-        
+
         public static readonly DependencyProperty MaxDropDownHeightProperty =
             DependencyProperty.Register("MaxDropDownHeight", typeof(double), typeof(ComboTree), new PropertyMetadata(300d));
 
@@ -40,7 +37,7 @@ namespace ZdfFlatUI
             get { return (object)GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register("Content", typeof(object), typeof(ComboTree), new PropertyMetadata(null));
 
@@ -53,7 +50,7 @@ namespace ZdfFlatUI
             get { return (object)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(object), typeof(ComboTree), new PropertyMetadata(null));
 
@@ -66,7 +63,7 @@ namespace ZdfFlatUI
             get { return (object)GetValue(SelectedValueProperty); }
             set { SetValue(SelectedValueProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedValueProperty =
             DependencyProperty.Register("SelectedValue", typeof(object), typeof(ComboTree));
 
@@ -79,7 +76,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(SelectedValuePathProperty); }
             set { SetValue(SelectedValuePathProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedValuePathProperty =
             DependencyProperty.Register("SelectedValuePath", typeof(string), typeof(ComboTree), new PropertyMetadata(string.Empty));
 
@@ -92,7 +89,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(ComboTree), new PropertyMetadata(false));
 
@@ -115,7 +112,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(DisplayMemberPathProperty); }
             set { SetValue(DisplayMemberPathProperty, value); }
         }
-        
+
         public static readonly new DependencyProperty DisplayMemberPathProperty =
             DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(ComboTree), new PropertyMetadata(string.Empty));
 
@@ -128,7 +125,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsCloseWhenSelectedProperty); }
             set { SetValue(IsCloseWhenSelectedProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsCloseWhenSelectedProperty =
             DependencyProperty.Register("IsCloseWhenSelected", typeof(bool), typeof(ComboTree), new PropertyMetadata(true));
 
@@ -151,15 +148,15 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_TreeView = this.GetTemplateChild("PART_TreeView") as TreeView;
-            this.PART_Popup = this.GetTemplateChild("PART_Popup") as Popup;
-            if(this.PART_Popup != null)
+            PART_TreeView = GetTemplateChild("PART_TreeView") as TreeView;
+            PART_Popup = GetTemplateChild("PART_Popup") as Popup;
+            if (PART_Popup != null)
             {
-                this.PART_Popup.Opened += PART_Popup_Opened;
+                PART_Popup.Opened += PART_Popup_Opened;
             }
-            this.AddHandler(TreeViewItem.MouseDoubleClickEvent, new RoutedEventHandler(TreeNode_MouseDoubleClick), true);
+            AddHandler(TreeViewItem.MouseDoubleClickEvent, new RoutedEventHandler(TreeNode_MouseDoubleClick), true);
         }
-        
+
         #endregion
 
         #region private function
@@ -186,7 +183,7 @@ namespace ZdfFlatUI
                 TreeViewItem treeItem = targetItemContainer.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
                 if (treeItem == null) continue;
 
-                if (this.SelectedValue.Equals(this.GetPropertyValue(item, this.SelectedValuePath)))
+                if (SelectedValue.Equals(GetPropertyValue(item, SelectedValuePath)))
                 {
                     treeItem.IsExpanded = true;
                     treeItem.IsSelected = true;
@@ -207,7 +204,7 @@ namespace ZdfFlatUI
                 TreeViewItem treeItem = targetItemContainer.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
                 if (treeItem == null) continue;
 
-                if (this.SelectedItem == item)
+                if (SelectedItem == item)
                 {
                     return treeItem;
                 }
@@ -231,41 +228,41 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void TreeNode_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            if (this.PART_TreeView == null)
+            if (PART_TreeView == null)
             {
                 return;
             }
 
-            if (this.PART_TreeView.SelectedItem == null)
+            if (PART_TreeView.SelectedItem == null)
             {
                 return;
             }
 
-            this.SelectedItem = this.PART_TreeView.SelectedItem;
+            SelectedItem = PART_TreeView.SelectedItem;
 
-            TreeViewItem treeViewItem = this.GetNode(this.PART_TreeView);
-            this.SetSelected(treeViewItem);
+            TreeViewItem treeViewItem = GetNode(PART_TreeView);
+            SetSelected(treeViewItem);
 
             //根据参数设置当选择树节点后是否自动关闭Popup
-            this.IsDropDownOpen = !this.IsCloseWhenSelected;
+            IsDropDownOpen = !IsCloseWhenSelected;
 
-            this.Content = string.IsNullOrEmpty(this.DisplayMemberPath) ? this.SelectedItem : this.GetPropertyValue(this.SelectedItem, this.DisplayMemberPath);
-            this.SelectedValue = string.IsNullOrEmpty(this.SelectedValuePath) ? string.Empty : this.GetPropertyValue(this.SelectedItem, this.SelectedValuePath);
+            Content = string.IsNullOrEmpty(DisplayMemberPath) ? SelectedItem : GetPropertyValue(SelectedItem, DisplayMemberPath);
+            SelectedValue = string.IsNullOrEmpty(SelectedValuePath) ? string.Empty : GetPropertyValue(SelectedItem, SelectedValuePath);
         }
 
         private void SetSelected(TreeViewItem item)
         {
             while ((item = item.GetAncestor<TreeViewItem>()) != null)
             {
-                this.selectedList.Insert(0, item.DataContext);
+                selectedList.Insert(0, item.DataContext);
             }
         }
 
         private void PART_Popup_Opened(object sender, EventArgs e)
         {
-            if (this.SelectedValue != null && !string.IsNullOrEmpty(this.SelectedValuePath))
+            if (SelectedValue != null && !string.IsNullOrEmpty(SelectedValuePath))
             {
-                this.SetNodeSelected(this.PART_TreeView);
+                SetNodeSelected(PART_TreeView);
             }
         }
         #endregion

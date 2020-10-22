@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
 using ZdfFlatUI.Primitives;
 
 namespace ZdfFlatUI
@@ -36,18 +31,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(SelectedDateChangedEvent, value);
+                AddHandler(SelectedDateChangedEvent, value);
             }
             remove
             {
-                this.RemoveHandler(SelectedDateChangedEvent, value);
+                RemoveHandler(SelectedDateChangedEvent, value);
             }
         }
 
         public virtual void OnSelectedDateChanged(DateTime? oldValue, DateTime? newValue)
         {
             RoutedPropertyChangedEventArgs<DateTime?> arg = new RoutedPropertyChangedEventArgs<DateTime?>(oldValue, newValue, SelectedDateChangedEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
         #endregion
 
@@ -60,18 +55,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(DateClickEvent, value);
+                AddHandler(DateClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(DateClickEvent, value);
+                RemoveHandler(DateClickEvent, value);
             }
         }
 
         public virtual void OnDateClick(DateTime? oldValue, DateTime? newValue)
         {
             RoutedPropertyChangedEventArgs<DateTime?> arg = new RoutedPropertyChangedEventArgs<DateTime?>(oldValue, newValue, DateClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -85,18 +80,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(DisplayDateChangedEvent, value);
+                AddHandler(DisplayDateChangedEvent, value);
             }
             remove
             {
-                this.RemoveHandler(DisplayDateChangedEvent, value);
+                RemoveHandler(DisplayDateChangedEvent, value);
             }
         }
 
         public virtual void OnDisplayDateChanged(DateTime oldValue, DateTime newValue)
         {
             RoutedPropertyChangedEventArgs<DateTime> arg = new RoutedPropertyChangedEventArgs<DateTime>(oldValue, newValue, DisplayDateChangedEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -110,18 +105,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(DisplayModeChangedEvent, value);
+                AddHandler(DisplayModeChangedEvent, value);
             }
             remove
             {
-                this.RemoveHandler(DisplayModeChangedEvent, value);
+                RemoveHandler(DisplayModeChangedEvent, value);
             }
         }
 
         public virtual void OnDisplayModeChanged(CalendarMode oldValue, CalendarMode newValue)
         {
             RoutedPropertyChangedEventArgs<CalendarMode> arg = new RoutedPropertyChangedEventArgs<CalendarMode>(oldValue, newValue, DisplayModeChangedEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -162,7 +157,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(DayTitleTemplateProperty); }
             set { SetValue(DayTitleTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DayTitleTemplateProperty =
             DependencyProperty.Register("DayTitleTemplate", typeof(DataTemplate), typeof(ZCalendar));
         #endregion
@@ -196,7 +191,7 @@ namespace ZdfFlatUI
             get { return (DateTime)GetValue(DisplayDateStartProperty); }
             set { SetValue(DisplayDateStartProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayDateStartProperty =
             DependencyProperty.Register("DisplayDateStart", typeof(DateTime), typeof(ZCalendar), new PropertyMetadata(DateTime.MinValue));
         #endregion
@@ -207,7 +202,7 @@ namespace ZdfFlatUI
             get { return (DateTime)GetValue(DisplayDateEndProperty); }
             set { SetValue(DisplayDateEndProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayDateEndProperty =
             DependencyProperty.Register("DisplayDateEnd", typeof(DateTime), typeof(ZCalendar), new PropertyMetadata(DateTime.MaxValue));
         #endregion
@@ -218,7 +213,7 @@ namespace ZdfFlatUI
             get { return (CalendarMode)GetValue(DisplayModeProperty); }
             set { SetValue(DisplayModeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayModeProperty =
             DependencyProperty.Register("DisplayMode", typeof(CalendarMode), typeof(ZCalendar), new PropertyMetadata(CalendarMode.Month, DisplayModeChangedCallback));
 
@@ -239,18 +234,18 @@ namespace ZdfFlatUI
             get { return (DateTime?)GetValue(SelectedDateProperty); }
             set { SetValue(SelectedDateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedDateProperty =
             DependencyProperty.Register("SelectedDate", typeof(DateTime?), typeof(ZCalendar), new PropertyMetadata(null, SelectedDateChangedCallback));
 
         private static void SelectedDateChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ZCalendar calendar = d as ZCalendar;
-            if(calendar.SelectionMode == CalendarSelectionMode.SingleDate)
+            if (calendar.SelectionMode == CalendarSelectionMode.SingleDate)
             {
                 calendar.OnSelectedDateChanged(new DateTime?(Convert.ToDateTime(e.OldValue)), new DateTime?(Convert.ToDateTime(e.NewValue)));
             }
-            if(calendar.PART_CalendarItem != null)
+            if (calendar.PART_CalendarItem != null)
             {
                 calendar.PART_CalendarItem.UpdateMonthMode();
             }
@@ -263,14 +258,14 @@ namespace ZdfFlatUI
             get { return (ObservableCollection<DateTime>)GetValue(SelectedDatesProperty); }
             set { SetValue(SelectedDatesProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedDatesProperty =
             DependencyProperty.Register("SelectedDates", typeof(ObservableCollection<DateTime>), typeof(ZCalendar), new PropertyMetadata(null, SelectedDatesChangedCallback));
 
         private static void SelectedDatesChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ZCalendar calendar = d as ZCalendar;
-            if(calendar.PART_CalendarItem == null)
+            if (calendar.PART_CalendarItem == null)
             {
                 return;
             }
@@ -284,7 +279,7 @@ namespace ZdfFlatUI
             get { return (DayOfWeek)GetValue(FirstDayOfWeekProperty); }
             set { SetValue(FirstDayOfWeekProperty, value); }
         }
-        
+
         public static readonly DependencyProperty FirstDayOfWeekProperty =
             DependencyProperty.Register("FirstDayOfWeek", typeof(DayOfWeek), typeof(ZCalendar), new PropertyMetadata(DayOfWeek.Monday));
         #endregion
@@ -295,7 +290,7 @@ namespace ZdfFlatUI
             get { return (CalendarSelectionMode)GetValue(SelectionModeProperty); }
             set { SetValue(SelectionModeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectionModeProperty =
             DependencyProperty.Register("SelectionMode", typeof(CalendarSelectionMode), typeof(ZCalendar), new PropertyMetadata(CalendarSelectionMode.SingleDate));
         #endregion
@@ -309,7 +304,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsShowExtraDaysProperty); }
             set { SetValue(IsShowExtraDaysProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsShowExtraDaysProperty =
             DependencyProperty.Register("IsShowExtraDays", typeof(bool), typeof(ZCalendar), new PropertyMetadata(true));
         #endregion
@@ -335,41 +330,41 @@ namespace ZdfFlatUI
 
         public ZCalendar()
         {
-            this.SelectedDates = new ObservableCollection<DateTime>();
-            this.SelectedDates.CollectionChanged += SelectedDates_CollectionChanged;
+            SelectedDates = new ObservableCollection<DateTime>();
+            SelectedDates.CollectionChanged += SelectedDates_CollectionChanged;
         }
         #endregion
 
         #region Override方法
         public override void OnApplyTemplate()
         {
-            if (this.PART_CalendarItem != null)
+            if (PART_CalendarItem != null)
             {
-                this.PART_CalendarItem.Owner = null;
+                PART_CalendarItem.Owner = null;
             }
 
             base.OnApplyTemplate();
-            
-            this.DisplayDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 
-            this.PART_CalendarItem = this.GetTemplateChild("PART_CalendarItem") as ZCalendarItem;
-            if (this.PART_CalendarItem != null)
+            DisplayDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            PART_CalendarItem = GetTemplateChild("PART_CalendarItem") as ZCalendarItem;
+            if (PART_CalendarItem != null)
             {
-                this.PART_CalendarItem.Owner = this;
+                PART_CalendarItem.Owner = this;
             }
 
             //Calendar有个问题，当选中一个日期之后，似乎焦点并没有得到释放，当鼠标移动其他位置时，需要先点击一下鼠标
             //然后鼠标对应的部分才能获取到焦点，为了解决这个问题，作此处理
-            this.PreviewMouseUp += ZCalendar_PreviewMouseUp;
+            PreviewMouseUp += ZCalendar_PreviewMouseUp;
         }
 
         private void SelectedDates_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (this.PART_CalendarItem == null)
+            if (PART_CalendarItem == null)
             {
                 return;
             }
-            this.PART_CalendarItem.SetSelectedDatesHighlight(this.SelectedDates);
+            PART_CalendarItem.SetSelectedDatesHighlight(SelectedDates);
         }
 
         private void ZCalendar_PreviewMouseUp(object sender, MouseButtonEventArgs e)
@@ -379,24 +374,24 @@ namespace ZdfFlatUI
                 Mouse.Capture(null);
             }
         }
-        
+
         #endregion
 
         #region Private方法
         private void UpdateCellItems()
         {
-            if(this.PART_CalendarItem != null)
+            if (PART_CalendarItem != null)
             {
-                switch (this.DisplayMode)
+                switch (DisplayMode)
                 {
                     case CalendarMode.Month:
-                        this.PART_CalendarItem.UpdateMonthMode();
+                        PART_CalendarItem.UpdateMonthMode();
                         break;
                     case CalendarMode.Year:
-                        this.PART_CalendarItem.UpdateYearMode();
+                        PART_CalendarItem.UpdateYearMode();
                         break;
                     case CalendarMode.Decade:
-                        this.PART_CalendarItem.UpdateDecadeMode();
+                        PART_CalendarItem.UpdateDecadeMode();
                         break;
                     default:
                         break;
@@ -407,9 +402,9 @@ namespace ZdfFlatUI
         private DateTime TryParseToDateTime(string str)
         {
             DateTime dt = DateTime.MinValue;
-            if(DateTime.TryParse(str, out dt))
+            if (DateTime.TryParse(str, out dt))
             {
-                
+
             }
             return dt;
         }

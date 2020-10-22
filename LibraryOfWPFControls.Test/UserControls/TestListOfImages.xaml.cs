@@ -3,9 +3,6 @@ using System.Windows.Controls;
 
 namespace LibraryOfWPFControls.Test.UserControls
 {
-    /// <summary>
-    /// Interaction logic for TestListOfImages.xaml
-    /// </summary>
     public partial class TestListOfImages : UserControl
     {
         public TestListOfImages()
@@ -35,6 +32,7 @@ namespace LibraryOfWPFControls.Test.UserControls
     public class CarouselModel
     {
         public string Title { get; set; }
+
         public string ImageUrl { get; set; }
     }
 }

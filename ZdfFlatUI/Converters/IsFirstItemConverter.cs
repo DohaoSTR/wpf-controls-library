@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -21,7 +17,7 @@ namespace ZdfFlatUI.Converters
             ItemsControl itemsControl = ItemsControl.ItemsControlFromItemContainer(contentPresenter);
 
             bool flag = false;
-            if(itemsControl != null)
+            if (itemsControl != null)
             {
                 int index = itemsControl.ItemContainerGenerator.IndexFromContainer(contentPresenter);
                 flag = (index == 0);

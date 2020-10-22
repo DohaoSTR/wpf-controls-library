@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Media;
@@ -57,7 +53,7 @@ namespace ZdfFlatUI
             set
             {
                 SetValue(MessageTypeProperty, value);
-                this.MessageTypeStr = value.ToString();
+                MessageTypeStr = value.ToString();
             }
         }
 
@@ -140,9 +136,9 @@ namespace ZdfFlatUI
         private static void OnIsShowChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             NoticeMessage noticeMessage = (NoticeMessage)sender;
-            if(e.Property == IsShowProperty)
+            if (e.Property == IsShowProperty)
             {
-                if(Convert.ToBoolean(e.NewValue))
+                if (Convert.ToBoolean(e.NewValue))
                 {
                     noticeMessage.IsShow = false;
                     noticeMessage.mTimer.Enabled = false;
@@ -192,9 +188,9 @@ namespace ZdfFlatUI
         public NoticeMessage() : base()
         {
             mTimer = new Timer();
-            mTimer.Interval = this.Duration == 0 ? 1500 : this.Duration;
+            mTimer.Interval = Duration == 0 ? 1500 : Duration;
             mTimer.Elapsed += MTimer_Elapsed;
-            this.Opacity = 0;
+            Opacity = 0;
         }
 
         private void MTimer_Elapsed(object sender, ElapsedEventArgs e)
@@ -202,8 +198,8 @@ namespace ZdfFlatUI
             Dispatcher.BeginInvoke((System.Threading.ThreadStart)delegate
             {
                 IsShow = false;
-                this.HideAnimation();
-                this.mTimer.Enabled = false;
+                HideAnimation();
+                mTimer.Enabled = false;
 
             }, System.Windows.Threading.DispatcherPriority.Normal);
         }
@@ -212,13 +208,13 @@ namespace ZdfFlatUI
         private void ShowAnimation()
         {
             DoubleAnimation animation = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(300));
-            this.BeginAnimation(OpacityProperty, animation);
+            BeginAnimation(OpacityProperty, animation);
         }
 
         private void HideAnimation()
         {
             DoubleAnimation animation = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(300));
-            this.BeginAnimation(OpacityProperty, animation);
+            BeginAnimation(OpacityProperty, animation);
         }
     }
 

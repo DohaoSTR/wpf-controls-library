@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using ZdfFlatUI.Utils;
 
 namespace ZdfFlatUI.MyControls.Primitives
 {
@@ -103,7 +99,7 @@ namespace ZdfFlatUI.MyControls.Primitives
             {
                 list.Add(i);
             }
-            this.ItemsSource = list;
+            ItemsSource = list;
         }
 
         protected override DependencyObject GetContainerForItemOverride()
@@ -116,7 +112,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         private void Item_OnClickHandler(object sender, ItemMouseSingleClickEventArgs<object> e)
         {
             NumberBoxItem item = sender as NumberBoxItem;
-            this.SelectedItem = item.Content;
+            SelectedItem = item.Content;
         }
     }
 
@@ -135,7 +131,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             var selectedItem = ((System.Windows.FrameworkElement)e.OriginalSource).DataContext;
-            this.OnItemSingleClickHandler(this, ItemMouseSingleClickEventArgs<object>.ItemSingleClick(selectedItem));
+            OnItemSingleClickHandler(this, ItemMouseSingleClickEventArgs<object>.ItemSingleClick(selectedItem));
             base.OnMouseLeftButtonDown(e);
         }
     }

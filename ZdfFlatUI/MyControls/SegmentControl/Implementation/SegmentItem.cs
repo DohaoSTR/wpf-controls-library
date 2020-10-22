@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,7 +13,7 @@ namespace ZdfFlatUI
         #region Property
         private SegmentControl ParentItemsControl
         {
-            get { return this.ParentSelector as SegmentControl; }
+            get { return ParentSelector as SegmentControl; }
         }
 
         internal ItemsControl ParentSelector
@@ -88,7 +84,7 @@ namespace ZdfFlatUI
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
             set { SetValue(CornerRadiusProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(SegmentItem));
 
@@ -111,7 +107,7 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.MouseLeftButtonUp += ButtonGroupItem_MouseLeftButtonUp;
+            MouseLeftButtonUp += ButtonGroupItem_MouseLeftButtonUp;
         }
 
         #endregion
@@ -124,7 +120,7 @@ namespace ZdfFlatUI
 
         private void ButtonGroupItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.ParentItemsControl.OnItemClick(this, this);
+            ParentItemsControl.OnItemClick(this, this);
         }
 
         #endregion

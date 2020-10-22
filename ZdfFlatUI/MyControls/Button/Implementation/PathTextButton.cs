@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -40,7 +36,7 @@ namespace ZdfFlatUI
         #endregion
 
         #region 按钮属性
-        
+
         public static readonly DependencyProperty MouseOverForegroundProperty = DependencyProperty.Register("MouseOverForeground"
             , typeof(Brush), typeof(PathTextButton), new FrameworkPropertyMetadata(new SolidColorBrush(Color.FromRgb(40, 139, 225))));
         /// <summary>

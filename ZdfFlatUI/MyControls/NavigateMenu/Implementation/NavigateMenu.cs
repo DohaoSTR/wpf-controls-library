@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using System.Windows.Input;
 
 namespace ZdfFlatUI
 {
@@ -83,22 +77,22 @@ namespace ZdfFlatUI
             //this.GroupStyle.Clear();
             //this.GroupStyle.Add(new System.Windows.Controls.GroupStyle() { ContainerStyle = style });
 
-            if (!string.IsNullOrEmpty(this.GroupDescriptions))
+            if (!string.IsNullOrEmpty(GroupDescriptions))
             {
-                string[] list = this.GroupDescriptions.Split(',');
+                string[] list = GroupDescriptions.Split(',');
                 foreach (string desc in list)
                 {
                     viewSource.GroupDescriptions.Add(new PropertyGroupDescription(desc));
                 }
             }
-            viewSource.Source = this.GroupItemsSource;
+            viewSource.Source = GroupItemsSource;
 
             Binding binding = new Binding();
             binding.Source = viewSource;
 
             BindingOperations.SetBinding(this, NavigateMenu.ItemsSourceProperty, binding);
 
-            
+
         }
         #endregion
 

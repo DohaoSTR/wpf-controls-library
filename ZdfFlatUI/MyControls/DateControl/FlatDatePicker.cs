@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -37,9 +34,9 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_Popup = GetTemplateChild("PART_Popup") as Popup;
+            PART_Popup = GetTemplateChild("PART_Popup") as Popup;
 
-            child = this.PART_Popup.Child;
+            child = PART_Popup.Child;
 
             if (child == null)
             {
@@ -53,18 +50,18 @@ namespace ZdfFlatUI
             transformGroup.Children.Add(scaleTransform);
             child.RenderTransform = transformGroup;
 
-            this.PART_Popup.Opened += PART_Popup_Opened;
-            this.PART_Popup.Closed += PART_Popup_Closed;
+            PART_Popup.Opened += PART_Popup_Opened;
+            PART_Popup.Closed += PART_Popup_Closed;
         }
 
         private void PART_Popup_Closed(object sender, EventArgs e)
         {
-            this.StopAnimation(child);
+            StopAnimation(child);
         }
 
         private void PART_Popup_Opened(object sender, EventArgs e)
         {
-            this.BeginAnimation(child);
+            BeginAnimation(child);
         }
 
         private void BeginAnimation(UIElement element)

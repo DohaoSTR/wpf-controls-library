@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -16,7 +12,7 @@ namespace ZdfFlatUI
         #region Property
         private TagBox ParentItemsControl
         {
-            get { return this.ParentSelector as TagBox; }
+            get { return ParentSelector as TagBox; }
         }
 
         internal ItemsControl ParentSelector
@@ -49,7 +45,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsClosableProperty); }
             set { SetValue(IsClosableProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsClosableProperty =
             DependencyProperty.Register("IsClosable", typeof(bool), typeof(Tag), new PropertyMetadata(true));
 
@@ -68,18 +64,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ClosedEvent, value);
+                AddHandler(ClosedEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ClosedEvent, value);
+                RemoveHandler(ClosedEvent, value);
             }
         }
 
         public virtual void OnClosed(object oldValue, object newValue)
         {
             RoutedPropertyChangedEventArgs<object> arg = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, ClosedEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -101,10 +97,10 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_CloseButton = this.GetTemplateChild("PART_CloseButton") as Button;
-            if(this.PART_CloseButton != null)
+            PART_CloseButton = GetTemplateChild("PART_CloseButton") as Button;
+            if (PART_CloseButton != null)
             {
-                this.PART_CloseButton.Click += PART_CloseButton_Click;
+                PART_CloseButton.Click += PART_CloseButton_Click;
             }
             VisualStateManager.GoToState(this, "Show", true);
         }
@@ -119,8 +115,8 @@ namespace ZdfFlatUI
         private void PART_CloseButton_Click(object sender, RoutedEventArgs e)
         {
             VisualStateManager.GoToState(this, "Closed", true);
-            this.OnClosed(null, null);
-            if(this.ParentItemsControl != null)
+            OnClosed(null, null);
+            if (ParentItemsControl != null)
             {
 
             }

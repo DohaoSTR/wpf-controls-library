@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,14 +25,14 @@ namespace ZdfFlatUI
 
         public ValidateTextBox() : base()
         {
-            this.LostFocus += ValidateTextBox_LostFocus;
-            this.Loaded += ValidateTextBox_Loaded;
-            this.IsEnabledChanged += ValidateTextBox_IsEnabledChanged;
+            LostFocus += ValidateTextBox_LostFocus;
+            Loaded += ValidateTextBox_Loaded;
+            IsEnabledChanged += ValidateTextBox_IsEnabledChanged;
         }
 
         private void ValidateTextBox_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(this.IsEnabled)
+            if (IsEnabled)
             {
 
             }
@@ -43,10 +40,10 @@ namespace ZdfFlatUI
 
         private void ValidateTextBox_Loaded(object sender, RoutedEventArgs e)
         {
-            switch (this.ValidateType)
+            switch (ValidateType)
             {
                 case EnumValidateType.Loaded:
-                    this.BeginValidate();
+                    BeginValidate();
                     break;
                 case EnumValidateType.LostFocus:
                     break;
@@ -57,30 +54,30 @@ namespace ZdfFlatUI
 
         private void ValidateTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.BeginValidate();
+            BeginValidate();
         }
 
         private void BeginValidate()
         {
-            if (this.IsRequired && this.CheckIsEmpty())
+            if (IsRequired && CheckIsEmpty())
             {
-                this.ShowError(this.RequiredMessage);
+                ShowError(RequiredMessage);
                 return;
             }
 
-            if (this.IsNumber && !this.CheckIsNumber())
+            if (IsNumber && !CheckIsNumber())
             {
-                this.ShowError(this.NumberMessage);
+                ShowError(NumberMessage);
                 return;
             }
 
-            if (this.IsPhoneNumber && !this.CheckIsPhoneNum())
+            if (IsPhoneNumber && !CheckIsPhoneNum())
             {
-                this.ShowError(this.PhoneNumberMessage);
+                ShowError(PhoneNumberMessage);
                 return;
             }
 
-            this.HideError();
+            HideError();
         }
 
         #region 控件名称
@@ -207,8 +204,8 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_ErrorPopup = this.GetTemplateChild("PART_ErrorPopup") as Popup;
-            this.PART_ErrorContent = this.GetTemplateChild("PART_ErrorContent") as TextBlock;
+            PART_ErrorPopup = GetTemplateChild("PART_ErrorPopup") as Popup;
+            PART_ErrorContent = GetTemplateChild("PART_ErrorContent") as TextBlock;
         }
 
         #region 校验方法
@@ -218,10 +215,10 @@ namespace ZdfFlatUI
         /// <param name="errorContent"></param>
         private void ShowError(string errorContent)
         {
-            this.PART_ErrorContent.Text = errorContent;
+            PART_ErrorContent.Text = errorContent;
             VisualStateManager.GoToState(this, "InvalidFocused", true);
             //this.PART_ErrorPopup.IsOpen = true;
-            
+
         }
         /// <summary>
         /// 隐藏错误提示信息
@@ -238,7 +235,7 @@ namespace ZdfFlatUI
         /// <returns></returns>
         private bool CheckIsEmpty()
         {
-            return string.IsNullOrEmpty(this.Text);
+            return string.IsNullOrEmpty(Text);
         }
 
         /// <summary>
@@ -247,12 +244,12 @@ namespace ZdfFlatUI
         /// <returns></returns>
         private bool CheckIsNumber()
         {
-            return Regex.IsMatch(this.Text, @"^[0-9]*$");
+            return Regex.IsMatch(Text, @"^[0-9]*$");
         }
 
         private bool CheckIsPhoneNum()
         {
-            return Regex.IsMatch(this.Text, @"^[1][358][0-9]{9}$");
+            return Regex.IsMatch(Text, @"^[1][358][0-9]{9}$");
         }
         #endregion
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -21,18 +17,18 @@ namespace ZdfFlatUI.Converters
             int progress = (int)values[1];
             ItemsControl itemsControl = ItemsControl.ItemsControlFromItemContainer(contentControl);
 
-            if(itemsControl == null)
+            if (itemsControl == null)
             {
                 return EnumCompare.None;
             }
 
             int index = itemsControl.ItemContainerGenerator.IndexFromContainer(contentControl);
-            
-            if(index < progress)
+
+            if (index < progress)
             {
                 return EnumCompare.Less;
             }
-            else if(index == progress)
+            else if (index == progress)
             {
                 return EnumCompare.Equal;
             }

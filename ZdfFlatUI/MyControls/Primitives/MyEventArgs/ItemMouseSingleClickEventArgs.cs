@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ZdfFlatUI.MyControls.Primitives
 {
@@ -18,7 +15,7 @@ namespace ZdfFlatUI.MyControls.Primitives
 
         public static ItemMouseSingleClickEventArgs<T> ShowContextMenu()
         {
-            return new ItemMouseSingleClickEventArgs<T>() {  };
+            return new ItemMouseSingleClickEventArgs<T>() { };
         }
     }
 }

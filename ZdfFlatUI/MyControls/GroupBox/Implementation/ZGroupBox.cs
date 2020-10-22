@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -36,7 +32,7 @@ namespace ZdfFlatUI
             get { return (HorizontalAlignment)GetValue(HorizontalHeaderAlignmentProperty); }
             set { SetValue(HorizontalHeaderAlignmentProperty, value); }
         }
-        
+
         public static readonly DependencyProperty HorizontalHeaderAlignmentProperty =
             DependencyProperty.Register("HorizontalHeaderAlignment", typeof(HorizontalAlignment), typeof(ZGroupBox), new PropertyMetadata(HorizontalAlignment.Stretch));
 
@@ -49,7 +45,7 @@ namespace ZdfFlatUI
             get { return (Thickness)GetValue(HeaderPaddingProperty); }
             set { SetValue(HeaderPaddingProperty, value); }
         }
-        
+
         public static readonly DependencyProperty HeaderPaddingProperty =
             DependencyProperty.Register("HeaderPadding", typeof(Thickness), typeof(ZGroupBox));
 
@@ -69,7 +65,7 @@ namespace ZdfFlatUI
         private static void CornerRadiusCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ZGroupBox groupBox = d as ZGroupBox;
-            if(groupBox != null)
+            if (groupBox != null)
             {
                 CornerRadius radius = (CornerRadius)e.NewValue;
                 groupBox.CornerRadiusInner = new CornerRadius(radius.TopLeft, radius.TopRight, 0, 0);
@@ -89,7 +85,7 @@ namespace ZdfFlatUI
             get { return (CornerRadius)GetValue(CornerRadiusInnerProperty); }
             private set { SetValue(CornerRadiusInnerProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CornerRadiusInnerProperty =
             DependencyProperty.Register("CornerRadiusInner", typeof(CornerRadius), typeof(ZGroupBox));
 

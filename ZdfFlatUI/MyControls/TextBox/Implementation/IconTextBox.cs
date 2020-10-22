@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Media;
 using ZdfFlatUI.MyControls.Primitives;
 
@@ -35,11 +29,11 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(EnterKeyClickEvent, value);
+                AddHandler(EnterKeyClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(EnterKeyClickEvent, value);
+                RemoveHandler(EnterKeyClickEvent, value);
             }
         }
 
@@ -47,7 +41,7 @@ namespace ZdfFlatUI
         {
             RoutedPropertyChangedEventArgs<object> arg =
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, EnterKeyClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
         #endregion
 
@@ -82,14 +76,14 @@ namespace ZdfFlatUI
 
         public IconTextBox() : base()
         {
-            this.KeyUp += IconTextBox_KeyUp;
+            KeyUp += IconTextBox_KeyUp;
         }
 
         private void IconTextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if(e.Key == System.Windows.Input.Key.Enter)
+            if (e.Key == System.Windows.Input.Key.Enter)
             {
-                this.OnEnterKeyClick(null, null);
+                OnEnterKeyClick(null, null);
             }
         }
     }

@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Input;
 using ZdfFlatUI.MyControls.Primitives;
 
 namespace ZdfFlatUI
@@ -37,18 +33,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(FilterItemSelectedEvent, value);
+                AddHandler(FilterItemSelectedEvent, value);
             }
             remove
             {
-                this.RemoveHandler(FilterItemSelectedEvent, value);
+                RemoveHandler(FilterItemSelectedEvent, value);
             }
         }
 
         public virtual void OnFilterItemSelected(object oldValue, object newValue)
         {
             RoutedPropertyChangedEventArgs<object> arg = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, FilterItemSelectedEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -64,7 +60,7 @@ namespace ZdfFlatUI
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(AutoCompleteBox), new PropertyMetadata(null));
 
@@ -77,7 +73,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(DisplayMemberPathProperty); }
             set { SetValue(DisplayMemberPathProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayMemberPathProperty =
             DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(AutoCompleteBox), new PropertyMetadata(string.Empty));
 
@@ -90,7 +86,7 @@ namespace ZdfFlatUI
             get { return (ObservableCollection<PropertyFilterDescription>)GetValue(FilterMemberSourceProperty); }
             set { SetValue(FilterMemberSourceProperty, value); }
         }
-        
+
         public static readonly DependencyProperty FilterMemberSourceProperty =
             DependencyProperty.Register("FilterMemberSource", typeof(ObservableCollection<PropertyFilterDescription>), typeof(AutoCompleteBox), new PropertyMetadata(new ObservableCollection<PropertyFilterDescription>()));
 
@@ -103,7 +99,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(AutoCompleteBox), new PropertyMetadata(false));
 
@@ -116,7 +112,7 @@ namespace ZdfFlatUI
             get { return (Style)GetValue(DropDownBoxStyleProperty); }
             set { SetValue(DropDownBoxStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DropDownBoxStyleProperty =
             DependencyProperty.Register("DropDownBoxStyle", typeof(Style), typeof(AutoCompleteBox), new PropertyMetadata(null));
 
@@ -129,7 +125,7 @@ namespace ZdfFlatUI
             get { return (Style)GetValue(DropDownBoxItemContainerStyleProperty); }
             set { SetValue(DropDownBoxItemContainerStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DropDownBoxItemContainerStyleProperty =
             DependencyProperty.Register("DropDownBoxItemContainerStyle", typeof(Style), typeof(AutoCompleteBox));
 
@@ -142,7 +138,7 @@ namespace ZdfFlatUI
             get { return (ObservableCollection<GroupStyle>)GetValue(DropDownBoxGroupStyleProperty); }
             set { SetValue(DropDownBoxGroupStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DropDownBoxGroupStyleProperty =
             DependencyProperty.Register("DropDownBoxGroupStyle", typeof(ObservableCollection<GroupStyle>), typeof(AutoCompleteBox));
 
@@ -155,7 +151,7 @@ namespace ZdfFlatUI
             get { return (object)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(object), typeof(AutoCompleteBox), new PropertyMetadata(null));
 
@@ -168,7 +164,7 @@ namespace ZdfFlatUI
             get { return (double)GetValue(MaxDropDownHeightProperty); }
             set { SetValue(MaxDropDownHeightProperty, value); }
         }
-        
+
         public static readonly DependencyProperty MaxDropDownHeightProperty =
             DependencyProperty.Register("MaxDropDownHeight", typeof(double), typeof(AutoCompleteBox), new PropertyMetadata(200d));
 
@@ -185,7 +181,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsBusyProperty =
             DependencyProperty.Register("IsBusy", typeof(bool), typeof(AutoCompleteBox), new PropertyMetadata(false));
 
@@ -198,7 +194,7 @@ namespace ZdfFlatUI
             get { return (int)GetValue(SelectedIndexProperty); }
             private set { SetValue(SelectedIndexProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedIndexProperty =
             DependencyProperty.Register("SelectedIndex", typeof(int), typeof(AutoCompleteBox), new PropertyMetadata(0));
 
@@ -221,25 +217,25 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_ListBox = this.GetTemplateChild("PART_ListBox") as ListBox;
-            if(this.PART_ListBox != null)
+            PART_ListBox = GetTemplateChild("PART_ListBox") as ListBox;
+            if (PART_ListBox != null)
             {
-                this.PART_ListBox.AddHandler(ListBoxItem.MouseLeftButtonDownEvent, new RoutedEventHandler(ItemSelected), true);
+                PART_ListBox.AddHandler(ListBoxItem.MouseLeftButtonDownEvent, new RoutedEventHandler(ItemSelected), true);
             }
             //this.FilterItemsSource = this.ItemsSource;
             //collectionView = CollectionViewSource.GetDefaultView(this.FilterItemsSource);
-            this.TextChanged += AutoCompleteBox_TextChanged;
-            this.PreviewKeyDown += AutoCompleteBox_PreviewKeyDown;
+            TextChanged += AutoCompleteBox_TextChanged;
+            PreviewKeyDown += AutoCompleteBox_PreviewKeyDown;
         }
 
         private void ItemSelected(object sender, RoutedEventArgs e)
         {
-            this.mIsEnterKeyDown = true;
-            var item = this.PART_ListBox.SelectedItem;
-            this.IsDropDownOpen = false;
-            this.Text = Utils.CommonUtil.GetPropertyValue(item, this.DisplayMemberPath).ToString();
-            this.SelectionStart = this.Text.Length;
-            this.OnFilterItemSelected(item, item);
+            mIsEnterKeyDown = true;
+            var item = PART_ListBox.SelectedItem;
+            IsDropDownOpen = false;
+            Text = Utils.CommonUtil.GetPropertyValue(item, DisplayMemberPath).ToString();
+            SelectionStart = Text.Length;
+            OnFilterItemSelected(item, item);
         }
 
         #endregion
@@ -257,11 +253,11 @@ namespace ZdfFlatUI
                 //这里有个隐藏逻辑：设置SelectedIndex应该同时设置SelectedItem，但是在xaml中使用了Binding，则设置SelectedIndex
                 //会自动设置SelectedItem
                 //SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}}"
-                this.SelectedIndex = (this.SelectedIndex - 1) < 0 ? 0 : (this.SelectedIndex - 1);
+                SelectedIndex = (SelectedIndex - 1) < 0 ? 0 : (SelectedIndex - 1);
             }
             else
             {
-                this.SelectedIndex = (this.SelectedIndex + 1) > count ? --count : (this.SelectedIndex + 1);
+                SelectedIndex = (SelectedIndex + 1) > count ? --count : (SelectedIndex + 1);
             }
         }
         #endregion
@@ -271,27 +267,27 @@ namespace ZdfFlatUI
         {
             if (e.Key == System.Windows.Input.Key.Up || e.Key == System.Windows.Input.Key.Down)
             {
-                this.SelectDropDownBoxItem(e.Key == System.Windows.Input.Key.Up);
+                SelectDropDownBoxItem(e.Key == System.Windows.Input.Key.Up);
             }
             else if (e.Key == System.Windows.Input.Key.Enter)
             {
                 //当有联想列表时点击Enter是选择Item，当没有联想列表时，点击Enter是弹出联想列表
-                if (!this.IsDropDownOpen) 
+                if (!IsDropDownOpen)
                 {
                     int count = ((System.Windows.Data.ListCollectionView)collectionView).Count;
-                    if(count > 0)
+                    if (count > 0)
                     {
-                        this.IsDropDownOpen = true;
+                        IsDropDownOpen = true;
                     }
                 }
                 else
                 {
-                    this.mIsEnterKeyDown = true;
-                    var item = this.SelectedItem;
-                    this.IsDropDownOpen = false;
-                    this.Text = Utils.CommonUtil.GetPropertyValue(item, this.DisplayMemberPath).ToString();
-                    this.SelectionStart = this.Text.Length;
-                    this.OnFilterItemSelected(this.SelectedItem, this.SelectedItem);
+                    mIsEnterKeyDown = true;
+                    var item = SelectedItem;
+                    IsDropDownOpen = false;
+                    Text = Utils.CommonUtil.GetPropertyValue(item, DisplayMemberPath).ToString();
+                    SelectionStart = Text.Length;
+                    OnFilterItemSelected(SelectedItem, SelectedItem);
                 }
             }
         }
@@ -299,34 +295,34 @@ namespace ZdfFlatUI
         private void AutoCompleteBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             //如果是因为选择了联想列表项导致文本框文本被改变则不进行再次联想
-            if (this.mIsEnterKeyDown)
+            if (mIsEnterKeyDown)
             {
-                this.mIsEnterKeyDown = false;
+                mIsEnterKeyDown = false;
                 return;
             }
 
             //文本框没有文本时关闭联想列表
-            if (string.IsNullOrWhiteSpace(this.Text))
+            if (string.IsNullOrWhiteSpace(Text))
             {
-                this.IsDropDownOpen = false;
+                IsDropDownOpen = false;
                 return;
             }
 
-            if(collectionView == null)
+            if (collectionView == null)
             {
-                collectionView = CollectionViewSource.GetDefaultView(this.ItemsSource);
+                collectionView = CollectionViewSource.GetDefaultView(ItemsSource);
             }
 
             Task.Factory.StartNew(() =>
             {
-                this.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(()=> 
+                Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, new Action(() =>
                 {
                     collectionView.Filter = (o) =>
                     {
-                        if (string.IsNullOrEmpty(this.DisplayMemberPath)
-                            && (this.FilterMemberSource.Count == 0 || this.FilterMemberSource == null))
+                        if (string.IsNullOrEmpty(DisplayMemberPath)
+                            && (FilterMemberSource.Count == 0 || FilterMemberSource == null))
                         {
-                            return Convert.ToString(o).Contains(this.Text);
+                            return Convert.ToString(o).Contains(Text);
                         }
                         else
                         {
@@ -334,9 +330,9 @@ namespace ZdfFlatUI
                             //{
 
                             //}
-                            object value = Utils.CommonUtil.GetPropertyValue(o, this.DisplayMemberPath);
+                            object value = Utils.CommonUtil.GetPropertyValue(o, DisplayMemberPath);
                             System.Diagnostics.Debug.WriteLine(Convert.ToString(value));
-                            return Convert.ToString(value).Contains(this.Text);
+                            return Convert.ToString(value).Contains(Text);
                         }
                     };
                 }));
@@ -345,15 +341,15 @@ namespace ZdfFlatUI
             int count = ((System.Windows.Data.ListCollectionView)collectionView).Count;
             if (count > 0)
             {
-                this.SelectedIndex = 0;//默认选中第一个联想项
-                this.IsDropDownOpen = true;
+                SelectedIndex = 0;//默认选中第一个联想项
+                IsDropDownOpen = true;
             }
             else
             {
-                this.IsDropDownOpen = false;
+                IsDropDownOpen = false;
             }
         }
-        
+
         #endregion
     }
 

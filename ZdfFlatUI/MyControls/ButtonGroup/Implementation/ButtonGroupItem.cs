@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,7 +9,7 @@ namespace ZdfFlatUI
         #region Property
         private ButtonGroup ParentItemsControl
         {
-            get { return this.ParentSelector as ButtonGroup; }
+            get { return ParentSelector as ButtonGroup; }
         }
 
         internal ItemsControl ParentSelector
@@ -103,7 +99,7 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.MouseLeftButtonUp += ButtonGroupItem_MouseLeftButtonUp;
+            MouseLeftButtonUp += ButtonGroupItem_MouseLeftButtonUp;
         }
 
         #endregion
@@ -116,7 +112,7 @@ namespace ZdfFlatUI
 
         private void ButtonGroupItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.ParentItemsControl.OnItemClick(this, this);
+            ParentItemsControl.OnItemClick(this, this);
         }
 
         #endregion

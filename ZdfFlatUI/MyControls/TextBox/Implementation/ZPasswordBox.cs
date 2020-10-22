@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
 using ZdfFlatUI.MyControls.Primitives;
 
 namespace ZdfFlatUI
@@ -39,14 +35,14 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsCanSeePasswordProperty); }
             set { SetValue(IsCanSeePasswordProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsCanSeePasswordProperty =
             DependencyProperty.Register("IsCanSeePassword", typeof(bool), typeof(ZPasswordBox), new PropertyMetadata(true, IsCanSeePasswordChangedCallback));
 
         private static void IsCanSeePasswordChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ZPasswordBox passowrdBox = d as ZPasswordBox;
-            if(passowrdBox != null && passowrdBox.PART_SeePassword != null)
+            if (passowrdBox != null && passowrdBox.PART_SeePassword != null)
             {
                 passowrdBox.PART_SeePassword.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
             }
@@ -65,7 +61,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
         }
-        
+
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(ZPasswordBox), new PropertyMetadata(string.Empty));
 
@@ -82,7 +78,7 @@ namespace ZdfFlatUI
             get { return (char)GetValue(PasswordCharProperty); }
             set { SetValue(PasswordCharProperty, value); }
         }
-        
+
         public static readonly DependencyProperty PasswordCharProperty =
             DependencyProperty.Register("PasswordChar", typeof(char), typeof(ZPasswordBox), new PropertyMetadata('●'));
 
@@ -99,14 +95,14 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(ShowPasswordProperty); }
             private set { SetValue(ShowPasswordProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ShowPasswordProperty =
             DependencyProperty.Register("ShowPassword", typeof(bool), typeof(ZPasswordBox), new PropertyMetadata(false, ShowPasswordChanged));
 
         private static void ShowPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ZPasswordBox passwordBox = d as ZPasswordBox;
-            if(passwordBox != null)
+            if (passwordBox != null)
             {
                 passwordBox.SelectionStart = passwordBox.Text.Length + 1;
             }
@@ -131,24 +127,24 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_SeePassword = this.GetTemplateChild("PART_SeePassword") as ToggleButton;
-            if(this.PART_SeePassword != null)
+            PART_SeePassword = GetTemplateChild("PART_SeePassword") as ToggleButton;
+            if (PART_SeePassword != null)
             {
-                this.PART_SeePassword.Visibility = this.IsCanSeePassword ? Visibility.Visible : Visibility.Collapsed;
+                PART_SeePassword.Visibility = IsCanSeePassword ? Visibility.Visible : Visibility.Collapsed;
             }
-            this.SetEvent();
+            SetEvent();
 
             //回显密码
-            this.SetText(this.ConvertToPasswordChar(this.Password.Length));
+            SetText(ConvertToPasswordChar(Password.Length));
 
             //密码框禁止复制
-            this.CommandBindings.Add(new System.Windows.Input.CommandBinding(ApplicationCommands.Copy, CommandBinding_Executed, CommandBinding_CanExecute));
+            CommandBindings.Add(new System.Windows.Input.CommandBinding(ApplicationCommands.Copy, CommandBinding_Executed, CommandBinding_CanExecute));
         }
-        
+
         public override void OnCornerRadiusChanged(CornerRadius newValue)
         {
             //根据密码框边框圆角自动设置图标背景框圆角
-            this.IconCornerRadius = new CornerRadius(newValue.TopLeft, 0, 0, newValue.BottomLeft);
+            IconCornerRadius = new CornerRadius(newValue.TopLeft, 0, 0, newValue.BottomLeft);
         }
         #endregion
 
@@ -156,27 +152,27 @@ namespace ZdfFlatUI
 
         private void SetEvent()
         {
-            this.TextChanged += ZPasswordBox_TextChanged;
-            if(this.PART_SeePassword != null)
+            TextChanged += ZPasswordBox_TextChanged;
+            if (PART_SeePassword != null)
             {
-                this.PART_SeePassword.Checked += (o, e) => 
+                PART_SeePassword.Checked += (o, e) =>
                 {
-                    this.SetText(this.Password);
-                    this.ShowPassword = true;
+                    SetText(Password);
+                    ShowPassword = true;
                 };
-                this.PART_SeePassword.Unchecked += (o, e) =>
+                PART_SeePassword.Unchecked += (o, e) =>
                 {
-                    this.SetText(this.ConvertToPasswordChar(this.Password.Length));
-                    this.ShowPassword = false;
+                    SetText(ConvertToPasswordChar(Password.Length));
+                    ShowPassword = false;
                 };
             }
         }
 
         private void SetText(string str)
         {
-            this.mIsHandledTextChanged = false;
-            this.Text = str;
-            this.mIsHandledTextChanged = true;
+            mIsHandledTextChanged = false;
+            Text = str;
+            mIsHandledTextChanged = true;
         }
 
         /// <summary>
@@ -194,12 +190,12 @@ namespace ZdfFlatUI
             {
                 mPasswordBuilder = new StringBuilder();
             }
-                
+
             for (var i = 0; i < length; i++)
             {
-                mPasswordBuilder.Append(this.PasswordChar);
+                mPasswordBuilder.Append(PasswordChar);
             }
-                
+
             return mPasswordBuilder.ToString();
         }
 
@@ -209,24 +205,24 @@ namespace ZdfFlatUI
 
         private void ZPasswordBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (!this.mIsHandledTextChanged)
+            if (!mIsHandledTextChanged)
                 return;
 
             foreach (TextChange c in e.Changes)
             {
                 //从密码文中根据本次Change对象的索引和长度删除对应个数的字符
-                this.Password = this.Password.Remove(c.Offset, c.RemovedLength);
+                Password = Password.Remove(c.Offset, c.RemovedLength);
                 //将Text新增的部分记录给密码文
-                this.Password = this.Password.Insert(c.Offset, Text.Substring(c.Offset, c.AddedLength));
+                Password = Password.Insert(c.Offset, Text.Substring(c.Offset, c.AddedLength));
             }
 
-            if(!this.ShowPassword)
+            if (!ShowPassword)
             {
-                this.SetText(ConvertToPasswordChar(Text.Length));
+                SetText(ConvertToPasswordChar(Text.Length));
             }
 
             //将光标放到最后面
-            this.SelectionStart = this.Text.Length + 1;
+            SelectionStart = Text.Length + 1;
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)

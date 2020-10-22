@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ZdfFlatUI.Utils
 {
@@ -17,7 +14,7 @@ namespace ZdfFlatUI.Utils
         {
             bool flag = false;
 
-            if(dt1.Year == dt2.Year && dt1.Month == dt2.Month)
+            if (dt1.Year == dt2.Year && dt1.Month == dt2.Month)
             {
                 flag = true;
             }

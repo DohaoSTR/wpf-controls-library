@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -28,7 +24,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(DropDownButton), new PropertyMetadata(false));
 
@@ -37,7 +33,7 @@ namespace ZdfFlatUI
             get { return (double)GetValue(DropDownHeightProperty); }
             set { SetValue(DropDownHeightProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DropDownHeightProperty =
             DependencyProperty.Register("DropDownHeight", typeof(double), typeof(DropDownButton), new PropertyMetadata(200d));
 
@@ -46,7 +42,7 @@ namespace ZdfFlatUI
             get { return (EnumTrigger)GetValue(TriggerProperty); }
             set { SetValue(TriggerProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TriggerProperty =
             DependencyProperty.Register("Trigger", typeof(EnumTrigger), typeof(DropDownButton), new PropertyMetadata(EnumTrigger.Click));
 
@@ -65,34 +61,34 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.MouseLeftButtonUp += DropDownButton_MouseLeftButtonUp;
-            this.MouseEnter += DropDownButton_MouseEnter;
-            this.MouseLeave += DropDownButton_MouseLeave;
+            MouseLeftButtonUp += DropDownButton_MouseLeftButtonUp;
+            MouseEnter += DropDownButton_MouseEnter;
+            MouseLeave += DropDownButton_MouseLeave;
         }
 
         private void DropDownButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (this.Trigger == EnumTrigger.Hover)
+            if (Trigger == EnumTrigger.Hover)
             {
-                this.IsDropDownOpen = false;
+                IsDropDownOpen = false;
             }
             VisualStateManager.GoToState(this, "Normal", true);
         }
 
         private void DropDownButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if(this.Trigger == EnumTrigger.Hover)
+            if (Trigger == EnumTrigger.Hover)
             {
-                this.IsDropDownOpen = true;
+                IsDropDownOpen = true;
             }
             VisualStateManager.GoToState(this, "MouseOver", true);
         }
 
         private void DropDownButton_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if(this.Trigger == EnumTrigger.Click || this.Trigger == EnumTrigger.Custom)
+            if (Trigger == EnumTrigger.Click || Trigger == EnumTrigger.Custom)
             {
-                this.IsDropDownOpen = true;
+                IsDropDownOpen = true;
             }
             VisualStateManager.GoToState(this, "Pressed", true);
         }

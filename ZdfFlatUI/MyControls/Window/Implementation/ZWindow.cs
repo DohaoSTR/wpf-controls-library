@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace ZdfFlatUI
@@ -22,7 +18,7 @@ namespace ZdfFlatUI
             get { return (Brush)GetValue(TitleBackgroundProperty); }
             set { SetValue(TitleBackgroundProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TitleBackgroundProperty =
             DependencyProperty.Register("TitleBackground", typeof(Brush), typeof(ZWindow));
 
@@ -35,7 +31,7 @@ namespace ZdfFlatUI
             get { return (Brush)GetValue(TitleForegroundProperty); }
             set { SetValue(TitleForegroundProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TitleForegroundProperty =
             DependencyProperty.Register("TitleForeground", typeof(Brush), typeof(ZWindow));
 
@@ -48,7 +44,7 @@ namespace ZdfFlatUI
             get { return (double)GetValue(TitleFontSizeProperty); }
             set { SetValue(TitleFontSizeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TitleFontSizeProperty =
             DependencyProperty.Register("TitleFontSize", typeof(double), typeof(ZWindow), new PropertyMetadata(12d));
 
@@ -61,7 +57,7 @@ namespace ZdfFlatUI
             get { return (FontFamily)GetValue(TitleFontFamilyProperty); }
             set { SetValue(TitleFontFamilyProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TitleFontFamilyProperty =
             DependencyProperty.Register("TitleFontFamily", typeof(FontFamily), typeof(ZWindow));
 
@@ -119,7 +115,7 @@ namespace ZdfFlatUI
             get { return (object)GetValue(MoreOnTitleProperty); }
             set { SetValue(MoreOnTitleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty MoreOnTitleProperty =
             DependencyProperty.Register("MoreOnTitle", typeof(object), typeof(ZWindow));
 

@@ -165,43 +165,43 @@ namespace ZdfFlatUI.BaseControl
         {
             base.OnApplyTemplate();
 
-            this.PART_UP = VisualHelper.FindVisualElement<Button>(this, "PART_UP");
-            this.PART_DOWN = VisualHelper.FindVisualElement<Button>(this, "PART_DOWN");
+            PART_UP = VisualHelper.FindVisualElement<Button>(this, "PART_UP");
+            PART_DOWN = VisualHelper.FindVisualElement<Button>(this, "PART_DOWN");
 
-            if(this.PART_UP != null)
+            if (PART_UP != null)
             {
-                this.PART_UP.Click += BtnUp_Click;
+                PART_UP.Click += BtnUp_Click;
             }
 
-            if(this.PART_DOWN != null)
+            if (PART_DOWN != null)
             {
-                this.PART_DOWN.Click += BtnDown_Click;
+                PART_DOWN.Click += BtnDown_Click;
             }
-            
-            this.TextChanged += NumericUpDown_TextChanged;
-            this.KeyUp += NumericUpDown_KeyUp;
 
-            this.SetBtnEnabled(this.Value.ToString());
-            this.MoveCursorToEnd();
-            this.Value = this.CoreValueCompareMinMax(this.Value);
+            TextChanged += NumericUpDown_TextChanged;
+            KeyUp += NumericUpDown_KeyUp;
+
+            SetBtnEnabled(Value.ToString());
+            MoveCursorToEnd();
+            Value = CoreValueCompareMinMax(Value);
         }
 
         private void NumericUpDown_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (!this.IsFocused) return;
+            if (!IsFocused) return;
 
             switch (e.Key)
             {
                 case System.Windows.Input.Key.Up:
-                    if (this.UpButtonClick != null)
+                    if (UpButtonClick != null)
                     {
-                        this.UpButtonClick();
+                        UpButtonClick();
                     }
                     break;
                 case System.Windows.Input.Key.Down:
-                    if (this.DownButtonClick != null)
+                    if (DownButtonClick != null)
                     {
-                        this.DownButtonClick();
+                        DownButtonClick();
                     }
                     break;
                 default:
@@ -211,7 +211,7 @@ namespace ZdfFlatUI.BaseControl
 
         private void NumericUpDown_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(this.IsReadOnly)
+            if (IsReadOnly)
             {
                 return;
             }
@@ -220,16 +220,16 @@ namespace ZdfFlatUI.BaseControl
             string newValue = ((TextBox)sender).Text;
             EnumCompare type;
 
-            this.Value = this.CoreValueCompareMinMax(this.ParseValue(newValue), out type);
+            Value = CoreValueCompareMinMax(ParseValue(newValue), out type);
             switch (type)
             {
                 case EnumCompare.Less:
                     IsShowTip = true;
-                    TipText = string.Format("您输入的数值为{0}，小于最小值{1}", newValue, this.Minimum);
+                    TipText = string.Format("您输入的数值为{0}，小于最小值{1}", newValue, Minimum);
                     break;
                 case EnumCompare.Large:
                     IsShowTip = true;
-                    TipText = string.Format("您输入的数值为{0}，大于最大值{1}", newValue, this.Maximum);
+                    TipText = string.Format("您输入的数值为{0}，大于最大值{1}", newValue, Maximum);
                     break;
             }
 
@@ -237,8 +237,8 @@ namespace ZdfFlatUI.BaseControl
             //{
             //    ValueChanged(newValue);
             //}
-            this.SetBtnEnabled(newValue);
-            this.MoveCursorToEnd();
+            SetBtnEnabled(newValue);
+            MoveCursorToEnd();
         }
 
         private void BtnUp_Click(object sender, RoutedEventArgs e)
@@ -248,10 +248,10 @@ namespace ZdfFlatUI.BaseControl
             //    this.UpButtonClick();
             //}
 
-            T value = this.IncrementValue(this.Value, this.Increment);
-            this.Value = this.CoreValueCompareMinMax(value);
+            T value = IncrementValue(Value, Increment);
+            Value = CoreValueCompareMinMax(value);
 
-            this.MoveCursorToEnd();
+            MoveCursorToEnd();
         }
 
         private void BtnDown_Click(object sender, RoutedEventArgs e)
@@ -261,25 +261,25 @@ namespace ZdfFlatUI.BaseControl
             //    this.DownButtonClick();
             //}
 
-            T value = this.DecrementValue(this.Value, this.Increment);
-            this.Value = this.CoreValueCompareMinMax(value);
+            T value = DecrementValue(Value, Increment);
+            Value = CoreValueCompareMinMax(value);
 
-            this.MoveCursorToEnd();
+            MoveCursorToEnd();
         }
 
         private T CoreValueCompareMinMax(T value)
         {
             T result = value;
 
-            if (this.IsLowerThan(value, this.Minimum))
+            if (IsLowerThan(value, Minimum))
             {
-                result = this.Minimum;
+                result = Minimum;
             }
             else
             {
-                if (this.IsLagerThan(value, this.Maximum))
+                if (IsLagerThan(value, Maximum))
                 {
-                    result = this.Maximum;
+                    result = Maximum;
                 }
             }
 
@@ -291,16 +291,16 @@ namespace ZdfFlatUI.BaseControl
             T result = value;
             type = EnumCompare.None;
 
-            if (this.IsLowerThan(value, this.Minimum))
+            if (IsLowerThan(value, Minimum))
             {
-                result = this.Minimum;
+                result = Minimum;
                 type = EnumCompare.Less;
             }
             else
             {
-                if (this.IsLagerThan(value, this.Maximum))
+                if (IsLagerThan(value, Maximum))
                 {
-                    result = this.Maximum;
+                    result = Maximum;
                     type = EnumCompare.Large;
                 }
             }
@@ -320,13 +320,13 @@ namespace ZdfFlatUI.BaseControl
 
         private void SetBtnEnabled(string value)
         {
-            if (this.PART_UP != null)
+            if (PART_UP != null)
             {
-                this.PART_UP.IsEnabled = this.Maximum.ToString() != value;
+                PART_UP.IsEnabled = Maximum.ToString() != value;
             }
-            if (this.PART_DOWN != null)
+            if (PART_DOWN != null)
             {
-                this.PART_DOWN.IsEnabled = this.Minimum.ToString() != value;
+                PART_DOWN.IsEnabled = Minimum.ToString() != value;
             }
         }
 
@@ -335,7 +335,7 @@ namespace ZdfFlatUI.BaseControl
         /// </summary>
         private void MoveCursorToEnd()
         {
-            this.SelectionStart = Convert.ToString(this.Value).Length;
+            SelectionStart = Convert.ToString(Value).Length;
         }
     }
 }

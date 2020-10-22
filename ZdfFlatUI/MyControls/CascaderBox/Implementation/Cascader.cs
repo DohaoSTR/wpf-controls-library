@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -35,7 +32,7 @@ namespace ZdfFlatUI
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(Cascader), new PropertyMetadata(null));
 
@@ -48,7 +45,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(ChildMemberPathProperty); }
             set { SetValue(ChildMemberPathProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ChildMemberPathProperty =
             DependencyProperty.Register("ChildMemberPath", typeof(string), typeof(Cascader), new PropertyMetadata(string.Empty));
 
@@ -61,7 +58,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(DisplayMemberPathProperty); }
             set { SetValue(DisplayMemberPathProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayMemberPathProperty =
             DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(Cascader), new PropertyMetadata(string.Empty));
 
@@ -74,7 +71,7 @@ namespace ZdfFlatUI
             get { return (Style)GetValue(ValueBoxStyleProperty); }
             set { SetValue(ValueBoxStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ValueBoxStyleProperty =
             DependencyProperty.Register("ValueBoxStyle", typeof(Style), typeof(Cascader));
 
@@ -87,7 +84,7 @@ namespace ZdfFlatUI
             get { return (Style)GetValue(ValueItemStyleProperty); }
             set { SetValue(ValueItemStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ValueItemStyleProperty =
             DependencyProperty.Register("ValueItemStyle", typeof(Style), typeof(Cascader));
 
@@ -102,7 +99,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsShowEveryItemProperty); }
             set { SetValue(IsShowEveryItemProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsShowEveryItemProperty =
             DependencyProperty.Register("IsShowEveryItem", typeof(bool), typeof(Cascader), new PropertyMetadata(false));
 
@@ -115,7 +112,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsChangeOnSelectedProperty); }
             set { SetValue(IsChangeOnSelectedProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsChangeOnSelectedProperty =
             DependencyProperty.Register("IsChangeOnSelected", typeof(bool), typeof(Cascader), new PropertyMetadata(false));
 
@@ -128,7 +125,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(SeparatorProperty); }
             set { SetValue(SeparatorProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SeparatorProperty =
             DependencyProperty.Register("Separator", typeof(string), typeof(Cascader), new PropertyMetadata(" / "));
 
@@ -141,7 +138,7 @@ namespace ZdfFlatUI
             get { return (object)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register("SelectedItem", typeof(object), typeof(Cascader), new PropertyMetadata(null, SelectedItemChangedCallback));
 
@@ -160,7 +157,7 @@ namespace ZdfFlatUI
             get { return (ObservableCollection<object>)GetValue(SelectedValuesProperty); }
             private set { SetValue(SelectedValuesProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedValuesProperty =
             DependencyProperty.Register("SelectedValues", typeof(ObservableCollection<object>)
                 , typeof(Cascader), new PropertyMetadata(null));
@@ -177,7 +174,7 @@ namespace ZdfFlatUI
 
         public Cascader()
         {
-            this.SelectedValues = new ObservableCollection<object>();
+            SelectedValues = new ObservableCollection<object>();
             //this.SelectedValues.CollectionChanged += (o, e) => 
             //{
             //    this.ShowText = string.Empty;
@@ -200,10 +197,10 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_Popup = this.GetTemplateChild("PART_Popup") as Popup;
-            this.PART_Panel = this.GetTemplateChild("PART_Panel") as StackPanel;
-            this.PART_TextBox = this.GetTemplateChild("PART_TextBox") as TextBox;
-            this.ListBoxContainer.CollectionChanged += ListBoxContainer_CollectionChanged;
+            PART_Popup = GetTemplateChild("PART_Popup") as Popup;
+            PART_Panel = GetTemplateChild("PART_Panel") as StackPanel;
+            PART_TextBox = GetTemplateChild("PART_TextBox") as TextBox;
+            ListBoxContainer.CollectionChanged += ListBoxContainer_CollectionChanged;
             CreateFirstContainer();
         }
 
@@ -214,16 +211,16 @@ namespace ZdfFlatUI
         {
             ObservableCollection<CascaderListBox> collection = sender as ObservableCollection<CascaderListBox>;
 
-            this.PART_Panel.Children.Clear();
+            PART_Panel.Children.Clear();
             foreach (CascaderListBox item in collection)
             {
-                this.PART_Panel.Children.Add(item);
+                PART_Panel.Children.Add(item);
             }
         }
 
         private void CreateFirstContainer()
         {
-            this.CreateContainer(this.ItemsSource, 0, null);
+            CreateContainer(ItemsSource, 0, null);
         }
 
         private void CreateNextContainer(IList selectedItem, int deep)
@@ -235,35 +232,35 @@ namespace ZdfFlatUI
 
             object obj = selectedItem[0];
             Type type = obj.GetType();
-            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(this.ChildMemberPath);
+            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(ChildMemberPath);
             IList list = (IList)propertyInfo.GetValue(obj, null); //获取属性值
-            
+
             if (list != null)
             {
-                if (this.ListBoxContainer.Count > deep)
+                if (ListBoxContainer.Count > deep)
                 {
-                    CascaderListBox listBox = this.ListBoxContainer[deep];
+                    CascaderListBox listBox = ListBoxContainer[deep];
                     listBox.SetValue(CascaderListBox.VisibilityProperty, Visibility.Visible);
                     listBox.SetValue(CascaderListBox.ItemsSourceProperty, list);
                     listBox.SetValue(CascaderListBox.ParentItemProperty, selectedItem);
 
-                    for (int i = deep + 1; i < this.ListBoxContainer.Count; i++)
+                    for (int i = deep + 1; i < ListBoxContainer.Count; i++)
                     {
-                        this.ListBoxContainer[i].Visibility = Visibility.Collapsed;
+                        ListBoxContainer[i].Visibility = Visibility.Collapsed;
                     }
                 }
                 else
                 {
-                    this.CreateContainer(list, deep, obj);
+                    CreateContainer(list, deep, obj);
                 }
             }
             else
             {
-                if (this.ListBoxContainer.Count > deep)
+                if (ListBoxContainer.Count > deep)
                 {
-                    for (int i = deep; i < this.ListBoxContainer.Count; i++)
+                    for (int i = deep; i < ListBoxContainer.Count; i++)
                     {
-                        this.ListBoxContainer[i].Visibility = Visibility.Collapsed;
+                        ListBoxContainer[i].Visibility = Visibility.Collapsed;
                     }
                 }
             }
@@ -275,48 +272,48 @@ namespace ZdfFlatUI
             container.Owner = this;
             container.SetValue(CascaderListBox.ParentItemProperty, parent);
             container.SetValue(CascaderListBox.ItemsSourceProperty, itemsSource);
-            container.SetValue(CascaderListBox.DisplayMemberPathProperty, this.DisplayMemberPath);
+            container.SetValue(CascaderListBox.DisplayMemberPathProperty, DisplayMemberPath);
             container.SetValue(CascaderListBox.DeepProperty, deep);
-            container.SetValue(CascaderListBox.StyleProperty, this.ValueBoxStyle);
-            container.SetValue(CascaderListBox.ItemContainerStyleProperty, this.ValueItemStyle);
+            container.SetValue(CascaderListBox.StyleProperty, ValueBoxStyle);
+            container.SetValue(CascaderListBox.ItemContainerStyleProperty, ValueItemStyle);
             container.SelectionChanged += Container_SelectionChanged;
             container.ItemClick += Container_ItemClick;
-            this.ListBoxContainer.Add(container);
+            ListBoxContainer.Add(container);
         }
 
         private void Container_ItemClick(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            this.SelectedValues.Clear();
+            SelectedValues.Clear();
             CascaderListBox cascaderListBox = sender as CascaderListBox;
-            if (!this.HasChildren(e.NewValue))
+            if (!HasChildren(e.NewValue))
             {
-                this.ShowText = string.Empty;
+                ShowText = string.Empty;
                 for (int i = 0; i < cascaderListBox.Deep + 1; i++)
                 {
-                    CascaderListBox listBox = this.ListBoxContainer[i] as CascaderListBox;
-                    if(listBox.Visibility == Visibility.Visible)
+                    CascaderListBox listBox = ListBoxContainer[i] as CascaderListBox;
+                    if (listBox.Visibility == Visibility.Visible)
                     {
-                        this.ShowText = this.ShowText + this.GetPropertyValue(listBox.SelectedItem) + this.Separator;
-                        this.SelectedValues.Add(listBox.SelectedItem);
+                        ShowText = ShowText + GetPropertyValue(listBox.SelectedItem) + Separator;
+                        SelectedValues.Add(listBox.SelectedItem);
                     }
                 }
             }
 
-            this.PART_TextBox.Text = this.ShowText.TrimEnd(this.Separator.ToCharArray());
+            PART_TextBox.Text = ShowText.TrimEnd(Separator.ToCharArray());
         }
 
         private void Container_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CascaderListBox listBox = sender as CascaderListBox;
-            this.CreateNextContainer(e.AddedItems, listBox.Deep + 1);
+            CreateNextContainer(e.AddedItems, listBox.Deep + 1);
         }
 
         private bool HasChildren(object obj)
         {
             Type type = obj.GetType();
-            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(this.ChildMemberPath);
+            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(ChildMemberPath);
             IList list = (IList)propertyInfo.GetValue(obj, null); //获取属性值
-            if(list != null && list.Count > 0)
+            if (list != null && list.Count > 0)
             {
                 return true;
             }
@@ -329,7 +326,7 @@ namespace ZdfFlatUI
         private IEnumerable GetChildren(object obj)
         {
             Type type = obj.GetType();
-            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(this.ChildMemberPath);
+            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(ChildMemberPath);
             IEnumerable list = (IEnumerable)propertyInfo.GetValue(obj, null); //获取属性值
 
             return list;
@@ -338,13 +335,13 @@ namespace ZdfFlatUI
         private object GetPropertyValue(object obj)
         {
             Type type = obj.GetType();
-            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(this.DisplayMemberPath);
+            System.Reflection.PropertyInfo propertyInfo = type.GetProperty(DisplayMemberPath);
             return (object)propertyInfo.GetValue(obj, null);
         }
 
         private int GetItemDepth(object item)
         {
-            this.ForeachItem(this.ItemsSource, item);
+            ForeachItem(ItemsSource, item);
             return depth;
         }
 
@@ -355,11 +352,11 @@ namespace ZdfFlatUI
             while (enumerator.MoveNext())
             {
                 object current = enumerator.Current;
-                if(current != item)
+                if (current != item)
                 {
-                    if (this.HasChildren(current))
+                    if (HasChildren(current))
                     {
-                        ForeachItem(this.GetChildren(current), item);
+                        ForeachItem(GetChildren(current), item);
                     }
                 }
                 else

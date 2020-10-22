@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
 
 namespace ZdfFlatUI
 {
@@ -32,7 +28,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(FirstSlotTemplateProperty); }
             set { SetValue(FirstSlotTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty FirstSlotTemplateProperty =
             DependencyProperty.Register("FirstSlotTemplate", typeof(DataTemplate), typeof(Timeline));
 
@@ -49,7 +45,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(MiddleSlotTemplateProperty); }
             set { SetValue(MiddleSlotTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty MiddleSlotTemplateProperty =
             DependencyProperty.Register("MiddleSlotTemplate", typeof(DataTemplate), typeof(Timeline));
 
@@ -66,7 +62,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(LastSlotTemplateProperty); }
             set { SetValue(LastSlotTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty LastSlotTemplateProperty =
             DependencyProperty.Register("LastSlotTemplate", typeof(DataTemplate), typeof(Timeline));
 
@@ -83,7 +79,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsCustomEverySlotProperty); }
             set { SetValue(IsCustomEverySlotProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsCustomEverySlotProperty =
             DependencyProperty.Register("IsCustomEverySlot", typeof(bool), typeof(Timeline), new PropertyMetadata(false));
 
@@ -100,7 +96,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(SlotTemplateProperty); }
             set { SetValue(SlotTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SlotTemplateProperty =
             DependencyProperty.Register("SlotTemplate", typeof(DataTemplate), typeof(Timeline));
 
@@ -121,19 +117,19 @@ namespace ZdfFlatUI
 
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
-            int index = this.ItemContainerGenerator.IndexFromContainer(element);
+            int index = ItemContainerGenerator.IndexFromContainer(element);
             TimelineItem timelineItem = element as TimelineItem;
-            if(timelineItem == null)
+            if (timelineItem == null)
             {
                 return;
             }
 
-            if(index == 0)
+            if (index == 0)
             {
                 timelineItem.IsFirstItem = true;
             }
 
-            if(index == this.Items.Count - 1)
+            if (index == Items.Count - 1)
             {
                 timelineItem.IsLastItem = true;
             }
@@ -161,23 +157,23 @@ namespace ZdfFlatUI
                 case NotifyCollectionChangedAction.Add:
                     if (e.NewStartingIndex == 0) //如果新添加项是放在第一位，则更改原来的第一位的属性值
                     {
-                        this.SetTimelineItem(e.NewStartingIndex + e.NewItems.Count);
+                        SetTimelineItem(e.NewStartingIndex + e.NewItems.Count);
                     }
 
                     //如果新添加项是放在最后一位，则更改原来的最后一位的属性值
-                    if (e.NewStartingIndex == this.Items.Count - e.NewItems.Count)
+                    if (e.NewStartingIndex == Items.Count - e.NewItems.Count)
                     {
-                        this.SetTimelineItem(e.NewStartingIndex - 1);
+                        SetTimelineItem(e.NewStartingIndex - 1);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    if(e.OldStartingIndex == 0) //如果移除的是第一个，则更改更新后的第一项的属性值
+                    if (e.OldStartingIndex == 0) //如果移除的是第一个，则更改更新后的第一项的属性值
                     {
-                        this.SetTimelineItem(0);
+                        SetTimelineItem(0);
                     }
                     else
                     {
-                        this.SetTimelineItem(e.OldStartingIndex - 1);
+                        SetTimelineItem(e.OldStartingIndex - 1);
                     }
                     break;
             }
@@ -191,19 +187,19 @@ namespace ZdfFlatUI
         /// <param name="index"></param>
         private void SetTimelineItem(int index)
         {
-            if(index > this.Items.Count || index < 0)
+            if (index > Items.Count || index < 0)
             {
                 return;
             }
 
-            TimelineItem timelineItem = this.ItemContainerGenerator.ContainerFromIndex(index) as TimelineItem;
-            if(timelineItem == null)
+            TimelineItem timelineItem = ItemContainerGenerator.ContainerFromIndex(index) as TimelineItem;
+            if (timelineItem == null)
             {
                 return;
             }
             timelineItem.IsFirstItem = index == 0;
-            timelineItem.IsLastItem = index == this.Items.Count - 1;
-            timelineItem.IsMiddleItem = index > 0 && index < this.Items.Count - 1;
+            timelineItem.IsLastItem = index == Items.Count - 1;
+            timelineItem.IsMiddleItem = index > 0 && index < Items.Count - 1;
         }
         #endregion
     }

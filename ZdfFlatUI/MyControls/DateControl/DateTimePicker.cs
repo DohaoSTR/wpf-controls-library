@@ -120,43 +120,43 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_TextBox = VisualHelper.FindVisualElement<DatePickerTextBox>(this, "PART_TextBox_New");
-            this.PART_Popup = VisualHelper.FindVisualElement<Popup>(this, "PART_Popup_New");
-            this.PART_Calendar = GetTemplateChild("PART_Calendar") as Calendar;
-            this.PART_TimePicker = GetTemplateChild("PART_TimePicker") as TimePicker;
-            this.PART_Clear_Button = GetTemplateChild("PART_Clear_Button") as Button;
-            this.PART_Today_Button = GetTemplateChild("PART_Today_Button") as Button;
-            this.PART_Confirm_Button = GetTemplateChild("PART_Confirm_Button") as Button;
-            
-            if(this.PART_Calendar != null)
+            PART_TextBox = VisualHelper.FindVisualElement<DatePickerTextBox>(this, "PART_TextBox_New");
+            PART_Popup = VisualHelper.FindVisualElement<Popup>(this, "PART_Popup_New");
+            PART_Calendar = GetTemplateChild("PART_Calendar") as Calendar;
+            PART_TimePicker = GetTemplateChild("PART_TimePicker") as TimePicker;
+            PART_Clear_Button = GetTemplateChild("PART_Clear_Button") as Button;
+            PART_Today_Button = GetTemplateChild("PART_Today_Button") as Button;
+            PART_Confirm_Button = GetTemplateChild("PART_Confirm_Button") as Button;
+
+            if (PART_Calendar != null)
             {
-                this.PART_Calendar.AddHandler(Button.MouseLeftButtonDownEvent, new RoutedEventHandler(DayButton_MouseLeftButtonUp), true);
+                PART_Calendar.AddHandler(Button.MouseLeftButtonDownEvent, new RoutedEventHandler(DayButton_MouseLeftButtonUp), true);
             }
 
-            if(this.PART_TimePicker != null)
+            if (PART_TimePicker != null)
             {
-                this.PART_TimePicker.SelectedTimeChanged += PART_TimePicker_SelectedTimeChanged; ;
+                PART_TimePicker.SelectedTimeChanged += PART_TimePicker_SelectedTimeChanged; ;
             }
 
-            if(this.PART_Popup != null)
+            if (PART_Popup != null)
             {
-                this.PART_Popup.Opened += PART_Popup_Opened;
-                this.PART_Popup.Closed += PART_Popup_Closed;
+                PART_Popup.Opened += PART_Popup_Opened;
+                PART_Popup.Closed += PART_Popup_Closed;
             }
 
-            if(this.PART_Today_Button != null)
+            if (PART_Today_Button != null)
             {
-                this.PART_Today_Button.Click += PART_Today_Button_Click;
+                PART_Today_Button.Click += PART_Today_Button_Click;
             }
 
-            if (this.PART_Confirm_Button != null)
+            if (PART_Confirm_Button != null)
             {
-                this.PART_Confirm_Button.Click += PART_Confirm_Button_Click;
+                PART_Confirm_Button.Click += PART_Confirm_Button_Click;
             }
 
-            if (this.PART_Clear_Button != null)
+            if (PART_Clear_Button != null)
             {
-                this.PART_Clear_Button.Click += PART_Clear_Button_Click;
+                PART_Clear_Button.Click += PART_Clear_Button_Click;
             }
         }
 
@@ -167,30 +167,30 @@ namespace ZdfFlatUI
             string timepart = string.Empty;
             if (!string.IsNullOrEmpty(Convert.ToString(e.NewValue)))
             {
-                datepart = this.PART_Calendar.DisplayDate.ToString("yyyy-MM-dd");
+                datepart = PART_Calendar.DisplayDate.ToString("yyyy-MM-dd");
                 timepart = Convert.ToDateTime(e.NewValue).ToString("HH:mm:ss");
-                this.SetDateTime(Convert.ToDateTime(datepart + " " + timepart).ToString(this.DateFormat));
+                SetDateTime(Convert.ToDateTime(datepart + " " + timepart).ToString(DateFormat));
             }
         }
 
         private void PART_Confirm_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.IsDropDownOpen = false;
-            SetCurrentData(this.PART_TextBox.Text);
+            IsDropDownOpen = false;
+            SetCurrentData(PART_TextBox.Text);
         }
 
         private void PART_Today_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.SetDateTime(DateTime.Now.ToString(this.DateFormat));
-            this.IsDropDownOpen = false;
-            SetCurrentData(this.PART_TextBox.Text);
+            SetDateTime(DateTime.Now.ToString(DateFormat));
+            IsDropDownOpen = false;
+            SetCurrentData(PART_TextBox.Text);
         }
 
         private void PART_Clear_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.SetDateTime(string.Empty);
+            SetDateTime(string.Empty);
 
-            SetCurrentData(this.PART_TextBox.Text);
+            SetCurrentData(PART_TextBox.Text);
         }
 
         /// <summary>
@@ -201,19 +201,19 @@ namespace ZdfFlatUI
         private void PART_Popup_Opened(object sender, EventArgs e)
         {
             //Popup打开时，如果当前没有选择时间，则设置时间选择器的值为当前值
-            if (this.PART_TextBox != null)
+            if (PART_TextBox != null)
             {
-                if (string.IsNullOrEmpty(this.PART_TextBox.Text))
+                if (string.IsNullOrEmpty(PART_TextBox.Text))
                 {
-                    this.PART_TimePicker.Value = DateTime.Now;
+                    PART_TimePicker.Value = DateTime.Now;
                 }
             }
         }
 
         private void PART_Popup_Closed(object sender, EventArgs e)
         {
-            this.IsDropDownOpen = false;
-            SetCurrentData(this.PART_TextBox.Text);
+            IsDropDownOpen = false;
+            SetCurrentData(PART_TextBox.Text);
         }
 
         private void DayButton_MouseLeftButtonUp(object sender, RoutedEventArgs e)
@@ -234,12 +234,12 @@ namespace ZdfFlatUI
 
                     date_part = calendar.SelectedDate.Value.ToString("yyyy-MM-dd");
 
-                    if (this.PART_TimePicker != null)
+                    if (PART_TimePicker != null)
                     {
-                        time_part = this.PART_TimePicker.Value.Value.ToString("HH:mm:ss");
+                        time_part = PART_TimePicker.Value.Value.ToString("HH:mm:ss");
                     }
 
-                    this.SetDateTime(Convert.ToDateTime(date_part + " " + time_part).ToString(this.DateFormat));
+                    SetDateTime(Convert.ToDateTime(date_part + " " + time_part).ToString(DateFormat));
                 }
             }
         }
@@ -248,17 +248,17 @@ namespace ZdfFlatUI
         #region 私有方法
         private void SetDateTime(string datetime)
         {
-            if (this.PART_TextBox != null)
+            if (PART_TextBox != null)
             {
-                this.PART_TextBox.Text = datetime;
+                PART_TextBox.Text = datetime;
                 if (string.IsNullOrEmpty(datetime))
                 {
-                    this.PART_Calendar.SelectedDate = null;
-                    this.Value = null;
+                    PART_Calendar.SelectedDate = null;
+                    Value = null;
                 }
                 else
                 {
-                    this.PART_Calendar.SelectedDate = DateTime.Parse(datetime);
+                    PART_Calendar.SelectedDate = DateTime.Parse(datetime);
                 }
             }
         }
@@ -268,11 +268,11 @@ namespace ZdfFlatUI
             DateTime dt = DateTime.Now;
             if (DateTime.TryParse(text, out dt))
             {
-                this.Value = dt;
+                Value = dt;
             }
             else
             {
-                this.Value = null;
+                Value = null;
             }
         }
         #endregion

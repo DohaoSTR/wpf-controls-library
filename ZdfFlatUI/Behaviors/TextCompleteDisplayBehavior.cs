@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -65,7 +60,7 @@ namespace ZdfFlatUI.Behaviors
         {
             if (e.ClickCount == 2)
             {
-                this.OpenTextShowHost();
+                OpenTextShowHost();
             }
         }
 
@@ -108,7 +103,7 @@ namespace ZdfFlatUI.Behaviors
                         BorderThickness = new Thickness(1),
                         BorderBrush = new SolidColorBrush(Color.FromRgb(204, 206, 219)),
                         Padding = new Thickness(3),
-                        Width = (this.ShowWidth == 0 || this.ShowWidth == double.NaN) ? AssociatedObject.ActualWidth : this.ShowWidth,
+                        Width = (ShowWidth == 0 || ShowWidth == double.NaN) ? AssociatedObject.ActualWidth : ShowWidth,
                         SnapsToDevicePixels = true,
                         UseLayoutRounding = true,
                     };
@@ -131,8 +126,8 @@ namespace ZdfFlatUI.Behaviors
                 //通过args最后一个是否为0可以判断出文本是否出现截断，但是只在一行文本的情况下才生效，如果设置了TextWraping则失效
                 //m_GetLineDetails.Invoke(AssociatedObject, args);
 
-                this.textBox.Text = this.Text;
-                this.popup.IsOpen = true;
+                textBox.Text = Text;
+                popup.IsOpen = true;
             }
             catch (Exception ex)
             {

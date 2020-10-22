@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -32,7 +29,7 @@ namespace ZdfFlatUI
             get { return (int)GetValue(DeepProperty); }
             set { SetValue(DeepProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DeepProperty =
             DependencyProperty.Register("Deep", typeof(int), typeof(CascaderListBox), new PropertyMetadata(0));
 
@@ -47,18 +44,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ItemClickEvent, value);
+                AddHandler(ItemClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ItemClickEvent, value);
+                RemoveHandler(ItemClickEvent, value);
             }
         }
 
         public virtual void OnItemClick(object oldValue, object newValue)
         {
             RoutedPropertyChangedEventArgs<object> arg = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, ItemClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -73,11 +70,11 @@ namespace ZdfFlatUI
             base.PrepareContainerForItemOverride(element, item);
 
             CascaderItem cascaderItem = element as CascaderItem;
-            
-            if(this.Owner != null)
+
+            if (Owner != null)
             {
                 Type type = item.GetType();
-                System.Reflection.PropertyInfo propertyInfo = type.GetProperty(this.Owner.ChildMemberPath);
+                System.Reflection.PropertyInfo propertyInfo = type.GetProperty(Owner.ChildMemberPath);
                 IList list = (IList)propertyInfo.GetValue(item, null); //获取属性值
                 if (list != null && list.Count > 0)
                 {
@@ -87,7 +84,7 @@ namespace ZdfFlatUI
                 {
                     cascaderItem.HasItems = false;
                 }
-                cascaderItem.ParentItem = this.ParentItem;
+                cascaderItem.ParentItem = ParentItem;
             }
 
             cascaderItem.ItemClick += CascaderItem_ItemClick;
@@ -95,7 +92,7 @@ namespace ZdfFlatUI
 
         private void CascaderItem_ItemClick(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            this.OnItemClick(e.OldValue, e.NewValue);
+            OnItemClick(e.OldValue, e.NewValue);
         }
 
         protected override DependencyObject GetContainerForItemOverride()

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
 namespace ZdfFlatUI.Converters
@@ -17,9 +14,9 @@ namespace ZdfFlatUI.Converters
             string selected = "00";
             int hour = 0;
 
-            if(int.TryParse(System.Convert.ToString(value), out hour))
+            if (int.TryParse(System.Convert.ToString(value), out hour))
             {
-                if(hour < 10)
+                if (hour < 10)
                 {
                     selected = "0" + hour;
                 }
@@ -28,7 +25,7 @@ namespace ZdfFlatUI.Converters
                     selected = System.Convert.ToString(hour);
                 }
             }
-            
+
             return selected;
         }
 

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -93,38 +90,38 @@ namespace ZdfFlatUI
             get { return (double)GetValue(AutoCloseIntervalProperty); }
             set { SetValue(AutoCloseIntervalProperty, value); }
         }
-        
+
         #endregion
 
         #region 构造函数
         public AutoCloseWindow() : base()
         {
-            this.Loaded += AutoCloseWindow_Loaded;
+            Loaded += AutoCloseWindow_Loaded;
         }
 
         private void AutoCloseWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //窗体Loaded的时候启动定时关闭窗体的定时器，因此只能将窗体的CloseButtonType属性设置为Close
             //否则不会触发Loaded事件
-            if (this.AutoClose)
+            if (AutoClose)
             {
-                this.mAutoCloseTimer.Interval = this.AutoCloseInterval * 1000;
-                this.mAutoCloseTimer.Elapsed += MAutoCloseTimer_Elapsed;
-                if (!this.mAutoCloseTimer.Enabled)
+                mAutoCloseTimer.Interval = AutoCloseInterval * 1000;
+                mAutoCloseTimer.Elapsed += MAutoCloseTimer_Elapsed;
+                if (!mAutoCloseTimer.Enabled)
                 {
-                    this.mAutoCloseTimer.Enabled = true;
+                    mAutoCloseTimer.Enabled = true;
                 }
             }
         }
 
         private void MAutoCloseTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (this.mAutoCloseTimer.Enabled)
+            if (mAutoCloseTimer.Enabled)
             {
-                this.mAutoCloseTimer.Enabled = false;
-                this.Dispatcher.Invoke(new Action(delegate
+                mAutoCloseTimer.Enabled = false;
+                Dispatcher.Invoke(new Action(delegate
                 {
-                    this.Close();
+                    Close();
                 }));
             }
         }
@@ -137,12 +134,12 @@ namespace ZdfFlatUI
         {
             base.OnClosing(e);
 
-            switch (this.CloseButtonType)
+            switch (CloseButtonType)
             {
                 case CloseBoxTypeEnum.Close:
                     break;
                 case CloseBoxTypeEnum.Hide:
-                    this.Hide();
+                    Hide();
                     e.Cancel = true;
                     break;
                 default:
@@ -154,10 +151,10 @@ namespace ZdfFlatUI
         {
             base.OnClosed(e);
 
-            if (this.mAutoCloseTimer != null)
+            if (mAutoCloseTimer != null)
             {
-                this.mAutoCloseTimer.Enabled = false;
-                this.mAutoCloseTimer.Dispose();
+                mAutoCloseTimer.Enabled = false;
+                mAutoCloseTimer.Dispose();
             }
         }
 
@@ -166,9 +163,9 @@ namespace ZdfFlatUI
             base.OnMouseEnter(e);
 
             //如果窗口设置了定时关闭，则当鼠标置于窗口上时，定时器停止
-            if ((this.AutoClose && !this.mIsMaximized) || this.mIsMaximized)
+            if ((AutoClose && !mIsMaximized) || mIsMaximized)
             {
-                this.mAutoCloseTimer.Enabled = false;
+                mAutoCloseTimer.Enabled = false;
             }
         }
 
@@ -176,16 +173,16 @@ namespace ZdfFlatUI
         {
             base.OnMouseLeave(e);
 
-            if (this.mIsMaximized)
+            if (mIsMaximized)
             {
-                this.mAutoCloseTimer.Enabled = false;
+                mAutoCloseTimer.Enabled = false;
                 return;
             }
 
             //如果窗口设置了定时关闭，则当鼠标离开窗口时，定时器重新开始
-            if (this.AutoClose && this.IsLoaded)
+            if (AutoClose && IsLoaded)
             {
-                this.mAutoCloseTimer.Enabled = true;
+                mAutoCloseTimer.Enabled = true;
             }
         }
         #endregion

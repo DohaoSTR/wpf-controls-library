@@ -88,15 +88,15 @@ namespace ZdfFlatUI
         public Carousel()
         {
             //初始化，防止出现"未将对象引用设置到对象的实例"的错误
-            this.ItemsSource = new List<object>();
-            if(this.autoPlayTimer == null)
+            ItemsSource = new List<object>();
+            if (autoPlayTimer == null)
             {
-                this.autoPlayTimer = new Timer();
-                this.autoPlayTimer.Interval = this.AutoPlaySpeed;
-                this.autoPlayTimer.Elapsed += AutoPlayTimer_Elapsed;
+                autoPlayTimer = new Timer();
+                autoPlayTimer.Interval = AutoPlaySpeed;
+                autoPlayTimer.Elapsed += AutoPlayTimer_Elapsed;
             }
 
-            this.autoPlayTimer.Enabled = this.AutoPlay;
+            autoPlayTimer.Enabled = AutoPlay;
         }
 
         ~Carousel()
@@ -127,37 +127,37 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_SlideSwitchPanel = this.GetTemplateChild("PART_SlideSwitchPanel") as SlideSwitchPanel;
-            this.PART_IndexPanel = this.GetTemplateChild("PART_IndexPanel") as StackPanel;
-            this.PART_LastButton = this.GetTemplateChild("PART_LastButton") as Button;
-            this.PART_NextButton = this.GetTemplateChild("PART_NextButton") as Button;
+            PART_SlideSwitchPanel = GetTemplateChild("PART_SlideSwitchPanel") as SlideSwitchPanel;
+            PART_IndexPanel = GetTemplateChild("PART_IndexPanel") as StackPanel;
+            PART_LastButton = GetTemplateChild("PART_LastButton") as Button;
+            PART_NextButton = GetTemplateChild("PART_NextButton") as Button;
 
-            this.GroupName = Guid.NewGuid().ToString("N");
+            GroupName = Guid.NewGuid().ToString("N");
 
-            this.AddChildToPanel();
-            this.AddIndexControlToPanel();
+            AddChildToPanel();
+            AddIndexControlToPanel();
 
-            if (this.PART_SlideSwitchPanel != null)
+            if (PART_SlideSwitchPanel != null)
             {
-                this.PART_SlideSwitchPanel.IndexChanged += PART_SlideSwitchPanel_IndexChanged;
-                
+                PART_SlideSwitchPanel.IndexChanged += PART_SlideSwitchPanel_IndexChanged;
+
             }
 
-            this.MouseEnter += PART_SlideSwitchPanel_MouseEnter;
-            this.MouseLeave += PART_SlideSwitchPanel_MouseLeave;
+            MouseEnter += PART_SlideSwitchPanel_MouseEnter;
+            MouseLeave += PART_SlideSwitchPanel_MouseLeave;
 
-            if (this.PART_IndexPanel != null && this.PART_IndexPanel.Children.Count > 0)
+            if (PART_IndexPanel != null && PART_IndexPanel.Children.Count > 0)
             {
-                ((RadioButton)this.PART_IndexPanel.Children[0]).IsChecked = true;
+                ((RadioButton)PART_IndexPanel.Children[0]).IsChecked = true;
             }
 
-            if(this.PART_LastButton != null)
+            if (PART_LastButton != null)
             {
-                this.PART_LastButton.Click += PART_LastButton_Click;
+                PART_LastButton.Click += PART_LastButton_Click;
             }
-            if (this.PART_NextButton != null)
+            if (PART_NextButton != null)
             {
-                this.PART_NextButton.Click += PART_NextButton_Click;
+                PART_NextButton.Click += PART_NextButton_Click;
             }
 
             VisualStateManager.GoToState(this, "Normal", true);
@@ -170,20 +170,20 @@ namespace ZdfFlatUI
         /// </summary>
         private void AddChildToPanel()
         {
-            if (this.ItemsSource == null)
+            if (ItemsSource == null)
             {
                 return;
             }
 
-            foreach (var item in this.ItemsSource)
+            foreach (var item in ItemsSource)
             {
                 ContentControl control = new ContentControl();
                 control.Content = item;
                 control.HorizontalAlignment = HorizontalAlignment.Stretch;
                 control.HorizontalContentAlignment = HorizontalAlignment.Center;
                 control.VerticalContentAlignment = VerticalAlignment.Center;
-                control.ContentTemplate = this.ItemTemplate;
-                this.PART_SlideSwitchPanel.Children.Add(control);
+                control.ContentTemplate = ItemTemplate;
+                PART_SlideSwitchPanel.Children.Add(control);
             }
         }
 
@@ -192,25 +192,25 @@ namespace ZdfFlatUI
         /// </summary>
         private void AddIndexControlToPanel()
         {
-            if (this.PART_SlideSwitchPanel == null)
+            if (PART_SlideSwitchPanel == null)
             {
                 return;
             }
-            if (this.PART_IndexPanel == null)
+            if (PART_IndexPanel == null)
             {
                 return;
             }
 
-            int count = this.PART_SlideSwitchPanel.Children.Count;
+            int count = PART_SlideSwitchPanel.Children.Count;
             for (int i = 0; i < count; i++)
             {
                 ZRadionButton radioButton = new ZRadionButton();
                 //使用随机数作为RadioButton的分组依据，防止一个界面出现多个Carousel时，RadioButton选中出现问题
-                radioButton.GroupName = "Index" + this.GroupName;
+                radioButton.GroupName = "Index" + GroupName;
                 radioButton.Checked += RadioButton_Checked;
-                this.PART_IndexPanel.Children.Add(radioButton);
+                PART_IndexPanel.Children.Add(radioButton);
             }
-            this.ChildCount = count;
+            ChildCount = count;
         }
 
         private void HandleButtonMouse(object sender, System.Windows.Input.MouseEventArgs e)
@@ -220,25 +220,25 @@ namespace ZdfFlatUI
 
         private void PART_NextButton_Click(object sender, RoutedEventArgs e)
         {
-            this.SwitchToNext();
+            SwitchToNext();
         }
 
         private void PART_LastButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.PART_SlideSwitchPanel == null)
+            if (PART_SlideSwitchPanel == null)
             {
                 return;
             }
 
-            int index = this.PART_SlideSwitchPanel.Index;
+            int index = PART_SlideSwitchPanel.Index;
             index--;
 
             //当索引小于等于0时，切换到最大的索引的位置
             if (index <= 0)
             {
-                index = this.ChildCount;
+                index = ChildCount;
             }
-            this.PART_SlideSwitchPanel.Index = index;
+            PART_SlideSwitchPanel.Index = index;
         }
 
         private void PART_SlideSwitchPanel_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
@@ -253,21 +253,21 @@ namespace ZdfFlatUI
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            if (this.PART_SlideSwitchPanel == null)
+            if (PART_SlideSwitchPanel == null)
             {
                 return;
             }
-            if (this.PART_IndexPanel == null)
+            if (PART_IndexPanel == null)
             {
                 return;
             }
 
             RadioButton btn = (RadioButton)e.OriginalSource;
-            for (int i = 0; i < this.PART_IndexPanel.Children.Count; i++)
+            for (int i = 0; i < PART_IndexPanel.Children.Count; i++)
             {
-                if (btn == this.PART_IndexPanel.Children[i] && i + 1 != this.PART_SlideSwitchPanel.Index)
+                if (btn == PART_IndexPanel.Children[i] && i + 1 != PART_SlideSwitchPanel.Index)
                 {
-                    this.PART_SlideSwitchPanel.Index = i + 1;
+                    PART_SlideSwitchPanel.Index = i + 1;
                 }
             }
         }
@@ -275,43 +275,43 @@ namespace ZdfFlatUI
         private void PART_SlideSwitchPanel_IndexChanged(object sender, RoutedPropertyChangedEventArgs<int> e)
         {
             SlideSwitchPanel panel = sender as SlideSwitchPanel;
-            this.SetIndexPanelChecked(panel.Index);
+            SetIndexPanelChecked(panel.Index);
         }
 
         private void SetIndexPanelChecked(int index)
         {
-            if (this.PART_IndexPanel != null && this.PART_IndexPanel.Children[index - 1] is RadioButton)
+            if (PART_IndexPanel != null && PART_IndexPanel.Children[index - 1] is RadioButton)
             {
-                RadioButton radioButton = this.PART_IndexPanel.Children[index - 1] as RadioButton;
+                RadioButton radioButton = PART_IndexPanel.Children[index - 1] as RadioButton;
                 radioButton.IsChecked = true;
             }
         }
 
         private void AutoPlayTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            this.Dispatcher.Invoke(new Action(() =>
+            Dispatcher.Invoke(new Action(() =>
             {
-                this.SwitchToNext();
+                SwitchToNext();
             }));
         }
 
         private void SwitchToNext()
         {
-            if (this.PART_SlideSwitchPanel == null)
+            if (PART_SlideSwitchPanel == null)
             {
                 return;
             }
 
-            int index = this.PART_SlideSwitchPanel.Index;
+            int index = PART_SlideSwitchPanel.Index;
             index++;
 
             //当索引超过最大值时，回到第一个
-            if (index > this.ChildCount)
+            if (index > ChildCount)
             {
                 index = 1;
             }
 
-            this.PART_SlideSwitchPanel.Index = index;
+            PART_SlideSwitchPanel.Index = index;
         }
         #endregion
     }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
-using System.Windows.Media;
 
 namespace ZdfFlatUI.Converters
 {
@@ -15,16 +11,16 @@ namespace ZdfFlatUI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value == null)
+            if (value == null)
             {
                 return 0;
             }
 
             int number = 0;
             int flag = 0;
-            if(int.TryParse(value.ToString(), out number))
+            if (int.TryParse(value.ToString(), out number))
             {
-                if(number > 99)
+                if (number > 99)
                 {
                     flag = 3;
                 }

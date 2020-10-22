@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using ZdfFlatUI.MyControls.Primitives;
 
@@ -30,7 +24,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(PatternProperty); }
             set { SetValue(PatternProperty, value); }
         }
-        
+
         public static readonly DependencyProperty PatternProperty =
             DependencyProperty.Register("Pattern", typeof(string), typeof(NumbericTextBox), new PropertyMetadata(string.Empty));
 
@@ -43,7 +37,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(ErrorContentProperty); }
             set { SetValue(ErrorContentProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ErrorContentProperty =
             DependencyProperty.Register("ErrorContent", typeof(string), typeof(NumbericTextBox), new PropertyMetadata(string.Empty));
 
@@ -56,7 +50,7 @@ namespace ZdfFlatUI
             get { return (EnumPatternType)GetValue(PatternTypeProperty); }
             set { SetValue(PatternTypeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty PatternTypeProperty =
             DependencyProperty.Register("PatternType", typeof(EnumPatternType), typeof(NumbericTextBox), new PropertyMetadata(EnumPatternType.None, PatternTypeCallback));
 
@@ -75,7 +69,7 @@ namespace ZdfFlatUI
             get { return (EnumValidateTrigger)GetValue(ValidateTriggerProperty); }
             set { SetValue(ValidateTriggerProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ValidateTriggerProperty =
             DependencyProperty.Register("ValidateTrigger", typeof(EnumValidateTrigger), typeof(NumbericTextBox), new PropertyMetadata(EnumValidateTrigger.PropertyChanged, ValidateTriggerCallback));
 
@@ -104,7 +98,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsHasErrorProperty); }
             private set { SetValue(IsHasErrorProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsHasErrorProperty =
             DependencyProperty.Register("IsHasError", typeof(bool), typeof(NumbericTextBox), new PropertyMetadata(false));
 
@@ -120,7 +114,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsShowErrorTipProperty); }
             set { SetValue(IsShowErrorTipProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsShowErrorTipProperty =
             DependencyProperty.Register("IsShowErrorTip", typeof(bool), typeof(NumbericTextBox), new PropertyMetadata(false));
 
@@ -133,7 +127,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(ErrorContentTemplateProperty); }
             set { SetValue(ErrorContentTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ErrorContentTemplateProperty =
             DependencyProperty.Register("ErrorContentTemplate", typeof(DataTemplate), typeof(NumbericTextBox));
 
@@ -146,7 +140,7 @@ namespace ZdfFlatUI
             get { return (Brush)GetValue(ErrorBackgroundProperty); }
             set { SetValue(ErrorBackgroundProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ErrorBackgroundProperty =
             DependencyProperty.Register("ErrorBackground", typeof(Brush), typeof(NumbericTextBox));
 
@@ -159,14 +153,14 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsStartValidateProperty); }
             set { SetValue(IsStartValidateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsStartValidateProperty =
             DependencyProperty.Register("IsStartValidate", typeof(bool), typeof(NumbericTextBox), new PropertyMetadata(false, IsStartValidateCallback));
 
         private static void IsStartValidateCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             NumbericTextBox textBox = d as NumbericTextBox;
-            if((bool)e.NewValue)
+            if ((bool)e.NewValue)
             {
                 textBox.ValidateTextBox();
             }
@@ -190,15 +184,15 @@ namespace ZdfFlatUI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            switch (this.ValidateTrigger)
+            switch (ValidateTrigger)
             {
                 case EnumValidateTrigger.PropertyChanged:
-                    this.TextChanged += NumbericTextBox_TextChanged;
-                    this.LostFocus -= NumbericTextBox_LostFocus;
+                    TextChanged += NumbericTextBox_TextChanged;
+                    LostFocus -= NumbericTextBox_LostFocus;
                     break;
                 case EnumValidateTrigger.LostFocus:
-                    this.TextChanged -= NumbericTextBox_TextChanged;
-                    this.LostFocus += NumbericTextBox_LostFocus;
+                    TextChanged -= NumbericTextBox_TextChanged;
+                    LostFocus += NumbericTextBox_LostFocus;
                     break;
             }
 
@@ -215,17 +209,17 @@ namespace ZdfFlatUI
             //    };
             //}
 
-            NumbericTextBox.SetPatternAndTip(this.PatternType, this, true);
+            NumbericTextBox.SetPatternAndTip(PatternType, this, true);
         }
 
         private void NumbericTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.ValidateTextBox();
+            ValidateTextBox();
         }
 
         private void NumbericTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            this.ValidateTextBox();
+            ValidateTextBox();
         }
 
         #endregion
@@ -233,20 +227,20 @@ namespace ZdfFlatUI
         #region private function
         private void ValidateTextBox()
         {
-            if (!string.IsNullOrWhiteSpace(this.Pattern))
+            if (!string.IsNullOrWhiteSpace(Pattern))
             {
-                Regex regex = new Regex(this.Pattern);
-                if (!regex.IsMatch(this.Text))
+                Regex regex = new Regex(Pattern);
+                if (!regex.IsMatch(Text))
                 {
                     VisualStateManager.GoToState(this, "InputError", true);
-                    this.IsHasError = true;
-                    this.IsShowErrorTip = !string.IsNullOrWhiteSpace(this.ErrorContent);
+                    IsHasError = true;
+                    IsShowErrorTip = !string.IsNullOrWhiteSpace(ErrorContent);
                 }
                 else
                 {
                     VisualStateManager.GoToState(this, "Normal", true);
-                    this.IsHasError = false;
-                    this.IsShowErrorTip = false;
+                    IsHasError = false;
+                    IsShowErrorTip = false;
                 }
             }
         }

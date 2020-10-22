@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -22,7 +19,7 @@ namespace ZdfFlatUI
         public static void AnimateScrollIntoView(this ItemsControl itemsControl, object item)
         {
             ScrollViewer scrollViewer = Utils.VisualHelper.FindVisualChild<ScrollViewer>(itemsControl);
-            if(scrollViewer == null)
+            if (scrollViewer == null)
             {
                 return;
             }

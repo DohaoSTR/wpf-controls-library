@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -37,7 +33,7 @@ namespace ZdfFlatUI
             get { return (EnumTreeNodeType)GetValue(TreeNodeTypeProperty); }
             set { SetValue(TreeNodeTypeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TreeNodeTypeProperty =
             DependencyProperty.Register("TreeNodeType", typeof(EnumTreeNodeType), typeof(ZTreeViewItem), new PropertyMetadata(EnumTreeNodeType.RootNode));
 
@@ -91,6 +87,6 @@ namespace ZdfFlatUI
         #region Event Implement Function
 
         #endregion
-        
+
     }
 }

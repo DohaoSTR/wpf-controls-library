@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 
 namespace ZdfFlatUI
@@ -32,7 +28,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsHalfProperty); }
             set { SetValue(IsHalfProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsHalfProperty =
             DependencyProperty.Register("IsHalf", typeof(bool), typeof(RatingBarButton), new PropertyMetadata(false));
         #endregion
@@ -43,7 +39,7 @@ namespace ZdfFlatUI
             get { return (int)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(int), typeof(RatingBarButton));
         #endregion
@@ -51,7 +47,7 @@ namespace ZdfFlatUI
         #endregion
 
         #region 路由事件
-        
+
         #region ItemMouseEnterEvent
 
         public static readonly RoutedEvent ItemMouseEnterEvent = EventManager.RegisterRoutedEvent("ItemMouseEnter",
@@ -61,18 +57,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ItemMouseEnterEvent, value);
+                AddHandler(ItemMouseEnterEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ItemMouseEnterEvent, value);
+                RemoveHandler(ItemMouseEnterEvent, value);
             }
         }
 
         public virtual void OnItemMouseEnter(int oldValue, int newValue)
         {
             RoutedPropertyChangedEventArgs<int> arg = new RoutedPropertyChangedEventArgs<int>(oldValue, newValue, ItemMouseEnterEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -86,18 +82,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ItemMouseLeaveEvent, value);
+                AddHandler(ItemMouseLeaveEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ItemMouseLeaveEvent, value);
+                RemoveHandler(ItemMouseLeaveEvent, value);
             }
         }
 
         public virtual void OnItemMouseLeave(int oldValue, int newValue)
         {
             RoutedPropertyChangedEventArgs<int> arg = new RoutedPropertyChangedEventArgs<int>(oldValue, newValue, ItemMouseLeaveEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -116,8 +112,8 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.MouseEnter += RatingBarButton_MouseEnter;
-            this.MouseLeave += RatingBarButton_MouseLeave;
+            MouseEnter += RatingBarButton_MouseEnter;
+            MouseLeave += RatingBarButton_MouseLeave;
         }
 
         #endregion
@@ -125,12 +121,12 @@ namespace ZdfFlatUI
         #region 事件实现
         private void RatingBarButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            this.OnItemMouseEnter(this.Value, this.Value);
+            OnItemMouseEnter(Value, Value);
         }
 
         private void RatingBarButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            this.OnItemMouseLeave(this.Value, this.Value);
+            OnItemMouseLeave(Value, Value);
         }
         #endregion
 

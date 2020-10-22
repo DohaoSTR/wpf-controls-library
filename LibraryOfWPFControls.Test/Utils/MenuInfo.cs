@@ -2,29 +2,10 @@
 {
     public class MenuInfo
     {
-        private string _Name;
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
+        public string GroupId { get; set; }
 
-        private string _GroupId;
-
-        public string GroupId
-        {
-            get { return _GroupId; }
-            set { _GroupId = value; }
-        }
-
-        private string _GroupName;
-
-        public string GroupName
-        {
-            get { return _GroupName; }
-            set { _GroupName = value; }
-        }
-
+        public string GroupName { get; set; }
     }
 }

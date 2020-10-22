@@ -36,7 +36,6 @@ namespace LibraryOfWPFControls.Test.Utils
             set { _FJMC = value; RaisePropertyChanged("FJMC"); }
         }
 
-
         private string _FJLX;
 
         public string FJLX

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -35,7 +30,7 @@ namespace ZdfFlatUI
             get { return (PathGeometry)GetValue(CheckedIconProperty); }
             set { SetValue(CheckedIconProperty, value); }
         }
-        
+
         public static readonly DependencyProperty CheckedIconProperty =
             DependencyProperty.Register("CheckedIcon", typeof(PathGeometry), typeof(IconToggleButton));
         #endregion

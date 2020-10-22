@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -31,7 +28,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(FloatingActionMenu), new PropertyMetadata(false, IsDropDownOpenChangedCallback));
 
@@ -39,9 +36,9 @@ namespace ZdfFlatUI
         {
             FloatingActionMenu menu = d as FloatingActionMenu;
             bool flag;
-            if(bool.TryParse(Convert.ToString(e.NewValue), out flag))
+            if (bool.TryParse(Convert.ToString(e.NewValue), out flag))
             {
-                if(flag)
+                if (flag)
                 {
                     menu.AnimateChildOpen();
                     VisualStateManager.GoToState(menu, "PopupOpen", true);
@@ -65,7 +62,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(DisplayTipContentMemberPathProperty); }
             set { SetValue(DisplayTipContentMemberPathProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DisplayTipContentMemberPathProperty =
             DependencyProperty.Register("DisplayTipContentMemberPath", typeof(string), typeof(FloatingActionMenu));
 
@@ -81,7 +78,7 @@ namespace ZdfFlatUI
             get { return (EnumTrigger)GetValue(TriggerProperty); }
             set { SetValue(TriggerProperty, value); }
         }
-        
+
         public static readonly DependencyProperty TriggerProperty =
             DependencyProperty.Register("Trigger", typeof(EnumTrigger), typeof(FloatingActionMenu), new PropertyMetadata(EnumTrigger.Click));
 
@@ -96,7 +93,7 @@ namespace ZdfFlatUI
             get { return (EnumPlacementDirection)GetValue(PlacementDirectionProperty); }
             set { SetValue(PlacementDirectionProperty, value); }
         }
-        
+
         public static readonly DependencyProperty PlacementDirectionProperty =
             DependencyProperty.Register("PlacementDirection", typeof(EnumPlacementDirection), typeof(FloatingActionMenu), new PropertyMetadata(EnumPlacementDirection.Top));
 
@@ -109,7 +106,7 @@ namespace ZdfFlatUI
             get { return (Orientation)GetValue(ItemOrientationProperty); }
             set { SetValue(ItemOrientationProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ItemOrientationProperty =
             DependencyProperty.Register("ItemOrientation", typeof(Orientation), typeof(FloatingActionMenu), new PropertyMetadata(Orientation.Vertical));
 
@@ -128,18 +125,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ItemClickEvent, value);
+                AddHandler(ItemClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ItemClickEvent, value);
+                RemoveHandler(ItemClickEvent, value);
             }
         }
 
         public virtual void OnItemClick(object oldValue, object newValue)
         {
             RoutedPropertyChangedEventArgs<object> arg = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, ItemClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -161,23 +158,23 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_Popup = this.GetTemplateChild(PopupPartName) as Popup;
-            this.PART_ToggleButton = this.GetTemplateChild("PART_ToggleButton") as ToggleButton;
-            if (this.PART_ToggleButton != null && this.Trigger == EnumTrigger.Hover)
+            PART_Popup = GetTemplateChild(PopupPartName) as Popup;
+            PART_ToggleButton = GetTemplateChild("PART_ToggleButton") as ToggleButton;
+            if (PART_ToggleButton != null && Trigger == EnumTrigger.Hover)
             {
-                this.MouseEnter += (o, e) =>
+                MouseEnter += (o, e) =>
                 {
-                    this.PART_ToggleButton.IsChecked = true;
+                    PART_ToggleButton.IsChecked = true;
                 };
-                this.MouseLeave += (o, e) =>
+                MouseLeave += (o, e) =>
                 {
-                    this.PART_ToggleButton.IsChecked = false;
+                    PART_ToggleButton.IsChecked = false;
                 };
             }
 
             SetPopupPosition();
 
-            this.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
+            ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
         }
 
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
@@ -185,9 +182,9 @@ namespace ZdfFlatUI
             base.PrepareContainerForItemOverride(element, item);
 
             FloatingActionButton floatingActionButton = element as FloatingActionButton;
-            if(!string.IsNullOrEmpty(this.DisplayTipContentMemberPath))
+            if (!string.IsNullOrEmpty(DisplayTipContentMemberPath))
             {
-                Binding binding = new Binding(this.DisplayTipContentMemberPath);
+                Binding binding = new Binding(DisplayTipContentMemberPath);
                 floatingActionButton.SetBinding(FloatingActionButton.TipContentProperty, binding);
             }
         }
@@ -205,7 +202,7 @@ namespace ZdfFlatUI
             double translateCoordinateFrom = 0d;
 
             string direction = string.Empty;
-            switch (this.PlacementDirection)
+            switch (PlacementDirection)
             {
                 case EnumPlacementDirection.Left:
                     direction = "X";
@@ -224,22 +221,22 @@ namespace ZdfFlatUI
                     direction = "Y";
                     break;
             }
-            
+
             var translateCoordinatePath = string.Format("(UIElement.RenderTransform).(TransformGroup.Children)[1].(TranslateTransform.{0})", direction);
 
-            for (int i = 0; i < this.Items.Count; i++)
+            for (int i = 0; i < Items.Count; i++)
             {
-                UIElement element = this.ItemContainerGenerator.ContainerFromIndex(i) as UIElement;
+                UIElement element = ItemContainerGenerator.ContainerFromIndex(i) as UIElement;
 
-                if(element == null)
+                if (element == null)
                 {
                     continue;
                 }
 
                 var elementTranslateCoordinateFrom = translateCoordinateFrom * i;
                 var translateTransform = new TranslateTransform(
-                    this.ItemOrientation == Orientation.Horizontal ? translateCoordinateFrom : 0, 
-                    this.ItemOrientation == Orientation.Horizontal ? 0 : translateCoordinateFrom);
+                    ItemOrientation == Orientation.Horizontal ? translateCoordinateFrom : 0,
+                    ItemOrientation == Orientation.Horizontal ? 0 : translateCoordinateFrom);
 
                 var transformGroup = new TransformGroup
                 {
@@ -310,50 +307,50 @@ namespace ZdfFlatUI
 
         private void AnimateChildOpen()
         {
-            this.AnimateChild(false);
+            AnimateChild(false);
         }
 
         private void AnimateChildClose()
         {
-            this.AnimateChild(true);
+            AnimateChild(true);
         }
 
         private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
         {
-            if (this.ItemContainerGenerator.Status == GeneratorStatus.ContainersGenerated)
+            if (ItemContainerGenerator.Status == GeneratorStatus.ContainersGenerated)
             {
-                this.AnimateChild(false);
+                AnimateChild(false);
             }
         }
 
         private void SetPopupPosition()
         {
-            if (this.PART_Popup != null)
+            if (PART_Popup != null)
             {
-                switch (this.PlacementDirection)
+                switch (PlacementDirection)
                 {
                     case EnumPlacementDirection.Left:
-                        this.PART_Popup.Placement = PlacementMode.Left;
-                        this.PART_Popup.HorizontalOffset = 0;
-                        this.PART_Popup.VerticalOffset = -10;
-                        this.ItemOrientation = Orientation.Horizontal;
+                        PART_Popup.Placement = PlacementMode.Left;
+                        PART_Popup.HorizontalOffset = 0;
+                        PART_Popup.VerticalOffset = -10;
+                        ItemOrientation = Orientation.Horizontal;
                         break;
                     case EnumPlacementDirection.Top:
-                        this.PART_Popup.Placement = PlacementMode.Top;
-                        this.ItemOrientation = Orientation.Vertical;
-                        this.PART_Popup.HorizontalOffset = -10;
+                        PART_Popup.Placement = PlacementMode.Top;
+                        ItemOrientation = Orientation.Vertical;
+                        PART_Popup.HorizontalOffset = -10;
                         break;
                     case EnumPlacementDirection.Right:
-                        this.PART_Popup.Placement = PlacementMode.Right;
-                        this.PART_Popup.HorizontalOffset = 0;
-                        this.PART_Popup.VerticalOffset = -10;
-                        this.ItemOrientation = Orientation.Horizontal;
+                        PART_Popup.Placement = PlacementMode.Right;
+                        PART_Popup.HorizontalOffset = 0;
+                        PART_Popup.VerticalOffset = -10;
+                        ItemOrientation = Orientation.Horizontal;
                         break;
                     case EnumPlacementDirection.Bottom:
-                        this.PART_Popup.Placement = PlacementMode.Bottom;
-                        this.ItemOrientation = Orientation.Vertical;
-                        this.PART_Popup.HorizontalOffset = -10;
-                        this.PART_Popup.VerticalOffset = 0;
+                        PART_Popup.Placement = PlacementMode.Bottom;
+                        ItemOrientation = Orientation.Vertical;
+                        PART_Popup.HorizontalOffset = -10;
+                        PART_Popup.VerticalOffset = 0;
                         break;
                     default:
                         break;

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -136,7 +133,7 @@ namespace ZdfFlatUI
         /// <returns>控件的大小</returns>
         protected override Size MeasureOverride(Size constraint)
         {
-            Thickness padding = this.Padding;
+            Thickness padding = Padding;
 
             Size result = new Size();
             if (Child != null)
@@ -154,7 +151,7 @@ namespace ZdfFlatUI
                     case EnumPlacement.RightTop:
                     case EnumPlacement.RightBottom:
                     case EnumPlacement.RightCenter:
-                        result.Width = Child.DesiredSize.Width + padding.Left + padding.Right + this.TailWidth;
+                        result.Width = Child.DesiredSize.Width + padding.Left + padding.Right + TailWidth;
                         result.Height = Child.DesiredSize.Height + padding.Top + padding.Bottom;
                         break;
                     case EnumPlacement.TopLeft:
@@ -164,7 +161,7 @@ namespace ZdfFlatUI
                     case EnumPlacement.BottomCenter:
                     case EnumPlacement.BottomRight:
                         result.Width = Child.DesiredSize.Width + padding.Left + padding.Right;
-                        result.Height = Child.DesiredSize.Height + padding.Top + padding.Bottom + this.TailHeight;
+                        result.Height = Child.DesiredSize.Height + padding.Top + padding.Bottom + TailHeight;
                         break;
                     default:
                         break;
@@ -180,7 +177,7 @@ namespace ZdfFlatUI
         /// <returns></returns>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            Thickness padding = this.Padding;
+            Thickness padding = Padding;
             if (Child != null)
             {
                 switch (Placement)
@@ -188,8 +185,8 @@ namespace ZdfFlatUI
                     case EnumPlacement.LeftTop:
                     case EnumPlacement.LeftBottom:
                     case EnumPlacement.LeftCenter:
-                        this.TailWidth = 6;
-                        Child.Arrange(new Rect(new Point(padding.Left + this.TailWidth, padding.Top), Child.DesiredSize));
+                        TailWidth = 6;
+                        Child.Arrange(new Rect(new Point(padding.Left + TailWidth, padding.Top), Child.DesiredSize));
                         //ArrangeChildLeft();
                         break;
                     case EnumPlacement.RightTop:
@@ -200,7 +197,7 @@ namespace ZdfFlatUI
                     case EnumPlacement.TopLeft:
                     case EnumPlacement.TopRight:
                     case EnumPlacement.TopCenter:
-                        Child.Arrange(new Rect(new Point(padding.Left, this.TailHeight + padding.Top), Child.DesiredSize));
+                        Child.Arrange(new Rect(new Point(padding.Left, TailHeight + padding.Top), Child.DesiredSize));
                         break;
                     case EnumPlacement.BottomLeft:
                     case EnumPlacement.BottomRight:
@@ -219,9 +216,9 @@ namespace ZdfFlatUI
             double x = padding.Left;
             double y = padding.Top;
 
-            if (!Double.IsNaN(this.Height) && this.Height != 0)
+            if (!Double.IsNaN(Height) && Height != 0)
             {
-                y = (this.Height - (Child.DesiredSize.Height)) / 2;
+                y = (Height - (Child.DesiredSize.Height)) / 2;
             }
 
             Child.Arrange(new Rect(new Point(x, y), Child.DesiredSize));
@@ -240,7 +237,7 @@ namespace ZdfFlatUI
                 //DpiScale dpi = base.getd();
                 Pen pen = new Pen();
 
-                pen.Brush = this.BorderBrush;
+                pen.Brush = BorderBrush;
                 //pen.Thickness = BorderThickness * 0.5;
                 pen.Thickness = UIElementEx.RoundLayoutValue(BorderThickness.Left, DoubleUtil.DpiScaleX);
 
@@ -290,26 +287,26 @@ namespace ZdfFlatUI
         {
             CombinedGeometry result = new CombinedGeometry();
 
-            this.TailHeight = 12;
-            this.TailWidth = 6;
+            TailHeight = 12;
+            TailWidth = 6;
 
-            switch (this.Placement)
+            switch (Placement)
             {
                 case EnumPlacement.RightTop:
                     //不做任何处理
                     break;
                 case EnumPlacement.RightBottom:
-                    this.TailVerticalOffset = this.ActualHeight - this.TailHeight - this.TailVerticalOffset;
+                    TailVerticalOffset = ActualHeight - TailHeight - TailVerticalOffset;
                     break;
                 case EnumPlacement.RightCenter:
-                    this.TailVerticalOffset = (this.ActualHeight - this.TailHeight) / 2;
+                    TailVerticalOffset = (ActualHeight - TailHeight) / 2;
                     break;
             }
 
             #region 绘制三角形
-            Point arcPoint1 = new Point(this.ActualWidth - TailWidth, TailVerticalOffset);
-            Point arcPoint2 = new Point(this.ActualWidth, TailVerticalOffset + TailHeight / 2);
-            Point arcPoint3 = new Point(this.ActualWidth - TailWidth, TailVerticalOffset + TailHeight);
+            Point arcPoint1 = new Point(ActualWidth - TailWidth, TailVerticalOffset);
+            Point arcPoint2 = new Point(ActualWidth, TailVerticalOffset + TailHeight / 2);
+            Point arcPoint3 = new Point(ActualWidth - TailWidth, TailVerticalOffset + TailHeight);
 
             LineSegment as1_2 = new LineSegment(arcPoint2, false);
             LineSegment as2_3 = new LineSegment(arcPoint3, false);
@@ -325,7 +322,7 @@ namespace ZdfFlatUI
             #endregion
 
             #region 绘制矩形边框
-            RectangleGeometry rg2 = new RectangleGeometry(new Rect(0, 0, this.ActualWidth - TailWidth, this.ActualHeight)
+            RectangleGeometry rg2 = new RectangleGeometry(new Rect(0, 0, ActualWidth - TailWidth, ActualHeight)
                 , CornerRadius.TopLeft, CornerRadius.BottomRight, new TranslateTransform(0.5, 0.5));
             #endregion
 
@@ -342,19 +339,19 @@ namespace ZdfFlatUI
         {
             CombinedGeometry result = new CombinedGeometry();
 
-            this.TailHeight = 12;
-            this.TailWidth = 6;
+            TailHeight = 12;
+            TailWidth = 6;
 
-            switch (this.Placement)
+            switch (Placement)
             {
                 case EnumPlacement.LeftTop:
                     //不做任何处理
                     break;
                 case EnumPlacement.LeftBottom:
-                    this.TailVerticalOffset = this.ActualHeight - this.TailHeight - this.TailVerticalOffset;
+                    TailVerticalOffset = ActualHeight - TailHeight - TailVerticalOffset;
                     break;
                 case EnumPlacement.LeftCenter:
-                    this.TailVerticalOffset = (this.ActualHeight - this.TailHeight) / 2;
+                    TailVerticalOffset = (ActualHeight - TailHeight) / 2;
                     break;
             }
 
@@ -377,7 +374,7 @@ namespace ZdfFlatUI
             #endregion
 
             #region 绘制矩形边框
-            RectangleGeometry g2 = new RectangleGeometry(new Rect(TailWidth, 0, this.ActualWidth - this.TailWidth, this.ActualHeight)
+            RectangleGeometry g2 = new RectangleGeometry(new Rect(TailWidth, 0, ActualWidth - TailWidth, ActualHeight)
                 , CornerRadius.TopLeft, CornerRadius.BottomRight);
             #endregion
 
@@ -394,22 +391,22 @@ namespace ZdfFlatUI
         {
             CombinedGeometry result = new CombinedGeometry();
 
-            switch (this.Placement)
+            switch (Placement)
             {
                 case EnumPlacement.TopLeft:
                     break;
                 case EnumPlacement.TopCenter:
-                    this.TailHorizontalOffset = (this.ActualWidth - this.TailWidth) / 2;
+                    TailHorizontalOffset = (ActualWidth - TailWidth) / 2;
                     break;
                 case EnumPlacement.TopRight:
-                    this.TailHorizontalOffset = this.ActualWidth - this.TailWidth - this.TailHorizontalOffset;
+                    TailHorizontalOffset = ActualWidth - TailWidth - TailHorizontalOffset;
                     break;
             }
 
             #region 绘制三角形
-            Point anglePoint1 = new Point(this.TailHorizontalOffset, this.TailHeight);
-            Point anglePoint2 = new Point(this.TailHorizontalOffset + (this.TailWidth / 2), 0);
-            Point anglePoint3 = new Point(this.TailHorizontalOffset + this.TailWidth, this.TailHeight);
+            Point anglePoint1 = new Point(TailHorizontalOffset, TailHeight);
+            Point anglePoint2 = new Point(TailHorizontalOffset + (TailWidth / 2), 0);
+            Point anglePoint3 = new Point(TailHorizontalOffset + TailWidth, TailHeight);
 
             LineSegment as1_2 = new LineSegment(anglePoint2, true);
             LineSegment as2_3 = new LineSegment(anglePoint3, true);
@@ -425,7 +422,7 @@ namespace ZdfFlatUI
             #endregion
 
             #region 绘制矩形边框
-            RectangleGeometry g2 = new RectangleGeometry(new Rect(0, this.TailHeight, this.ActualWidth, this.ActualHeight - this.TailHeight)
+            RectangleGeometry g2 = new RectangleGeometry(new Rect(0, TailHeight, ActualWidth, ActualHeight - TailHeight)
                 , CornerRadius.TopLeft, CornerRadius.BottomRight);
             #endregion
 
@@ -442,23 +439,23 @@ namespace ZdfFlatUI
         {
             CombinedGeometry result = new CombinedGeometry();
 
-            switch (this.Placement)
+            switch (Placement)
             {
                 case EnumPlacement.BottomLeft:
                     break;
                 case EnumPlacement.BottomCenter:
-                    this.TailHorizontalOffset = (this.ActualWidth - this.TailWidth) / 2;
+                    TailHorizontalOffset = (ActualWidth - TailWidth) / 2;
                     break;
                 case EnumPlacement.BottomRight:
-                    this.TailHorizontalOffset = this.ActualWidth - this.TailWidth - this.TailHorizontalOffset;
+                    TailHorizontalOffset = ActualWidth - TailWidth - TailHorizontalOffset;
                     break;
             }
 
 
             #region 绘制三角形
-            Point anglePoint1 = new Point(this.TailHorizontalOffset, this.ActualHeight - this.TailHeight);
-            Point anglePoint2 = new Point(this.TailHorizontalOffset + this.TailWidth / 2, this.ActualHeight);
-            Point anglePoint3 = new Point(this.TailHorizontalOffset + this.TailWidth, this.ActualHeight - this.TailHeight);
+            Point anglePoint1 = new Point(TailHorizontalOffset, ActualHeight - TailHeight);
+            Point anglePoint2 = new Point(TailHorizontalOffset + TailWidth / 2, ActualHeight);
+            Point anglePoint3 = new Point(TailHorizontalOffset + TailWidth, ActualHeight - TailHeight);
 
             LineSegment as1_2 = new LineSegment(anglePoint2, true);
             LineSegment as2_3 = new LineSegment(anglePoint3, true);
@@ -474,7 +471,7 @@ namespace ZdfFlatUI
             #endregion
 
             #region 绘制矩形边框
-            RectangleGeometry g2 = new RectangleGeometry(new Rect(0, 0, this.ActualWidth, this.ActualHeight - this.TailHeight)
+            RectangleGeometry g2 = new RectangleGeometry(new Rect(0, 0, ActualWidth, ActualHeight - TailHeight)
                 , CornerRadius.TopLeft, CornerRadius.BottomRight);
             #endregion
 
@@ -492,7 +489,7 @@ namespace ZdfFlatUI
             Brush result = null;
 
             GradientStopCollection gsc = new GradientStopCollection();
-            gsc.Add(new GradientStop(((SolidColorBrush)this.Background).Color, 0));
+            gsc.Add(new GradientStop(((SolidColorBrush)Background).Color, 0));
             LinearGradientBrush backGroundBrush = new LinearGradientBrush(gsc, new Point(0, 0), new Point(0, 1));
             result = backGroundBrush;
 
@@ -507,7 +504,7 @@ namespace ZdfFlatUI
         public static void OnDirectionPropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             AngleBorder angleBorder = d as AngleBorder;
-            if(angleBorder != null)
+            if (angleBorder != null)
             {
                 switch ((EnumPlacement)e.NewValue)
                 {

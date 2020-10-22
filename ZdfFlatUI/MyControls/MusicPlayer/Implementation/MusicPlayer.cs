@@ -1,13 +1,9 @@
 ﻿using DoubanFM.Bass;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
 using System.Windows.Threading;
 
 namespace ZdfFlatUI
@@ -42,7 +38,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsAutoPlayProperty); }
             set { SetValue(IsAutoPlayProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsAutoPlayProperty =
             DependencyProperty.Register("IsAutoPlay", typeof(bool), typeof(MusicPlayer), new PropertyMetadata(true));
 
@@ -58,7 +54,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(SoundSourceProperty); }
             set { SetValue(SoundSourceProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SoundSourceProperty =
             DependencyProperty.Register("SoundSource", typeof(string), typeof(MusicPlayer), new PropertyMetadata(string.Empty));
 
@@ -90,7 +86,7 @@ namespace ZdfFlatUI
             get { return (EnumPlayState)GetValue(PlayStateProperty); }
             set { SetValue(PlayStateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty PlayStateProperty =
             DependencyProperty.Register("PlayState", typeof(EnumPlayState), typeof(MusicPlayer), new PropertyMetadata(EnumPlayState.Stop));
 
@@ -142,7 +138,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsPlayingInnerProperty); }
             private set { SetValue(IsPlayingInnerProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsPlayingInnerProperty =
             DependencyProperty.Register("IsPlayingInner", typeof(bool), typeof(MusicPlayer), new PropertyMetadata(false, IsPlayInnerChanged));
 
@@ -152,7 +148,7 @@ namespace ZdfFlatUI
             bool newValue = bool.Parse(e.NewValue.ToString());
             if (newValue)
             {
-                if(musicPlayer.PlayState == EnumPlayState.Stop)
+                if (musicPlayer.PlayState == EnumPlayState.Stop)
                 {
                     musicPlayer.PlayMusic(musicPlayer.SoundSource);
                 }
@@ -165,7 +161,7 @@ namespace ZdfFlatUI
             else
             {
                 musicPlayer.bassPlayer.Pause();
-                if(musicPlayer.PlayState == EnumPlayState.Play)
+                if (musicPlayer.PlayState == EnumPlayState.Play)
                 {
                     musicPlayer.PlayState = EnumPlayState.Pause;
                 }
@@ -206,20 +202,20 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.Loaded += MusicPlayer_Loaded;
+            Loaded += MusicPlayer_Loaded;
 
-            this.PART_MusicProgress = this.GetTemplateChild("PART_MusicProgress") as FlatSilder;
-            this.PART_CurrentProgress = this.GetTemplateChild("PART_CurrentProgress") as TextBlock;
+            PART_MusicProgress = GetTemplateChild("PART_MusicProgress") as FlatSilder;
+            PART_CurrentProgress = GetTemplateChild("PART_CurrentProgress") as TextBlock;
 
-            if (this.PART_MusicProgress != null)
+            if (PART_MusicProgress != null)
             {
-                this.PART_MusicProgress.DropValueChanged += PART_MusicProgress_DropValueChanged;
+                PART_MusicProgress.DropValueChanged += PART_MusicProgress_DropValueChanged;
             }
         }
 
         private void PART_MusicProgress_DropValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            this.bassPlayer.ChannelPosition = TimeSpan.FromSeconds(e.NewValue);
+            bassPlayer.ChannelPosition = TimeSpan.FromSeconds(e.NewValue);
         }
         #endregion
 
@@ -239,21 +235,21 @@ namespace ZdfFlatUI
             timer.Interval = new TimeSpan(1000000);
             timer.Tick += Timer_Tick;
 
-            this.IsPlayingInner = this.IsAutoPlay;
-            this.LoadMusicFile(this.SoundSource);
+            IsPlayingInner = IsAutoPlay;
+            LoadMusicFile(SoundSource);
         }
 
         private void BassPlayer_OpenFailed(object sender, EventArgs e)
         {
-            
+
         }
 
         private void PlayMusic(string filePath)
         {
-            this.LoadMusicFile(this.SoundSource);
+            LoadMusicFile(SoundSource);
 
             bassPlayer.Play();
-            
+
             timer.Start();
         }
 
@@ -261,12 +257,12 @@ namespace ZdfFlatUI
         {
             bassPlayer.OpenFile(filePath);
 
-            this.MusicTotalLength = this.GetFormatTime(bassPlayer.ChannelLength.Hours
+            MusicTotalLength = GetFormatTime(bassPlayer.ChannelLength.Hours
                 , bassPlayer.ChannelLength.Minutes
                 , bassPlayer.ChannelLength.Seconds
                 , bassPlayer.ChannelLength.Milliseconds);
 
-            this.CurrentProgress = this.GetFormatTime(bassPlayer.ChannelPosition.Hours
+            CurrentProgress = GetFormatTime(bassPlayer.ChannelPosition.Hours
                 , bassPlayer.ChannelPosition.Minutes
                 , bassPlayer.ChannelPosition.Seconds
                 , bassPlayer.ChannelPosition.Milliseconds);
@@ -277,7 +273,7 @@ namespace ZdfFlatUI
             string hourInner = "00";
             string minuteInner = "00";
             string secondInner = "00";
-            if(hour == 0)
+            if (hour == 0)
             {
                 minuteInner = (minute < 10) ? "0" + minute : minute.ToString();
                 secondInner = (second < 10) ? "0" + second : second.ToString();
@@ -299,11 +295,11 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void BassPlayer_TrackEnded(object sender, EventArgs e)
         {
-            this.PlayState = EnumPlayState.Stop;
-            this.timer.Stop();
-            this.IsPlayingInner = false;
-            this.PART_MusicProgress.Value = 0;
-            this.CurrentProgress = "00:00";
+            PlayState = EnumPlayState.Stop;
+            timer.Stop();
+            IsPlayingInner = false;
+            PART_MusicProgress.Value = 0;
+            CurrentProgress = "00:00";
         }
 
         /// <summary>
@@ -313,22 +309,22 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
-            this.CurrentProgress = this.GetFormatTime(bassPlayer.ChannelPosition.Hours
+            CurrentProgress = GetFormatTime(bassPlayer.ChannelPosition.Hours
                 , bassPlayer.ChannelPosition.Minutes
                 , bassPlayer.ChannelPosition.Seconds
                 , bassPlayer.ChannelPosition.Milliseconds, true);
 
-            this.PART_MusicProgress.Value = this.bassPlayer.ChannelPosition.TotalSeconds;
+            PART_MusicProgress.Value = bassPlayer.ChannelPosition.TotalSeconds;
         }
 
         private void MusicPlayer_Loaded(object sender, RoutedEventArgs e)
         {
-            this.InitPlayer();
+            InitPlayer();
 
-            if (this.PART_MusicProgress != null)
+            if (PART_MusicProgress != null)
             {
-                this.PART_MusicProgress.Maximum = Math.Max(1.0, bassPlayer.ChannelLength.TotalSeconds);
-                this.PART_MusicProgress.Minimum = 0d;
+                PART_MusicProgress.Maximum = Math.Max(1.0, bassPlayer.ChannelLength.TotalSeconds);
+                PART_MusicProgress.Minimum = 0d;
             }
         }
         #endregion

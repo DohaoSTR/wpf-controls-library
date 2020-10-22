@@ -98,15 +98,14 @@
             </StackPanel>
         </TabItem>
         <TabItem Header="ZCalendar日历">
-            <StackPanel Background="{DynamicResource Global.Background}">
+            <StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
                     <TextBlock Text="Light" VerticalAlignment="Center" />
-                    <WPF.UI:FlatToggleButton x:Name="tgTheme" Margin="10,0" Checked="FlatToggleButton_Checked" 
-                                             Unchecked="FlatToggleButton_Checked" />
+                    <WPF.UI:FlatToggleButton x:Name="tgTheme" Margin="10,0" 
+                                             />
                     <TextBlock Text="Dark" VerticalAlignment="Center" />
                 </StackPanel>
-                <WPF.UI:ZCalendar HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                  SelectedDateChanged="ZCalendar_SelectedDateChanged" />
+                <WPF.UI:ZCalendar HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </TabItem>
         <TabItem Header="ZDatePicker">

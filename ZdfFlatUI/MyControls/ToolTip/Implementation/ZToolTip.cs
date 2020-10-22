@@ -47,40 +47,40 @@ namespace ZdfFlatUI
         #region Override方法
         public ZToolTip()
         {
-            this.Initialized += (o, e) =>
+            Initialized += (o, e) =>
             {
-                this.mPlacement = this.PlacementEx;
+                mPlacement = PlacementEx;
             };
         }
 
         protected override void OnOpened(RoutedEventArgs e)
         {
             //当在原本设置的位置显示Tooptip时，发现位置不够，重新设置ToopTip的Placement
-            if(this.PlacementTarget != null)
+            if (PlacementTarget != null)
             {
                 double workAreaX = SystemParameters.WorkArea.Width;//得到屏幕工作区域宽度
                 double workAreaY = SystemParameters.WorkArea.Height;//得到屏幕工作区域高度
 
-                FrameworkElement control = this.PlacementTarget as FrameworkElement;
+                FrameworkElement control = PlacementTarget as FrameworkElement;
                 double controlWidth = control.ActualWidth;
                 double controlHeight = control.ActualHeight;
 
-                Point p = this.PlacementTarget.PointFromScreen(new Point(0, 0));
-                if(p != null)
+                Point p = PlacementTarget.PointFromScreen(new Point(0, 0));
+                if (p != null)
                 {
                     double pointX = Math.Abs(p.X); //得到控件在屏幕中的X坐标
                     double pointY = Math.Abs(p.Y);
 
-                    switch (this.mPlacement)
+                    switch (mPlacement)
                     {
                         case EnumPlacement.LeftTop:
-                            this.SetLeftPosition(pointX, EnumPlacement.RightTop);
+                            SetLeftPosition(pointX, EnumPlacement.RightTop);
                             break;
                         case EnumPlacement.LeftBottom:
-                            this.SetLeftPosition(pointX, EnumPlacement.RightBottom);
+                            SetLeftPosition(pointX, EnumPlacement.RightBottom);
                             break;
                         case EnumPlacement.LeftCenter:
-                            this.SetLeftPosition(pointX, EnumPlacement.RightCenter);
+                            SetLeftPosition(pointX, EnumPlacement.RightCenter);
                             break;
                         case EnumPlacement.RightTop:
                             SetRightPosition(workAreaX, controlWidth, pointX, EnumPlacement.LeftTop);
@@ -92,13 +92,13 @@ namespace ZdfFlatUI
                             SetRightPosition(workAreaX, controlWidth, pointX, EnumPlacement.LeftCenter);
                             break;
                         case EnumPlacement.TopLeft:
-                            this.SetTopPosition(pointY, EnumPlacement.BottomLeft);
+                            SetTopPosition(pointY, EnumPlacement.BottomLeft);
                             break;
                         case EnumPlacement.TopCenter:
-                            this.SetTopPosition(pointY, EnumPlacement.BottomCenter);
+                            SetTopPosition(pointY, EnumPlacement.BottomCenter);
                             break;
                         case EnumPlacement.TopRight:
-                            this.SetTopPosition(pointY, EnumPlacement.BottomRight);
+                            SetTopPosition(pointY, EnumPlacement.BottomRight);
                             break;
                         case EnumPlacement.BottomLeft:
                             SetBottomPosition(workAreaY, controlHeight, pointY, EnumPlacement.TopLeft);
@@ -122,49 +122,49 @@ namespace ZdfFlatUI
         #region Private方法
         private void SetBottomPosition(double workAreaY, double controlHeight, double pointY, EnumPlacement placement)
         {
-            if (workAreaY - (pointY + controlHeight) < this.ActualHeight)
+            if (workAreaY - (pointY + controlHeight) < ActualHeight)
             {
-                this.PlacementEx = placement;
+                PlacementEx = placement;
             }
             else
             {
-                this.PlacementEx = this.mPlacement;
+                PlacementEx = mPlacement;
             }
         }
 
         private void SetTopPosition(double pointY, EnumPlacement placement)
         {
-            if (pointY < this.ActualHeight)
+            if (pointY < ActualHeight)
             {
-                this.PlacementEx = placement;
+                PlacementEx = placement;
             }
             else
             {
-                this.PlacementEx = this.mPlacement;
+                PlacementEx = mPlacement;
             }
         }
 
         private void SetRightPosition(double workAreaX, double controlWidth, double pointX, EnumPlacement placement)
         {
-            if (workAreaX - (pointX + controlWidth) < this.ActualWidth)
+            if (workAreaX - (pointX + controlWidth) < ActualWidth)
             {
-                this.PlacementEx = placement;
+                PlacementEx = placement;
             }
             else
             {
-                this.PlacementEx = this.mPlacement;
+                PlacementEx = mPlacement;
             }
         }
 
         private void SetLeftPosition(double pointX, EnumPlacement placement)
         {
-            if (pointX < this.ActualWidth)
+            if (pointX < ActualWidth)
             {
-                this.PlacementEx = placement;
+                PlacementEx = placement;
             }
             else
             {
-                this.PlacementEx = this.mPlacement;
+                PlacementEx = mPlacement;
             }
         }
         #endregion

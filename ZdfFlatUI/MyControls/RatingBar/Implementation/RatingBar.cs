@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections;
+using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.ObjectModel;
-using System.Collections;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Text.RegularExpressions;
 
 namespace ZdfFlatUI
 {
@@ -73,7 +70,7 @@ namespace ZdfFlatUI
         private static object CoreMinimumCallback(DependencyObject d, object baseValue)
         {
             int value = (int)baseValue;
-            if(value < 1)
+            if (value < 1)
             {
                 return 1;
             }
@@ -100,13 +97,13 @@ namespace ZdfFlatUI
         {
             RatingBar ratingBar = d as RatingBar;
             double value = 0.0;
-            if(double.TryParse(Convert.ToString(baseValue), out value))
+            if (double.TryParse(Convert.ToString(baseValue), out value))
             {
-                if(value < ratingBar.Minimum)
+                if (value < ratingBar.Minimum)
                 {
                     value = 0;
                 }
-                else if(value > ratingBar.Maximum)
+                else if (value > ratingBar.Maximum)
                 {
                     value = ratingBar.Maximum;
                 }
@@ -125,7 +122,7 @@ namespace ZdfFlatUI
                 ratingBarButton.IsHalf = false;
                 ratingBarButton.IsSelected = ratingBarButton.Value <= newValue;
             }
-            
+
             //for (int i = 0; i < buttonList.Count; i++)
             //{
             //    RatingBarButton ratingBarButton = buttonList[i];
@@ -141,7 +138,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(ValueItemTemplateProperty); }
             set { SetValue(ValueItemTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ValueItemTemplateProperty =
             DependencyProperty.Register("ValueItemTemplate", typeof(DataTemplate), typeof(RatingBar));
         #endregion
@@ -152,7 +149,7 @@ namespace ZdfFlatUI
             get { return (Style)GetValue(ValueItemStyleProperty); }
             set { SetValue(ValueItemStyleProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ValueItemStyleProperty =
             DependencyProperty.Register("ValueItemStyle", typeof(Style), typeof(RatingBar));
         #endregion
@@ -185,7 +182,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsReadOnlyProperty); }
             set { SetValue(IsReadOnlyProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsReadOnlyProperty =
             DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(RatingBar), new PropertyMetadata(false));
         #endregion
@@ -207,7 +204,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(ContentTemplateProperty); }
             set { SetValue(ContentTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ContentTemplateProperty =
             DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(RatingBar));
         #endregion
@@ -218,7 +215,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(ContentStringFormatProperty); }
             set { SetValue(ContentStringFormatProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ContentStringFormatProperty =
             DependencyProperty.Register("ContentStringFormat", typeof(string), typeof(RatingBar));
         #endregion
@@ -229,7 +226,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsShowContentProperty); }
             set { SetValue(IsShowContentProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsShowContentProperty =
             DependencyProperty.Register("IsShowContent", typeof(bool), typeof(RatingBar), new PropertyMetadata(true));
         #endregion
@@ -264,10 +261,10 @@ namespace ZdfFlatUI
 
         private void ValueChangedHanlder(object sender, ExecutedRoutedEventArgs e)
         {
-            if(!this.IsReadOnly && e.Parameter is int)
+            if (!IsReadOnly && e.Parameter is int)
             {
-                this.Value = Convert.ToDouble(e.Parameter);
-                this.mIsConfirm = true;
+                Value = Convert.ToDouble(e.Parameter);
+                mIsConfirm = true;
             }
         }
         #endregion
@@ -275,7 +272,7 @@ namespace ZdfFlatUI
         #region Override方法
         public override void OnApplyTemplate()
         {
-            this.CreateRatingButtons();
+            CreateRatingButtons();
 
             base.OnApplyTemplate();
         }
@@ -284,36 +281,36 @@ namespace ZdfFlatUI
         #region Private方法
         private void CreateRatingButtons()
         {
-            this.RatingButtonsInternal.Clear();
-            for (var i = this.Minimum; i <= this.Maximum; i++)
+            RatingButtonsInternal.Clear();
+            for (var i = Minimum; i <= Maximum; i++)
             {
                 RatingBarButton button = new RatingBarButton()
                 {
                     Content = i,
                     Value = i,
-                    IsSelected = i <= Math.Ceiling(this.Value),
-                    IsHalf = this.IsInt(this.Value) ? false : Math.Ceiling(this.Value) == i,
-                    ContentTemplate = this.ValueItemTemplate,
-                    Style = this.ValueItemStyle
+                    IsSelected = i <= Math.Ceiling(Value),
+                    IsHalf = IsInt(Value) ? false : Math.Ceiling(Value) == i,
+                    ContentTemplate = ValueItemTemplate,
+                    Style = ValueItemStyle
                 };
                 button.ItemMouseEnter += (o, n) =>
                 {
-                    this.mOldValue = this.Value;
-                    this.Value = button.Value;
-                    this.mIsConfirm = false;
+                    mOldValue = Value;
+                    Value = button.Value;
+                    mIsConfirm = false;
                 };
                 button.ItemMouseLeave += (o, n) =>
                 {
-                    if(!this.mIsConfirm)
+                    if (!mIsConfirm)
                     {
-                        this.Value = this.mOldValue;
-                        this.mIsConfirm = false;
+                        Value = mOldValue;
+                        mIsConfirm = false;
                     }
                 };
 
-                this.RatingButtonsInternal.Add(button);
+                RatingButtonsInternal.Add(button);
             }
-            this.RatingButtons = this.RatingButtonsInternal;
+            RatingButtons = RatingButtonsInternal;
         }
 
         private bool IsInt(object value)

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
@@ -166,8 +164,8 @@ namespace ZdfFlatUI.Utils
                     IEnumerator j = FindVisualChildren<childItem>(child).GetEnumerator();
                     while (j.MoveNext())
                     {
-                        childItem childOfChild = (childItem) j.Current;
-                        
+                        childItem childOfChild = (childItem)j.Current;
+
                         if (childOfChild != null && !(childOfChild as FrameworkElement).Name.Equals(elementName))
                         {
                             FindVisualElement<childItem>(childOfChild, elementName);
@@ -176,7 +174,7 @@ namespace ZdfFlatUI.Utils
                         {
                             return childOfChild;
                         }
-                        
+
                     }
                 }
             }
@@ -210,7 +208,7 @@ namespace ZdfFlatUI.Utils
                     {
                         return childOfChild;
                     }
-                        
+
                 }
             }
             return null;

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using ZdfFlatUI.Utils;
 
@@ -177,11 +174,11 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ShowMoreClickEvent, value);
+                AddHandler(ShowMoreClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ShowMoreClickEvent, value);
+                RemoveHandler(ShowMoreClickEvent, value);
             }
         }
 
@@ -189,23 +186,23 @@ namespace ZdfFlatUI
         {
             RoutedPropertyChangedEventArgs<object> arg =
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, ShowMoreClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
         #endregion
 
         #region 构造函数
         public BaseWindow() : base()
         {
-            this.Loaded += BaseWindow_Loaded;
+            Loaded += BaseWindow_Loaded;
         }
 
         private void BaseWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            switch (this.WindowState)
+            switch (WindowState)
             {
                 case WindowState.Maximized:
-                    this.WindowState = WindowState.Normal;
-                    this.SetWindowMaximized();
+                    WindowState = WindowState.Normal;
+                    SetWindowMaximized();
                     break;
                 default:
                     break;
@@ -219,7 +216,7 @@ namespace ZdfFlatUI
         private void GridTitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //不允许最大化的时候，双击标题栏自然也不允许将窗体最大化
-            if (!this.MaximizeBox) return;
+            if (!MaximizeBox) return;
 
             mouseClickCount += 1;
             DispatcherTimer timer = new DispatcherTimer();
@@ -233,13 +230,13 @@ namespace ZdfFlatUI
                 mouseClickCount = 0;
 
                 //判断当前窗体状态，如果是最大化，则双击之后还原窗体大小，否则将窗体最大化
-                if(this.mIsMaximized)
+                if (mIsMaximized)
                 {
-                    this.SetWindowSizeRestore();
+                    SetWindowSizeRestore();
                 }
                 else
                 {
-                    this.SetWindowMaximized();
+                    SetWindowMaximized();
                 }
             }
         }
@@ -272,7 +269,7 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void Btn_close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         /// <summary>
@@ -283,10 +280,10 @@ namespace ZdfFlatUI
         private void PART_Btn_More_Click(object sender, RoutedEventArgs e)
         {
             //this.OnShowMoreClick(null, null);
-            if(this.PART_Btn_More != null)
+            if (PART_Btn_More != null)
             {
-                this.PART_Popup_Menu.Child = this.MenuPanel;
-                this.PART_Popup_Menu.IsOpen = true;
+                PART_Popup_Menu.Child = MenuPanel;
+                PART_Popup_Menu.IsOpen = true;
             }
         }
         #endregion
@@ -300,10 +297,10 @@ namespace ZdfFlatUI
             if (VisualTreeHelper.GetChildrenCount(this) > 0)
             {
                 //最大化窗体前保留窗体的原始大小与位置
-                this.restore_window_width = this.Width;
-                this.restore_window_height = this.Height;
-                this.resotre_left = this.Left;
-                this.resotre_top = this.Top;
+                restore_window_width = Width;
+                restore_window_height = Height;
+                resotre_left = Left;
+                resotre_top = Top;
 
                 Grid a = (Grid)VisualTreeHelper.GetChild(this, 0);
                 //设置Grid的Margin为0，用于去除窗体阴影
@@ -311,17 +308,17 @@ namespace ZdfFlatUI
                 Border b = (Border)VisualTreeHelper.GetChild(a, 0);
                 //隐藏阴影
                 b.Visibility = Visibility.Collapsed;
-                this.Left = 0;
-                this.Top = 0;
+                Left = 0;
+                Top = 0;
                 Rect rc = SystemParameters.WorkArea;//获取工作区大小
-                this.Width = rc.Width;
-                this.Height = rc.Height;
+                Width = rc.Width;
+                Height = rc.Height;
 
                 //this.Animation(this.Width, this.Height, rc.Width, rc.Height);
 
-                this.mIsMaximized = true;
-                this.PART_Btn_Maximized.Visibility = Visibility.Hidden;
-                this.PART_Btn_Restore.Visibility = Visibility.Visible;
+                mIsMaximized = true;
+                PART_Btn_Maximized.Visibility = Visibility.Hidden;
+                PART_Btn_Restore.Visibility = Visibility.Visible;
             }
         }
 
@@ -354,14 +351,14 @@ namespace ZdfFlatUI
                 Border b = (Border)VisualTreeHelper.GetChild(a, 0);
                 //显示阴影
                 b.Visibility = Visibility.Visible;
-                this.Left = this.resotre_left;
-                this.Top = this.resotre_top;
-                this.Width = this.restore_window_width;
-                this.Height = this.restore_window_height;
+                Left = resotre_left;
+                Top = resotre_top;
+                Width = restore_window_width;
+                Height = restore_window_height;
 
-                this.mIsMaximized = false;
-                this.PART_Btn_Restore.Visibility = Visibility.Hidden;
-                this.PART_Btn_Maximized.Visibility = Visibility.Visible;
+                mIsMaximized = false;
+                PART_Btn_Restore.Visibility = Visibility.Hidden;
+                PART_Btn_Maximized.Visibility = Visibility.Visible;
             }
         }
         #endregion
@@ -371,42 +368,42 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_Btn_Close = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Close");
-            this.PART_Btn_Minimized = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Minimized");
-            this.PART_Btn_Maximized = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Maximized");
-            this.PART_Btn_Restore = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Restore");
-            this.PART_TitleBar = VisualHelper.FindVisualElement<Grid>(this, "PART_TitleBar");
-            this.PART_Btn_More = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_More");
-            this.PART_Popup_Menu = VisualHelper.FindVisualElement<Popup>(this, "PART_Popup_Menu");
+            PART_Btn_Close = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Close");
+            PART_Btn_Minimized = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Minimized");
+            PART_Btn_Maximized = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Maximized");
+            PART_Btn_Restore = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_Restore");
+            PART_TitleBar = VisualHelper.FindVisualElement<Grid>(this, "PART_TitleBar");
+            PART_Btn_More = VisualHelper.FindVisualElement<Button>(this, "PART_Btn_More");
+            PART_Popup_Menu = VisualHelper.FindVisualElement<Popup>(this, "PART_Popup_Menu");
 
-            if (this.PART_Btn_Close != null)
+            if (PART_Btn_Close != null)
             {
-                this.PART_Btn_Close.Click += Btn_close_Click;
+                PART_Btn_Close.Click += Btn_close_Click;
             }
 
-            if (this.PART_Btn_Maximized != null)
+            if (PART_Btn_Maximized != null)
             {
-                this.PART_Btn_Maximized.Click += PART_Btn_Maximized_Click;
+                PART_Btn_Maximized.Click += PART_Btn_Maximized_Click;
             }
 
-            if (this.PART_Btn_Restore != null)
+            if (PART_Btn_Restore != null)
             {
-                this.PART_Btn_Restore.Click += PART_Btn_Restore_Click;
+                PART_Btn_Restore.Click += PART_Btn_Restore_Click;
             }
 
-            if (!this.MaximizeBox && !this.MinimizeBox && !this.CloseBox && string.IsNullOrEmpty(this.Title.Trim()))
+            if (!MaximizeBox && !MinimizeBox && !CloseBox && string.IsNullOrEmpty(Title.Trim()))
             {
-                this.PART_TitleBar.Visibility = Visibility.Collapsed;
+                PART_TitleBar.Visibility = Visibility.Collapsed;
             }
 
-            if (this.PART_Btn_More != null)
+            if (PART_Btn_More != null)
             {
-                this.PART_Btn_More.Click += PART_Btn_More_Click; ;
+                PART_Btn_More.Click += PART_Btn_More_Click; ;
             }
 
-            if (this.PART_TitleBar != null)
+            if (PART_TitleBar != null)
             {
-                this.PART_TitleBar.MouseLeftButtonDown += GridTitleBar_MouseLeftButtonDown;
+                PART_TitleBar.MouseLeftButtonDown += GridTitleBar_MouseLeftButtonDown;
             }
         }
 
@@ -416,9 +413,9 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            if (!this.CanMoveWindow) return;
+            if (!CanMoveWindow) return;
 
-            if (this.mIsMaximized) return;
+            if (mIsMaximized) return;
 
             base.OnMouseLeftButtonDown(e);
 
@@ -430,10 +427,10 @@ namespace ZdfFlatUI
                 // 如果鼠标位置在标题栏内，允许拖动  
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
-                    if (position.X >= 0 && position.X < PART_TitleBar.ActualWidth && position.Y >= 0 
+                    if (position.X >= 0 && position.X < PART_TitleBar.ActualWidth && position.Y >= 0
                         && position.Y < PART_TitleBar.ActualHeight)
                     {
-                        this.DragMove();
+                        DragMove();
                     }
                 }
             }

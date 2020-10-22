@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -119,15 +114,15 @@ namespace ZdfFlatUI
 
         public MessageBoxModule()
         {
-            this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             //AllowsTransparency、WindowStyle属性不能在样式文件中设置，否则会报错
-            this.AllowsTransparency = true;
-            this.WindowStyle = System.Windows.WindowStyle.None;
-            this.ShowInTaskbar = false;
-            this.Topmost = false;
-            this.ButtonCollection = new ObservableCollection<Button>();
+            AllowsTransparency = true;
+            WindowStyle = System.Windows.WindowStyle.None;
+            ShowInTaskbar = false;
+            Topmost = false;
+            ButtonCollection = new ObservableCollection<Button>();
 
-            this.Loaded += MessageBoxModule_Loaded;
+            Loaded += MessageBoxModule_Loaded;
         }
 
 
@@ -145,20 +140,20 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_CloseButton = this.GetTemplateChild("PART_CloseButton") as Button;
-            Grid s = this.GetTemplateChild("grid") as Grid;
+            PART_CloseButton = GetTemplateChild("PART_CloseButton") as Button;
+            Grid s = GetTemplateChild("grid") as Grid;
 
 
-            if (this.PART_CloseButton != null)
+            if (PART_CloseButton != null)
             {
-                this.PART_CloseButton.Click += CloseWindow;
+                PART_CloseButton.Click += CloseWindow;
             }
         }
 
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
-            this.PART_CloseButton.Click -= CloseWindow;
-            this.Close();
+            PART_CloseButton.Click -= CloseWindow;
+            Close();
         }
         #endregion
 
@@ -400,16 +395,16 @@ namespace ZdfFlatUI
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (this.Owner != null)
+            if (Owner != null)
             {
                 //容器Grid
-                Grid grid = this.Owner.Content as Grid;
+                Grid grid = Owner.Content as Grid;
                 //父级窗体原来的内容
                 UIElement original = VisualTreeHelper.GetChild(grid, 0) as UIElement;
                 //将父级窗体原来的内容在容器Grid中移除
                 grid.Children.Remove(original);
                 //赋给父级窗体
-                this.Owner.Content = original;
+                Owner.Content = original;
             }
 
             VisualStateManager.GoToState(this, "Closed", true);

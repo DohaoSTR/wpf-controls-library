@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI.StyleSelectors
@@ -21,7 +17,7 @@ namespace ZdfFlatUI.StyleSelectors
             Style style;
             ListBox.GetItemsOwner(container);
 
-            if (this.Type == 0)
+            if (Type == 0)
             {
                 style = ExpandStyle;
             }

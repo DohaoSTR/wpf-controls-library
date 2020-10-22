@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
-using System.Windows.Interop;
 
 namespace ZdfFlatUI
 {
@@ -57,7 +50,7 @@ namespace ZdfFlatUI
 
         private static void UpdatePosition(Popup pop)
         {
-            if(pop == null)
+            if (pop == null)
             {
                 return;
             }

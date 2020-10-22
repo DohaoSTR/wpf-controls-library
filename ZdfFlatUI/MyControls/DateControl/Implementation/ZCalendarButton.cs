@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI.Primitives
@@ -25,7 +21,7 @@ namespace ZdfFlatUI.Primitives
             get { return (bool)GetValue(HasSelectedDatesProperty); }
             set { SetValue(HasSelectedDatesProperty, value); }
         }
-        
+
         public static readonly DependencyProperty HasSelectedDatesProperty =
             DependencyProperty.Register("HasSelectedDates", typeof(bool), typeof(ZCalendarButton), new PropertyMetadata(false));
         #endregion

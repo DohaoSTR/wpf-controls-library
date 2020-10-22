@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -74,19 +70,19 @@ namespace ZdfFlatUI
             base.PrepareContainerForItemOverride(element, item);
 
             NoticeItem noticeItem = element as NoticeItem;
-            if(!string.IsNullOrEmpty(this.TitleMemberPath))
+            if (!string.IsNullOrEmpty(TitleMemberPath))
             {
-                Binding binding = new Binding(this.TitleMemberPath);
+                Binding binding = new Binding(TitleMemberPath);
                 noticeItem.SetBinding(NoticeItem.TitleProperty, binding);
             }
-            if (!string.IsNullOrEmpty(this.ContentMemberPath))
+            if (!string.IsNullOrEmpty(ContentMemberPath))
             {
-                Binding binding = new Binding(this.ContentMemberPath);
+                Binding binding = new Binding(ContentMemberPath);
                 noticeItem.SetBinding(NoticeItem.ContentProperty, binding);
             }
-            if (!string.IsNullOrEmpty(this.NoticeTypeMemberPath))
+            if (!string.IsNullOrEmpty(NoticeTypeMemberPath))
             {
-                Binding binding = new Binding(this.NoticeTypeMemberPath);
+                Binding binding = new Binding(NoticeTypeMemberPath);
                 noticeItem.SetBinding(NoticeItem.NoticeTypeProperty, binding);
             }
         }

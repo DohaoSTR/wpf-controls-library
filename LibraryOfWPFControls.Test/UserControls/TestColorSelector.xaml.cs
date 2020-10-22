@@ -5,9 +5,6 @@ using System.Windows.Media;
 
 namespace LibraryOfWPFControls.Test.UserControls
 {
-    /// <summary>
-    /// Interaction logic for TestColorSelector.xaml
-    /// </summary>
     public partial class TestColorSelector : UserControl
     {
         public TestColorSelector()

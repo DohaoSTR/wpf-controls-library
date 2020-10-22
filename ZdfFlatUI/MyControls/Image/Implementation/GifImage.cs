@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Windows.Resources;
@@ -42,13 +38,13 @@ namespace ZdfFlatUI
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            this.Loaded += GifImage_Loaded;
-            this.Unloaded += GifImage_Unloaded;
+            Loaded += GifImage_Loaded;
+            Unloaded += GifImage_Unloaded;
         }
 
         void GifImage_Unloaded(object sender, RoutedEventArgs e)
         {
-            this.StopAnimate();
+            StopAnimate();
         }
 
         void GifImage_Loaded(object sender, RoutedEventArgs e)
@@ -88,7 +84,7 @@ namespace ZdfFlatUI
                 BitmapSource.Freeze();
 
             // Convert the bitmap to BitmapSource that can be display in WPF Visual Tree
-            BitmapSource = GetBitmapSource(this.Bitmap, this.BitmapSource);
+            BitmapSource = GetBitmapSource(Bitmap, BitmapSource);
             Source = BitmapSource;
             InvalidateVisual();
         }
@@ -112,7 +108,7 @@ namespace ZdfFlatUI
                 gif.Bitmap.Dispose();
             }
             var path = gif.GIFSource;
-            
+
             gif.Bitmap = new Bitmap(GetStreamFromSource(path));
             gif.BitmapSource = GetBitmapSource(gif.Bitmap, gif.BitmapSource);
             gif.StartAnimate();
@@ -198,7 +194,7 @@ namespace ZdfFlatUI
             }
             catch (Exception ex)
             {
-                
+
             }
             return streamInfo.Stream;
         }

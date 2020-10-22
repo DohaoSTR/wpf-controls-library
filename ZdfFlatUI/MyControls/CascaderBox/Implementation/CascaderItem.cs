@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -20,18 +16,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ItemClickEvent, value);
+                AddHandler(ItemClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ItemClickEvent, value);
+                RemoveHandler(ItemClickEvent, value);
             }
         }
 
         public virtual void OnItemClickChanged(object oldValue, object newValue)
         {
             RoutedPropertyChangedEventArgs<object> arg = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, ItemClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -75,12 +71,12 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.AddHandler(ListBoxItem.MouseLeftButtonDownEvent, new RoutedEventHandler(HourButton_Click), true);
+            AddHandler(ListBoxItem.MouseLeftButtonDownEvent, new RoutedEventHandler(HourButton_Click), true);
         }
 
         private void HourButton_Click(object sender, RoutedEventArgs e)
         {
-            this.OnItemClickChanged(this.Content, this.Content);
+            OnItemClickChanged(Content, Content);
         }
     }
 }

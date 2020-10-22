@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -28,7 +23,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsErrorProperty); }
             set { SetValue(IsErrorProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsErrorProperty =
             DependencyProperty.Register("IsError", typeof(bool), typeof(EmailReceiverButton), new PropertyMetadata(false));
 
@@ -43,7 +38,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsSelectedProperty); }
             set { SetValue(IsSelectedProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsSelectedProperty =
             DependencyProperty.Register("IsSelected", typeof(bool), typeof(EmailReceiverButton), new PropertyMetadata(false));
 

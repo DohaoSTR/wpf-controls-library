@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows;
 
 namespace ZdfFlatUI
 {
@@ -17,8 +13,8 @@ namespace ZdfFlatUI
 
         public static T GetAncestor<T>(this DependencyObject target)
             where T : DependencyObject
-        {            
-            if(target == null)
+        {
+            if (target == null)
             {
                 return null;
             }

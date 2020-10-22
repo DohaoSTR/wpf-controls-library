@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Shapes;
 using ZdfFlatUI.Utils;
 
@@ -84,16 +79,16 @@ namespace ZdfFlatUI
             base.OnApplyTemplate();
 
             //注册“清空”图标的点击事件
-            this.PART_ClearText = VisualHelper.FindVisualElement<Path>(this, "PART_ClearText");
-            if(this.PART_ClearText != null)
+            PART_ClearText = VisualHelper.FindVisualElement<Path>(this, "PART_ClearText");
+            if (PART_ClearText != null)
             {
-                this.PART_ClearText.MouseLeftButtonDown += PART_ClearText_MouseLeftButtonDown;
+                PART_ClearText.MouseLeftButtonDown += PART_ClearText_MouseLeftButtonDown;
             }
 
-            this.PART_ScrollViewer = VisualHelper.FindVisualElement<ScrollViewer>(this, "PART_ContentHost");
+            PART_ScrollViewer = VisualHelper.FindVisualElement<ScrollViewer>(this, "PART_ContentHost");
 
             //监听TextBox的鼠标滚轮滚动事件
-            this.PreviewMouseWheel += TitleTextBox_PreviewMouseWheel;
+            PreviewMouseWheel += TitleTextBox_PreviewMouseWheel;
         }
 
         /// <summary>
@@ -103,9 +98,9 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void TitleTextBox_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            if(this.TitleOrientation == TitleOrientationEnum.Vertical && this.PART_ScrollViewer != null)
+            if (TitleOrientation == TitleOrientationEnum.Vertical && PART_ScrollViewer != null)
             {
-                this.PART_ScrollViewer.ScrollToVerticalOffset(this.PART_ScrollViewer.VerticalOffset - e.Delta);
+                PART_ScrollViewer.ScrollToVerticalOffset(PART_ScrollViewer.VerticalOffset - e.Delta);
             }
         }
 
@@ -116,7 +111,7 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_ClearText_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Text = string.Empty;
+            Text = string.Empty;
         }
     }
 }

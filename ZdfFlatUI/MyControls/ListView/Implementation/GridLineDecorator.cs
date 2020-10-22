@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace ZdfFlatUI
 {
@@ -19,8 +15,8 @@ namespace ZdfFlatUI
 
         public GridLineDecorator()
         {
-            this.AddVisualChild(_gridLinesVisual);
-            this.AddHandler(ScrollViewer.ScrollChangedEvent, new RoutedEventHandler(OnScrollChanged));
+            AddVisualChild(_gridLinesVisual);
+            AddHandler(ScrollViewer.ScrollChangedEvent, new RoutedEventHandler(OnScrollChanged));
         }
 
         #region GridLineBrush
@@ -116,7 +112,7 @@ namespace ZdfFlatUI
 
             // 为了对齐到像素的计算参数，否则就会看到有些线是模糊的
             var dpiFactor = this.GetDpiFactor();
-            var pen = new Pen(this.GridLineBrush, 1 * dpiFactor);
+            var pen = new Pen(GridLineBrush, 1 * dpiFactor);
             var halfPenWidth = pen.Thickness / 2;
             var guidelines = new GuidelineSet();
 

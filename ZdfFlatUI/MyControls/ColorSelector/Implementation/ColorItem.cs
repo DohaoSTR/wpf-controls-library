@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Media;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace ZdfFlatUI
 {
@@ -18,7 +14,7 @@ namespace ZdfFlatUI
         #region Property
         private ColorSelector ParentColorSelector
         {
-            get { return this.ParentSelector as ColorSelector; }
+            get { return ParentSelector as ColorSelector; }
         }
 
         internal Selector ParentSelector
@@ -36,7 +32,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsSelectedProperty); }
             set { SetValue(IsSelectedProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsSelectedProperty =
             Selector.IsSelectedProperty.AddOwner(typeof(ColorItem), new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault | FrameworkPropertyMetadataOptions.Journal, new PropertyChangedCallback(ColorItem.OnIsSelectedChanged)));
 
@@ -64,7 +60,7 @@ namespace ZdfFlatUI
             get { return (Brush)GetValue(ColorProperty); }
             set { SetValue(ColorProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ColorProperty =
             DependencyProperty.Register("Color", typeof(Brush), typeof(ColorItem));
 
@@ -87,9 +83,9 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.MouseLeftButtonUp += ColorItem_MouseLeftButtonUp;
+            MouseLeftButtonUp += ColorItem_MouseLeftButtonUp;
         }
-        
+
 
         #endregion
 
@@ -109,7 +105,7 @@ namespace ZdfFlatUI
             {
                 VisualStateManager.GoToState(this, "Normal", useTransitions);
             }
-            if (this.IsSelected)
+            if (IsSelected)
             {
                 if (Selector.GetIsSelectionActive(this))
                 {
@@ -140,12 +136,12 @@ namespace ZdfFlatUI
 
         private void OnUnselected(RoutedEventArgs routedEventArgs)
         {
-            this.HandleIsSelectedChanged(false, routedEventArgs);
+            HandleIsSelectedChanged(false, routedEventArgs);
         }
 
         private void OnSelected(RoutedEventArgs routedEventArgs)
         {
-            this.HandleIsSelectedChanged(true, routedEventArgs);
+            HandleIsSelectedChanged(true, routedEventArgs);
         }
 
         private void HandleIsSelectedChanged(bool newValue, RoutedEventArgs e)
@@ -159,7 +155,7 @@ namespace ZdfFlatUI
 
         private void ColorItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.ParentColorSelector.SetItemSelected(this);
+            ParentColorSelector.SetItemSelected(this);
         }
 
         #endregion

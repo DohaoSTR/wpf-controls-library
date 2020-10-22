@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -19,14 +15,14 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsActivedProperty); }
             set { SetValue(IsActivedProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsActivedProperty =
             DependencyProperty.Register("IsActived", typeof(bool), typeof(Loading), new PropertyMetadata(true, OnIsActivedChangedCallback));
 
         private static void OnIsActivedChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Loading loading = d as Loading;
-            if(loading.PART_Root == null)
+            if (loading.PART_Root == null)
             {
                 return;
             }
@@ -46,7 +42,7 @@ namespace ZdfFlatUI
         private static void OnSpeedRatioChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Loading loading = d as Loading;
-            if(loading.PART_Root == null || !loading.IsActived)
+            if (loading.PART_Root == null || !loading.IsActived)
             {
                 return;
             }
@@ -77,11 +73,11 @@ namespace ZdfFlatUI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.PART_Root = this.GetTemplateChild("PART_Root") as FrameworkElement;
-            if(this.PART_Root != null)
+            PART_Root = GetTemplateChild("PART_Root") as FrameworkElement;
+            if (PART_Root != null)
             {
-                VisualStateManager.GoToElementState(this.PART_Root, this.IsActived ? "Active" : "Inactive", true);
-                this.SetSpeedRatio(this.PART_Root, this.SpeedRatio);
+                VisualStateManager.GoToElementState(PART_Root, IsActived ? "Active" : "Inactive", true);
+                SetSpeedRatio(PART_Root, SpeedRatio);
             }
         }
         #endregion

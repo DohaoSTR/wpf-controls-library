@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
 
@@ -20,13 +18,13 @@ namespace ZdfFlatUI.Converters
             double placementTargetWidth = (double)values[0];
             double toolTipWidth = (double)values[1];
 
-            if("Center".Equals(parameter))
+            if ("Center".Equals(parameter))
             {
                 return (placementTargetWidth / 2.0) - (toolTipWidth / 2.0);
             }
-            else if("Right".Equals(parameter))
+            else if ("Right".Equals(parameter))
             {
-                return placementTargetWidth  - toolTipWidth;
+                return placementTargetWidth - toolTipWidth;
             }
 
             return 0;

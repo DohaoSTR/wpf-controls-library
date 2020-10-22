@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using ZdfFlatUI.BaseControl;
 
@@ -12,10 +11,10 @@ namespace ZdfFlatUI
     {
         public DoubleUpDown() : base()
         {
-            this.Minimum = 0d;
-            this.Maximum = 100d;
-            this.Value = this.Minimum;
-            this.Increment = 1d;
+            Minimum = 0d;
+            Maximum = 100d;
+            Value = Minimum;
+            Increment = 1d;
         }
 
         protected override double IncrementValue(double value, double increment)

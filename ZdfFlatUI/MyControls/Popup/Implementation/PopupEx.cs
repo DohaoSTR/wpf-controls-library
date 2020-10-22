@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
@@ -36,7 +32,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsUpdatePositionProperty); }
             set { SetValue(IsUpdatePositionProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsUpdatePositionProperty =
             DependencyProperty.Register("IsUpdatePosition", typeof(bool), typeof(PopupEx), new PropertyMetadata(true));
 
@@ -53,8 +49,8 @@ namespace ZdfFlatUI
             RECT rect;
             if (GetWindowRect(hwnd, out rect))
             {
-                FrameworkElement element = this.PlacementTarget as FrameworkElement;
-                if(element != null)
+                FrameworkElement element = PlacementTarget as FrameworkElement;
+                if (element != null)
                 {
                     //第二个参数和最后一个参数为关键参数，设置为1表示保持窗口大小，网上的代码是0，如果设置为0会导致Popup弹出时同时更改了PlacementTarget的大小
                     //但如果hwnd句柄的获取是通过this.Child获取的，则最后一个参数可以设置为0
@@ -62,7 +58,7 @@ namespace ZdfFlatUI
                 }
                 else
                 {
-                    SetWindowPos(hwnd, Topmost ? -1 : -2, rect.Left, rect.Top, (int)this.Width, (int)this.Height, 1);
+                    SetWindowPos(hwnd, Topmost ? -1 : -2, rect.Left, rect.Top, (int)Width, (int)Height, 1);
                 }
             }
         }

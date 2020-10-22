@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -28,7 +23,7 @@ namespace ZdfFlatUI.Behaviors
 
         private static void OwnerChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            
+
         }
         #endregion
 
@@ -41,7 +36,7 @@ namespace ZdfFlatUI.Behaviors
         {
             obj.SetValue(IsOpenProperty, value);
         }
-        
+
         public static readonly DependencyProperty IsOpenProperty =
             DependencyProperty.RegisterAttached("IsOpen", typeof(bool), typeof(MaskLayerBehavior), new PropertyMetadata(false, IsOpenChangedCallback));
 
@@ -53,7 +48,7 @@ namespace ZdfFlatUI.Behaviors
 
             if (owner != null)
             {
-                if((bool)e.NewValue)
+                if ((bool)e.NewValue)
                 {
                     //蒙板
                     Grid layer = new Grid() { Background = new SolidColorBrush(Color.FromArgb(160, 0, 0, 0)) };

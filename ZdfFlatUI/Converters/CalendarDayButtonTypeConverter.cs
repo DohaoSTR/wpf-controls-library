@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace ZdfFlatUI.Converters
@@ -28,11 +24,11 @@ namespace ZdfFlatUI.Converters
                 {
                     str = "Left";
                 }
-                else if(dtDayButton > dtStart && dtDayButton < dtEnd)
+                else if (dtDayButton > dtStart && dtDayButton < dtEnd)
                 {
                     str = "Middle";
                 }
-                else if(dtDayButton == dtEnd)
+                else if (dtDayButton == dtEnd)
                 {
                     str = "Right";
                 }

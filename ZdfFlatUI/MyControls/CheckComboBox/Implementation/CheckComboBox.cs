@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace ZdfFlatUI
@@ -36,7 +33,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(ContentProperty); }
             set { SetValue(ContentProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.Register("Content", typeof(string), typeof(CheckComboBox), new PropertyMetadata(string.Empty));
 
@@ -49,7 +46,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(string), typeof(CheckComboBox), new PropertyMetadata(string.Empty));
 
@@ -62,7 +59,7 @@ namespace ZdfFlatUI
             get { return (ObservableCollection<object>)GetValue(SelectedObjListProperty); }
             private set { SetValue(SelectedObjListProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedObjListProperty =
             DependencyProperty.Register("SelectedObjList", typeof(ObservableCollection<object>), typeof(CheckComboBox), new PropertyMetadata(null));
 
@@ -75,7 +72,7 @@ namespace ZdfFlatUI
             get { return (ObservableCollection<string>)GetValue(SelectedStrListProperty); }
             private set { SetValue(SelectedStrListProperty, value); }
         }
-        
+
         public static readonly DependencyProperty SelectedStrListProperty =
             DependencyProperty.Register("SelectedStrList", typeof(ObservableCollection<string>), typeof(CheckComboBox));
 
@@ -88,14 +85,14 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsDropDownOpenProperty =
             DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(CheckComboBox), new PropertyMetadata(false, OnIsDropDownOpenChanged));
 
         private static void OnIsDropDownOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             CheckComboBox checkComboBox = d as CheckComboBox;
-            
+
         }
 
         #endregion
@@ -109,7 +106,7 @@ namespace ZdfFlatUI
             get { return (bool)GetValue(IsShowFilterBoxProperty); }
             set { SetValue(IsShowFilterBoxProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsShowFilterBoxProperty =
             DependencyProperty.Register("IsShowFilterBox", typeof(bool), typeof(CheckComboBox), new PropertyMetadata(false));
 
@@ -124,7 +121,7 @@ namespace ZdfFlatUI
             get { return (int)GetValue(MaxShowNumberProperty); }
             set { SetValue(MaxShowNumberProperty, value); }
         }
-        
+
         public static readonly DependencyProperty MaxShowNumberProperty =
             DependencyProperty.Register("MaxShowNumber", typeof(int), typeof(CheckComboBox), new PropertyMetadata(4));
 
@@ -137,7 +134,7 @@ namespace ZdfFlatUI
             get { return (double)GetValue(MaxDropDownHeightProperty); }
             set { SetValue(MaxDropDownHeightProperty, value); }
         }
-        
+
         public static readonly DependencyProperty MaxDropDownHeightProperty =
             DependencyProperty.Register("MaxDropDownHeight", typeof(double), typeof(CheckComboBox), new PropertyMetadata(200d));
 
@@ -150,7 +147,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(FilterBoxWatermarkProperty); }
             set { SetValue(FilterBoxWatermarkProperty, value); }
         }
-        
+
         public static readonly DependencyProperty FilterBoxWatermarkProperty =
             DependencyProperty.Register("FilterBoxWatermark", typeof(string), typeof(CheckComboBox), new PropertyMetadata("Enter keyword filtering"));
 
@@ -175,52 +172,52 @@ namespace ZdfFlatUI
 
         public CheckComboBox()
         {
-            this.SelectedObjList = new ObservableCollection<object>();
-            this.SelectedStrList = new ObservableCollection<string>();
+            SelectedObjList = new ObservableCollection<object>();
+            SelectedStrList = new ObservableCollection<string>();
         }
         #endregion
 
         #region Override
-        
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            if (this.PART_FilterTextBox != null)
+            if (PART_FilterTextBox != null)
             {
-                this.PART_FilterTextBox.TextChanged -= PART_FilterTextBox_TextChanged;
+                PART_FilterTextBox.TextChanged -= PART_FilterTextBox_TextChanged;
             }
             if (PART_Popup != null)
             {
-                this.PART_Popup.Opened -= PART_Popup_Opened;
+                PART_Popup.Opened -= PART_Popup_Opened;
             }
 
-            this.PART_ContentSite = this.GetTemplateChild("PART_ContentSite") as ContentPresenter;
-            this.PART_FilterTextBox = this.GetTemplateChild("PART_FilterTextBox") as TextBox;
-            this.PART_Popup = this.GetTemplateChild("PART_Popup") as Popup;
-            if (this.PART_FilterTextBox != null)
+            PART_ContentSite = GetTemplateChild("PART_ContentSite") as ContentPresenter;
+            PART_FilterTextBox = GetTemplateChild("PART_FilterTextBox") as TextBox;
+            PART_Popup = GetTemplateChild("PART_Popup") as Popup;
+            if (PART_FilterTextBox != null)
             {
-                this.PART_FilterTextBox.TextChanged += PART_FilterTextBox_TextChanged;
+                PART_FilterTextBox.TextChanged += PART_FilterTextBox_TextChanged;
             }
 
-            view = CollectionViewSource.GetDefaultView(this.ItemsSource);
+            view = CollectionViewSource.GetDefaultView(ItemsSource);
 
-            if(PART_Popup != null)
+            if (PART_Popup != null)
             {
-                this.PART_Popup.Opened += PART_Popup_Opened;
+                PART_Popup.Opened += PART_Popup_Opened;
             }
 
-            this.Init();
+            Init();
         }
-        
+
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
             if (!(item is CheckComboBoxItem))
             {
                 CheckComboBoxItem checkComboBoxItem = element as CheckComboBoxItem;
-                if (checkComboBoxItem != null && !string.IsNullOrEmpty(this.DisplayMemberPath))
+                if (checkComboBoxItem != null && !string.IsNullOrEmpty(DisplayMemberPath))
                 {
-                    Binding binding = new Binding(this.DisplayMemberPath);
+                    Binding binding = new Binding(DisplayMemberPath);
                     checkComboBoxItem.SetBinding(CheckComboBoxItem.ContentProperty, binding);
                 }
             }
@@ -243,39 +240,39 @@ namespace ZdfFlatUI
         #region private function
         private void Init()
         {
-            this.mPopupIsFirstOpen = true;
+            mPopupIsFirstOpen = true;
 
-            if (this.SelectedObjList != null)
+            if (SelectedObjList != null)
             {
-                foreach (var obj in this.SelectedObjList)
+                foreach (var obj in SelectedObjList)
                 {
-                    if (string.IsNullOrWhiteSpace(this.DisplayMemberPath))
+                    if (string.IsNullOrWhiteSpace(DisplayMemberPath))
                     {
-                        this.SelectedStrList.Add(obj.ToString());
+                        SelectedStrList.Add(obj.ToString());
                     }
                     else
                     {
-                        this.SelectedStrList.Add(Utils.CommonUtil.GetPropertyValue(obj, this.DisplayMemberPath).ToString());
+                        SelectedStrList.Add(Utils.CommonUtil.GetPropertyValue(obj, DisplayMemberPath).ToString());
                     }
                 }
             }
-            this.SetCheckComboBoxValueAndContent();
+            SetCheckComboBoxValueAndContent();
         }
 
         private void SetCheckComboBoxValueAndContent()
         {
-            if (this.SelectedStrList == null) return;
+            if (SelectedStrList == null) return;
 
-            if (this.SelectedStrList.Count > this.MaxShowNumber)
+            if (SelectedStrList.Count > MaxShowNumber)
             {
-                this.Content = this.SelectedStrList.Count + " Selected";
+                Content = SelectedStrList.Count + " Selected";
             }
             else
             {
-                this.Content = this.SelectedStrList.Aggregate("", (current, p) => current + (p + ", ")).TrimEnd(new char[] { ' ' }).TrimEnd(new char[] { ',' });
+                Content = SelectedStrList.Aggregate("", (current, p) => current + (p + ", ")).TrimEnd(new char[] { ' ' }).TrimEnd(new char[] { ',' });
             }
 
-            this.Value = this.SelectedStrList.Aggregate("", (current, p) => current + (p + ",")).TrimEnd(new char[] { ',' });
+            Value = SelectedStrList.Aggregate("", (current, p) => current + (p + ",")).TrimEnd(new char[] { ',' });
         }
         #endregion
 
@@ -290,30 +287,30 @@ namespace ZdfFlatUI
             string itemContent = Convert.ToString(item.Content);
             if (item.IsSelected)
             {
-                if (!this.SelectedStrList.Contains(item.Content))
+                if (!SelectedStrList.Contains(item.Content))
                 {
-                    this.SelectedStrList.Add(itemContent);
+                    SelectedStrList.Add(itemContent);
                 }
-                if(!this.SelectedObjList.Contains(item.DataContext))
+                if (!SelectedObjList.Contains(item.DataContext))
                 {
-                    this.SelectedObjList.Add(item.DataContext);
+                    SelectedObjList.Add(item.DataContext);
                 }
             }
             else
             {
-                if (this.SelectedStrList.Contains(itemContent))
+                if (SelectedStrList.Contains(itemContent))
                 {
-                    this.SelectedStrList.Remove(itemContent);
+                    SelectedStrList.Remove(itemContent);
                 }
-                if (this.SelectedObjList.Contains(item.DataContext))
+                if (SelectedObjList.Contains(item.DataContext))
                 {
-                    this.SelectedObjList.Remove(item.DataContext);
+                    SelectedObjList.Remove(item.DataContext);
                 }
             }
 
-            this.SetCheckComboBoxValueAndContent();
+            SetCheckComboBoxValueAndContent();
         }
-        
+
         #endregion
 
         #region Event Implement Function
@@ -324,19 +321,19 @@ namespace ZdfFlatUI
         /// <param name="e"></param>
         private void PART_Popup_Opened(object sender, EventArgs e)
         {
-            if (!this.mPopupIsFirstOpen) return;
+            if (!mPopupIsFirstOpen) return;
 
-            this.mPopupIsFirstOpen = false;
+            mPopupIsFirstOpen = false;
 
-            if (this.ItemsSource == null || this.SelectedObjList == null) return;
+            if (ItemsSource == null || SelectedObjList == null) return;
 
-            foreach (var obj in this.SelectedObjList)
+            foreach (var obj in SelectedObjList)
             {
-                foreach (var item in this.ItemsSource)
+                foreach (var item in ItemsSource)
                 {
                     if (item == obj)
                     {
-                        CheckComboBoxItem checkComboBoxItem = this.ItemContainerGenerator.ContainerFromItem(item) as CheckComboBoxItem;
+                        CheckComboBoxItem checkComboBoxItem = ItemContainerGenerator.ContainerFromItem(item) as CheckComboBoxItem;
                         if (checkComboBoxItem != null)
                         {
                             checkComboBoxItem.IsSelected = true;
@@ -349,12 +346,12 @@ namespace ZdfFlatUI
 
         private void PART_FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (this.PART_FilterTextBox == null || view == null) return;
+            if (PART_FilterTextBox == null || view == null) return;
 
             view.Filter += (o) =>
             {
-                string value = Convert.ToString(Utils.CommonUtil.GetPropertyValue(o, this.DisplayMemberPath)).ToLower();
-                return value.IndexOf(this.PART_FilterTextBox.Text.ToLower()) != -1;
+                string value = Convert.ToString(Utils.CommonUtil.GetPropertyValue(o, DisplayMemberPath)).ToLower();
+                return value.IndexOf(PART_FilterTextBox.Text.ToLower()) != -1;
             };
         }
         #endregion

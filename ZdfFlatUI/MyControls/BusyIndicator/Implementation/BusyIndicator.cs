@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -62,7 +58,7 @@ namespace ZdfFlatUI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.Visibility = this.IsBusy ? Visibility.Visible : Visibility.Collapsed;
+            Visibility = IsBusy ? Visibility.Visible : Visibility.Collapsed;
         }
         #endregion
 

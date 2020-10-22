@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -60,7 +59,7 @@ namespace ZdfFlatUI
         {
             obj.SetValue(WatermarkShowModeProperty, value);
         }
-        
+
         public static readonly DependencyProperty WatermarkShowModeProperty =
             DependencyProperty.RegisterAttached("WatermarkShowMode", typeof(EnumWatermarkShowMode), typeof(WatermarkAdorner), new PropertyMetadata(EnumWatermarkShowMode.VisibleWhenLostFocusAndEmpty));
 
@@ -91,15 +90,15 @@ namespace ZdfFlatUI
 
                         //layer为null，说明还未load过（整个可视化树中没有装饰层的情况不考虑）
                         //在控件的loaded事件内生成装饰件
-                        element.Loaded += (s1, e1) => 
+                        element.Loaded += (s1, e1) =>
                         {
                             var v = AdornerLayer.GetAdornerLayer(element);
-                            if(v != null && adorner != null)
+                            if (v != null && adorner != null)
                             {
                                 v.Add(adorner);
                             }
                         };
-                        element.Unloaded += (s1, e1) => 
+                        element.Unloaded += (s1, e1) =>
                         {
                             var v = AdornerLayer.GetAdornerLayer(element);
                             if (v != null && adorner != null)
@@ -112,7 +111,7 @@ namespace ZdfFlatUI
             }
             catch (Exception)
             {
-                
+
             }
         }
 
@@ -121,46 +120,46 @@ namespace ZdfFlatUI
             if (adornedElement is TextBox)
             {
                 adornedTextBox = adornedElement as TextBox;
-                adornedTextBox.TextChanged += (s1, e1) => 
+                adornedTextBox.TextChanged += (s1, e1) =>
                 {
-                    this.SetWatermarkVisible(true);
+                    SetWatermarkVisible(true);
                 };
-                adornedTextBox.GotFocus += (s1, e1) => 
+                adornedTextBox.GotFocus += (s1, e1) =>
                 {
-                    this.SetWatermarkVisible(true);
+                    SetWatermarkVisible(true);
                 };
-                adornedTextBox.LostFocus += (s1, e1) => 
+                adornedTextBox.LostFocus += (s1, e1) =>
                 {
-                    this.SetWatermarkVisible(false);
+                    SetWatermarkVisible(false);
                 };
                 adornedTextBox.IsVisibleChanged += (o, e) =>
                 {
-                    if(string.IsNullOrEmpty(this.adornedTextBox.Text))
+                    if (string.IsNullOrEmpty(adornedTextBox.Text))
                     {
-                        this.textBlock.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
+                        textBlock.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
                     }
                     else
                     {
-                        this.textBlock.Visibility = Visibility.Collapsed;
+                        textBlock.Visibility = Visibility.Collapsed;
                     }
                 };
 
                 _visuals = new VisualCollection(this);
-                
+
                 textBlock = new TextBlock()
                 {
                     HorizontalAlignment = adornedTextBox.HorizontalContentAlignment,
                     VerticalAlignment = adornedTextBox.VerticalContentAlignment,
                     Text = WatermarkAdorner.GetWatermark(adornedElement),
                     Foreground = new SolidColorBrush(Color.FromRgb(153, 153, 153)),
-                    Margin = new Thickness(5,0,2,0),
+                    Margin = new Thickness(5, 0, 2, 0),
                 };
 
                 _visuals.Add(textBlock);
 
-                this.showModel = WatermarkAdorner.GetWatermarkShowMode(adornedElement);
+                showModel = WatermarkAdorner.GetWatermarkShowMode(adornedElement);
             }
-            this.IsHitTestVisible = false;
+            IsHitTestVisible = false;
         }
 
         protected override int VisualChildrenCount
@@ -190,30 +189,30 @@ namespace ZdfFlatUI
 
         private void SetWatermarkVisible(bool isFocus)
         {
-            switch (this.showModel)
+            switch (showModel)
             {
                 case EnumWatermarkShowMode.VisibleWhenIsEmpty:
-                    if (string.IsNullOrEmpty(this.adornedTextBox.Text))
+                    if (string.IsNullOrEmpty(adornedTextBox.Text))
                     {
-                        this.textBlock.Visibility = Visibility.Visible;
-                        if(!this.adornedTextBox.IsVisible)
+                        textBlock.Visibility = Visibility.Visible;
+                        if (!adornedTextBox.IsVisible)
                         {
-                            this.textBlock.Visibility = Visibility.Collapsed;
+                            textBlock.Visibility = Visibility.Collapsed;
                         }
                     }
                     else
                     {
-                        this.textBlock.Visibility = Visibility.Collapsed;
+                        textBlock.Visibility = Visibility.Collapsed;
                     }
                     break;
                 case EnumWatermarkShowMode.VisibleWhenLostFocusAndEmpty:
-                    if(!isFocus && string.IsNullOrEmpty(this.adornedTextBox.Text))
+                    if (!isFocus && string.IsNullOrEmpty(adornedTextBox.Text))
                     {
-                        this.textBlock.Visibility = Visibility.Visible;
+                        textBlock.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        this.textBlock.Visibility = Visibility.Collapsed;
+                        textBlock.Visibility = Visibility.Collapsed;
                     }
                     break;
                 default:

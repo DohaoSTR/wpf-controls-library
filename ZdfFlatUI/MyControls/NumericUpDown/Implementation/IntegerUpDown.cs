@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using ZdfFlatUI.BaseControl;
 
@@ -12,11 +11,11 @@ namespace ZdfFlatUI
     {
         public IntegerUpDown() : base()
         {
-            this.Minimum = 0;
-            this.Maximum = 100;
-            this.Value = this.Minimum;
-            this.Increment = 1;
-        } 
+            Minimum = 0;
+            Maximum = 100;
+            Value = Minimum;
+            Increment = 1;
+        }
 
         protected override int IncrementValue(int value, int increment)
         {
@@ -31,7 +30,7 @@ namespace ZdfFlatUI
         protected override int ParseValue(string value)
         {
             int temp = 0;
-            if(int.TryParse(value, out temp))
+            if (int.TryParse(value, out temp))
             {
                 return temp;
             }

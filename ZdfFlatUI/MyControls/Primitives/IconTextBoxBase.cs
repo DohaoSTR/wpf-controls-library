@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -28,7 +24,7 @@ namespace ZdfFlatUI.MyControls.Primitives
             DependencyProperty.Register("IsShowIcon", typeof(bool), typeof(IconTextBoxBase), new PropertyMetadata(true));
 
         #endregion
-        
+
         #region IconBackground
 
         /// <summary>
@@ -168,7 +164,7 @@ namespace ZdfFlatUI.MyControls.Primitives
 
         public override void OnCornerRadiusChanged(CornerRadius newValue)
         {
-            this.SetValue(IconTextBoxBase.IconCornerRadiusProperty, new CornerRadius(newValue.TopLeft, 0, 0, newValue.BottomLeft));
+            SetValue(IconTextBoxBase.IconCornerRadiusProperty, new CornerRadius(newValue.TopLeft, 0, 0, newValue.BottomLeft));
         }
     }
 }

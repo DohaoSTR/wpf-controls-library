@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -47,76 +43,76 @@ namespace ZdfFlatUI
 
         void item_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+
         }
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.PART_PreviousButton = this.GetTemplateChild("PART_PreviousButton") as Button;
-            this.PART_NextButton = this.GetTemplateChild("PART_NextButton") as Button;
-            this.PART_UpButton = this.GetTemplateChild("PART_UpButton") as Button;
-            this.PART_DownButton = this.GetTemplateChild("PART_DownButton") as Button;
-            this.PART_ScrollViewer = this.GetTemplateChild("PART_ScrollViewer") as ScrollViewer;
-            if (this.PART_PreviousButton != null)
+            PART_PreviousButton = GetTemplateChild("PART_PreviousButton") as Button;
+            PART_NextButton = GetTemplateChild("PART_NextButton") as Button;
+            PART_UpButton = GetTemplateChild("PART_UpButton") as Button;
+            PART_DownButton = GetTemplateChild("PART_DownButton") as Button;
+            PART_ScrollViewer = GetTemplateChild("PART_ScrollViewer") as ScrollViewer;
+            if (PART_PreviousButton != null)
             {
-                this.PART_PreviousButton.Click += PART_PreviousButton_Click;
+                PART_PreviousButton.Click += PART_PreviousButton_Click;
             }
-            if (this.PART_NextButton != null)
+            if (PART_NextButton != null)
             {
-                this.PART_NextButton.Click += PART_NextButton_Click;
+                PART_NextButton.Click += PART_NextButton_Click;
             }
-            if (this.PART_UpButton != null)
+            if (PART_UpButton != null)
             {
-                this.PART_UpButton.Click += PART_UpButton_Click;
+                PART_UpButton.Click += PART_UpButton_Click;
             }
-            if (this.PART_DownButton != null)
+            if (PART_DownButton != null)
             {
-                this.PART_DownButton.Click += PART_DownButton_Click;
+                PART_DownButton.Click += PART_DownButton_Click;
             }
-            if (this.PART_ScrollViewer != null)
+            if (PART_ScrollViewer != null)
             {
-                this.PART_ScrollViewer.ScrollChanged += PART_ScrollViewer_ScrollChanged;
+                PART_ScrollViewer.ScrollChanged += PART_ScrollViewer_ScrollChanged;
             }
         }
         private void PART_UpButton_Click(object sender, RoutedEventArgs e)
         {
-            this.ScrollToOffset(Orientation.Vertical, -this.offset);
+            ScrollToOffset(Orientation.Vertical, -offset);
         }
         private void PART_DownButton_Click(object sender, RoutedEventArgs e)
         {
-            this.ScrollToOffset(Orientation.Vertical, this.offset);
+            ScrollToOffset(Orientation.Vertical, offset);
         }
         void PART_ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (this.PART_ScrollViewer != null)
+            if (PART_ScrollViewer != null)
             {
-                this.PART_PreviousButton.Visibility = (this.PART_ScrollViewer.HorizontalOffset == 0.0) ? Visibility.Hidden : Visibility.Visible;
-                this.PART_NextButton.Visibility = (this.PART_ScrollViewer.ScrollableWidth == this.PART_ScrollViewer.HorizontalOffset) ? Visibility.Hidden : Visibility.Visible;
-                this.PART_UpButton.Visibility = (this.PART_ScrollViewer.VerticalOffset == 0.0) ? Visibility.Hidden : Visibility.Visible;
-                this.PART_DownButton.Visibility = (this.PART_ScrollViewer.ScrollableHeight == this.PART_ScrollViewer.VerticalOffset) ? Visibility.Hidden : Visibility.Visible;
+                PART_PreviousButton.Visibility = (PART_ScrollViewer.HorizontalOffset == 0.0) ? Visibility.Hidden : Visibility.Visible;
+                PART_NextButton.Visibility = (PART_ScrollViewer.ScrollableWidth == PART_ScrollViewer.HorizontalOffset) ? Visibility.Hidden : Visibility.Visible;
+                PART_UpButton.Visibility = (PART_ScrollViewer.VerticalOffset == 0.0) ? Visibility.Hidden : Visibility.Visible;
+                PART_DownButton.Visibility = (PART_ScrollViewer.ScrollableHeight == PART_ScrollViewer.VerticalOffset) ? Visibility.Hidden : Visibility.Visible;
             }
         }
         void PART_PreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            this.ScrollToOffset(Orientation.Horizontal, -this.offset);
+            ScrollToOffset(Orientation.Horizontal, -offset);
         }
         void PART_NextButton_Click(object sender, RoutedEventArgs e)
         {
-            this.ScrollToOffset(Orientation.Horizontal, this.offset);
+            ScrollToOffset(Orientation.Horizontal, offset);
         }
         void ScrollToOffset(Orientation orientation, double scrollOffset)
         {
-            if (this.PART_ScrollViewer == null)
+            if (PART_ScrollViewer == null)
             {
                 return;
             }
             switch (orientation)
             {
                 case Orientation.Horizontal:
-                    this.PART_ScrollViewer.ScrollToHorizontalOffset(this.PART_ScrollViewer.HorizontalOffset + scrollOffset);
+                    PART_ScrollViewer.ScrollToHorizontalOffset(PART_ScrollViewer.HorizontalOffset + scrollOffset);
                     break;
                 case Orientation.Vertical:
-                    this.PART_ScrollViewer.ScrollToVerticalOffset(this.PART_ScrollViewer.VerticalOffset + scrollOffset);
+                    PART_ScrollViewer.ScrollToVerticalOffset(PART_ScrollViewer.VerticalOffset + scrollOffset);
                     break;
                 default:
                     break;

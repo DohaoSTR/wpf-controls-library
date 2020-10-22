@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -24,7 +20,7 @@ namespace ZdfFlatUI
             get { return (double)GetValue(VerticalOffsetExProperty); }
             set { SetValue(VerticalOffsetExProperty, value); }
         }
-        
+
         public static readonly DependencyProperty VerticalOffsetExProperty =
             DependencyProperty.Register("VerticalOffsetEx", typeof(double), typeof(ZScrollViewer), new PropertyMetadata(0d, VerticalOffsetExChangedCallback));
 
@@ -44,13 +40,13 @@ namespace ZdfFlatUI
         #endregion
 
         #region Override方法
-        
+
         #endregion
 
         #region Private方法
         public void aa()
         {
-            
+
         }
         #endregion
     }

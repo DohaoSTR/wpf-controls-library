@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -192,7 +191,8 @@ namespace ZdfFlatUI
                     {
                         //layer为null，说明还未load过（整个可视化树中没有装饰层的情况不考虑）
                         //在控件的loaded事件内生成装饰件
-                        element.Loaded += (s1, e1) => {
+                        element.Loaded += (s1, e1) =>
+                        {
                             var adorner = new BadgeAdorner(element);
                             AdornerLayer.GetAdornerLayer(element).Add(adorner);
                         };
@@ -286,8 +286,8 @@ namespace ZdfFlatUI
             TranslateTransform tt = new TranslateTransform();
             tt.X = 10;
             tt.Y = -10;
-            this.badge.RenderTransform = tt;
-            this.badge.IsDot = false;
+            badge.RenderTransform = tt;
+            badge.IsDot = false;
         }
 
         private void SowDot()
@@ -295,8 +295,8 @@ namespace ZdfFlatUI
             TranslateTransform tt = new TranslateTransform();
             tt.X = 4;
             tt.Y = -4;
-            this.badge.RenderTransform = tt;
-            this.badge.IsDot = true;
+            badge.RenderTransform = tt;
+            badge.IsDot = true;
         }
 
         private static BadgeAdorner GetAdorner(DependencyObject d)

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace ZdfFlatUI.Converters
@@ -20,7 +16,7 @@ namespace ZdfFlatUI.Converters
             switch (param)
             {
                 case "System.Windows.CornerRadius":
-                    flag = this.CornerRadiusIsZero(value);
+                    flag = CornerRadiusIsZero(value);
                     break;
                 default:
                     break;
@@ -36,7 +32,7 @@ namespace ZdfFlatUI.Converters
         private bool CornerRadiusIsZero(object value)
         {
             System.Windows.CornerRadius cornerRadus = (System.Windows.CornerRadius)value;
-            if(cornerRadus.BottomLeft == 0 && cornerRadus.BottomRight == 0
+            if (cornerRadus.BottomLeft == 0 && cornerRadus.BottomRight == 0
                 && cornerRadus.TopLeft == 0 && cornerRadus.TopRight == 0)
             {
                 return true;

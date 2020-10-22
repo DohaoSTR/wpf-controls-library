@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -22,7 +18,7 @@ namespace ZdfFlatUI
             get { return (string)GetValue(HeaderProperty); }
             set { SetValue(HeaderProperty, value); }
         }
-        
+
         public static readonly DependencyProperty HeaderProperty =
             DependencyProperty.Register("Header", typeof(string), typeof(AccordionItem), new PropertyMetadata(string.Empty));
 

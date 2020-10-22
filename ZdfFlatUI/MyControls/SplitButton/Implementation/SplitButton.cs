@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace ZdfFlatUI
 {
@@ -27,18 +21,18 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(ItemClickEvent, value);
+                AddHandler(ItemClickEvent, value);
             }
             remove
             {
-                this.RemoveHandler(ItemClickEvent, value);
+                RemoveHandler(ItemClickEvent, value);
             }
         }
 
         public virtual void OnItemClick(object oldValue, object newValue)
         {
             RoutedPropertyChangedEventArgs<object> arg = new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, ItemClickEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
 
         #endregion
@@ -66,7 +60,7 @@ namespace ZdfFlatUI
             get { return (DataTemplate)GetValue(ContentTemplateProperty); }
             set { SetValue(ContentTemplateProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ContentTemplateProperty =
             DependencyProperty.Register("ContentTemplate", typeof(DataTemplate), typeof(SplitButton));
         #endregion
@@ -90,10 +84,10 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_Button = this.GetTemplateChild("PART_Button") as Button;
-            if(this.PART_Button != null)
+            PART_Button = GetTemplateChild("PART_Button") as Button;
+            if (PART_Button != null)
             {
-                this.PART_Button.Click += PART_Button_Click;
+                PART_Button.Click += PART_Button_Click;
             }
         }
         #endregion
@@ -101,7 +95,7 @@ namespace ZdfFlatUI
         #region Private方法
         private void PART_Button_Click(object sender, RoutedEventArgs e)
         {
-            this.OnItemClick(this.PART_Button.Content, this.PART_Button.Content);
+            OnItemClick(PART_Button.Content, PART_Button.Content);
         }
         #endregion
     }

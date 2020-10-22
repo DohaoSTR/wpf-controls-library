@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ZdfFlatUI
@@ -18,7 +14,7 @@ namespace ZdfFlatUI
             get { return (EnumHeadingType)GetValue(HeaderTypeProperty); }
             set { SetValue(HeaderTypeProperty, value); }
         }
-        
+
         public static readonly DependencyProperty HeaderTypeProperty =
             DependencyProperty.Register("HeaderType", typeof(EnumHeadingType), typeof(Heading));
 

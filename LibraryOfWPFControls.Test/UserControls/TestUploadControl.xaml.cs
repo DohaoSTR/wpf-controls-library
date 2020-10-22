@@ -6,9 +6,6 @@ using System.Windows.Controls;
 
 namespace LibraryOfWPFControls.Test.UserControls
 {
-    /// <summary>
-    /// Interaction logic for TestUploadControl.xaml
-    /// </summary>
     public partial class TestUploadControl : UserControl
     {
         public TestUploadControl()

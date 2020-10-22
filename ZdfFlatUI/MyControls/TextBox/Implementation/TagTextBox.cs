@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,23 +18,23 @@ namespace ZdfFlatUI
 
         public TagTextBox()
         {
-            this.PreviewKeyDown += TagTextBox_PreviewKeyDown;
-            this.KeyUp += TagTextBox_KeyUp;
-            this.GotFocus += TagTextBox_GotFocus;
+            PreviewKeyDown += TagTextBox_PreviewKeyDown;
+            KeyUp += TagTextBox_KeyUp;
+            GotFocus += TagTextBox_GotFocus;
         }
 
         private void TagTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Oem1)
             {
-                this.OnAddItem(null, this.Text.Remove(this.Text.Length - 1, 1));
-                this.Text = string.Empty;
+                OnAddItem(null, Text.Remove(Text.Length - 1, 1));
+                Text = string.Empty;
             }
         }
 
         private void TagTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            this.ChangeInputLanguage();
+            ChangeInputLanguage();
         }
 
         #region 依赖属性
@@ -114,11 +113,11 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(AddItemEvent, value);
+                AddHandler(AddItemEvent, value);
             }
             remove
             {
-                this.RemoveHandler(AddItemEvent, value);
+                RemoveHandler(AddItemEvent, value);
             }
         }
 
@@ -126,7 +125,7 @@ namespace ZdfFlatUI
         {
             RoutedPropertyChangedEventArgs<object> arg =
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, AddItemEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
         #endregion
 
@@ -138,11 +137,11 @@ namespace ZdfFlatUI
         {
             add
             {
-                this.AddHandler(RemoveItemEvent, value);
+                AddHandler(RemoveItemEvent, value);
             }
             remove
             {
-                this.RemoveHandler(RemoveItemEvent, value);
+                RemoveHandler(RemoveItemEvent, value);
             }
         }
 
@@ -150,7 +149,7 @@ namespace ZdfFlatUI
         {
             RoutedPropertyChangedEventArgs<object> arg =
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, RemoveItemEvent);
-            this.RaiseEvent(arg);
+            RaiseEvent(arg);
         }
         #endregion
 
@@ -160,10 +159,10 @@ namespace ZdfFlatUI
         {
             base.OnApplyTemplate();
 
-            this.PART_TagListBox = this.GetTemplateChild("PART_TagListBox") as ListBox;
+            PART_TagListBox = GetTemplateChild("PART_TagListBox") as ListBox;
 
             //ListBox失去焦点时，重新设置SelectedIndex为-1即未选中项
-            this.PART_TagListBox.LostFocus += PART_TagListBox_LostFocus;
+            PART_TagListBox.LostFocus += PART_TagListBox_LostFocus;
         }
 
         #region 事件执行
@@ -171,26 +170,26 @@ namespace ZdfFlatUI
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                this.OnAddItem(null, null);
-                this.Text = string.Empty;
+                OnAddItem(null, null);
+                Text = string.Empty;
             }
             else if (e.Key == Key.Back || e.Key == Key.Delete)
             {
                 //当选中了ListBox中的一项，那么点击删除按键则删除选中的那一项
                 //如果没有选中ListBox中的任何一项，并且TextBox中也没有输入文字，则删除最后一项
                 //否则则执行正常的Delete操作，即删除TextBox中的一个字符
-                if (this.PART_TagListBox.SelectedIndex != -1)
+                if (PART_TagListBox.SelectedIndex != -1)
                 {
                     //给RemoveIndex赋值是为了在MVVM模式下，给ViewModel传递当前选中的Item的索引，用于删除使用
-                    this.RemoveIndex = this.PART_TagListBox.SelectedIndex;
-                    this.OnRemoveItem(null, this.RemoveIndex);
+                    RemoveIndex = PART_TagListBox.SelectedIndex;
+                    OnRemoveItem(null, RemoveIndex);
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(this.Text))
+                    if (string.IsNullOrEmpty(Text))
                     {
-                        this.RemoveIndex = this.PART_TagListBox.Items.Count - 1;
-                        this.OnRemoveItem(null, this.RemoveIndex);
+                        RemoveIndex = PART_TagListBox.Items.Count - 1;
+                        OnRemoveItem(null, RemoveIndex);
                     }
                 }
             }
@@ -198,7 +197,7 @@ namespace ZdfFlatUI
 
         private void PART_TagListBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.PART_TagListBox.SelectedIndex = -1;
+            PART_TagListBox.SelectedIndex = -1;
         }
         #endregion
 

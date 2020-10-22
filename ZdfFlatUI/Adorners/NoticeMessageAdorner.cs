@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -26,7 +22,7 @@ namespace ZdfFlatUI
         {
             obj.SetValue(IsOpenProperty, value);
         }
-        
+
         public static readonly DependencyProperty IsOpenProperty =
             DependencyProperty.RegisterAttached("IsOpen", typeof(bool), typeof(NoticeMessageAdorner), new PropertyMetadata(false, IsOpenChangedCallback));
 
@@ -64,7 +60,7 @@ namespace ZdfFlatUI
         {
             obj.SetValue(ContentProperty, value);
         }
-        
+
         public static readonly DependencyProperty ContentProperty =
             DependencyProperty.RegisterAttached("Content", typeof(string), typeof(NoticeMessageAdorner), new PropertyMetadata(string.Empty, ContentChangedCallback));
 
@@ -84,10 +80,11 @@ namespace ZdfFlatUI
                 {
                     //layer为null，说明还未load过（整个可视化树中没有装饰层的情况不考虑）
                     //在控件的loaded事件内生成装饰件
-                    element.Loaded += (s1, e1) => {
+                    element.Loaded += (s1, e1) =>
+                    {
                         var adorner = new NoticeMessageAdorner(element);
                         var v = AdornerLayer.GetAdornerLayer(element);
-                        if(v != null)
+                        if (v != null)
                         {
                             v.Add(adorner);
                         }
@@ -109,7 +106,7 @@ namespace ZdfFlatUI
         {
             obj.SetValue(CornerRadiusProperty, value);
         }
-        
+
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(NoticeMessageAdorner), new PropertyMetadata(new CornerRadius(0d)));
 
@@ -126,7 +123,7 @@ namespace ZdfFlatUI
         {
             obj.SetValue(DurationProperty, value);
         }
-        
+
         public static readonly DependencyProperty DurationProperty =
             DependencyProperty.RegisterAttached("Duration", typeof(double), typeof(NoticeMessageAdorner), new PropertyMetadata(2000d));
 
@@ -143,7 +140,7 @@ namespace ZdfFlatUI
         {
             obj.SetValue(BackgroundProperty, value);
         }
-        
+
         public static readonly DependencyProperty BackgroundProperty =
             DependencyProperty.RegisterAttached("Background", typeof(Brush), typeof(NoticeMessageAdorner)
                 , new PropertyMetadata(new SolidColorBrush(Color.FromRgb(48, 49, 49))));
@@ -161,7 +158,7 @@ namespace ZdfFlatUI
         {
             obj.SetValue(MessageTypeProperty, value);
         }
-        
+
         public static readonly DependencyProperty MessageTypeProperty =
             DependencyProperty.RegisterAttached("MessageType", typeof(EnumMessageType), typeof(NoticeMessageAdorner));
 
@@ -172,7 +169,7 @@ namespace ZdfFlatUI
             _visuals = new VisualCollection(this);
             message = new NoticeMessage();
             message.IsHitTestVisible = false;
-            this._visuals.Add(message);
+            _visuals.Add(message);
         }
 
         #region override

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -34,7 +30,7 @@ namespace ZdfFlatUI
             get { return (PathFigureCollection)GetValue(DataProperty); }
             set { SetValue(DataProperty, value); }
         }
-        
+
         public static readonly DependencyProperty DataProperty =
             DependencyProperty.Register("Data", typeof(PathFigureCollection), typeof(Icon));
 

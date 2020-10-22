@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,7 +15,7 @@ namespace ZdfFlatUI
         private static double[] ColumnHeight;
 
         #region 构造函数  
-        
+
         public WaterfallPanel1()
         {
             //根据列数，实例化用来存放每列高度的数组  
@@ -36,8 +33,8 @@ namespace ZdfFlatUI
         /// </summary>
         public int ColumnCount
         {
-            get { return (int)this.GetValue(ColumnCountProperty); }
-            set { this.SetValue(ColumnCountProperty, value); }
+            get { return (int)GetValue(ColumnCountProperty); }
+            set { SetValue(ColumnCountProperty, value); }
         }
 
         public static readonly DependencyProperty ColumnCountProperty =
@@ -75,14 +72,14 @@ namespace ZdfFlatUI
                 ColumnHeight[i] = 0;
             }
             //计算行数  
-            int indexY = this.Children.Count / ColumnCount;
+            int indexY = Children.Count / ColumnCount;
 
             //计算行数  
-            if (this.Children.Count % ColumnCount > 0)
+            if (Children.Count % ColumnCount > 0)
             {
                 indexY++;
             }
-            
+
             //第几行  
             int flagY = 0;
             //声明一个尺寸，用来存放测量后面板的尺寸  
@@ -160,8 +157,8 @@ namespace ZdfFlatUI
             }
 
             //计算行数  
-            int indexY = this.Children.Count / ColumnCount;
-            if (this.Children.Count % ColumnCount > 0) indexY++;
+            int indexY = Children.Count / ColumnCount;
+            if (Children.Count % ColumnCount > 0) indexY++;
 
             //当前行  
             int flagY = 0;
