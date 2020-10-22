@@ -1,0 +1,54 @@
+﻿<Window x:Class="ZdfFlatUI.Test.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZdfFlatUI.Test"
+        xmlns:WPF.UI="clr-namespace:ZdfFlatUI;assembly=WPF.UI"
+        mc:Ignorable="d"
+        Title="Home" Height="700" Width="1200">
+    
+    <Grid Background="#EEEEEE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.ColumnSpan="2" CornerRadius="0" Background="White" SnapsToDevicePixels="True" UseLayoutRounding="True" />
+            <Border Grid.ColumnSpan="2">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="1" ShadowDepth="1" Color="Brown" />
+                </Border.Effect>
+            </Border>
+
+            <WPF.UI:NavigateMenu x:Name="menu" FontSize="13" Margin="0,5" SelectionChanged="menu_SelectionChanged"
+                                 SelectedValue="CheckComboBox多选下拉框">
+                <WPF.UI:NavigateMenu.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </WPF.UI:NavigateMenu.ItemTemplate>
+                <WPF.UI:NavigateMenu.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <WPF.UI:Icon Margin="20,10,0,10"/>
+                                    <TextBlock Foreground="#999999" FontSize="16" Text="{Binding Path=Name}" Margin="5,10,0,10"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </WPF.UI:NavigateMenu.GroupStyle>
+            </WPF.UI:NavigateMenu>
+
+            <ContentControl x:Name="ControlPanel" Grid.Column="1" Margin="0" />
+        </Grid>
+    </Grid>
+</Window>
