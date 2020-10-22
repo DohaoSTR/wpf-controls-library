@@ -128,21 +128,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adorners\NoticeMessageAdorner.cs" />
     <Compile Include="Adorners\WatermarkAdorner.cs" />
-    <Compile Include="BaseControl\IUIElement.cs" />
     <Compile Include="BaseControl\NumericUpDown.cs" />
     <Compile Include="BaseControl\NumericUpDownBase.cs" />
     <Compile Include="BaseControl\TextBoxBase.cs" />
-    <Compile Include="Behaviors\TextCompleteDisplayBehavior.cs" />
-    <Compile Include="Behaviors\MaskLayerBehavior.cs" />
     <Compile Include="Converters\CalendarDayButtonTypeConverter.cs" />
-    <Compile Include="Converters\IsFirstItemConverter.cs" />
     <Compile Include="Converters\IsLastItemConverter.cs" />
     <Compile Include="Converters\IsProgressedConverter.cs" />
     <Compile Include="Converters\MathMultipleConverter.cs" />
     <Compile Include="Converters\NumberConverter.cs" />
-    <Compile Include="Converters\ObjectConverter.cs" />
     <Compile Include="Converters\OffsetConverter.cs" />
     <Compile Include="Converters\StringIsEmptyConverter.cs" />
     <Compile Include="Converters\TreeViewItemIndentConverter.cs" />
