@@ -26,7 +26,7 @@ namespace LibraryOfWPFControls.Test.Utils
 
         public ObservableCollection<AttachmentDTO> UploadFileList
         {
-            get { return _UploadFileList; }
+            get => _UploadFileList;
             set { _UploadFileList = value; RaisePropertyChanged("UploadFileList"); }
         }
 
@@ -39,15 +39,9 @@ namespace LibraryOfWPFControls.Test.Utils
 
         public RelayCommand<object> FileUploadCommand
         {
-            get
-            {
-                return _FileUploadCommand ?? (new RelayCommand<object>(HandleFileUpload));
-            }
+            get => _FileUploadCommand ?? (new RelayCommand<object>(HandleFileUpload));
 
-            set
-            {
-                _FileUploadCommand = value;
-            }
+            set => _FileUploadCommand = value;
         }
 
         private void HandleFileUpload(object param)

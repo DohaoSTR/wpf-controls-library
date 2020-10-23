@@ -176,7 +176,7 @@
     <Resource Include="Images\img5.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ZdfFlatUI\LibraryOfWPFControls.csproj">
+    <ProjectReference Include="..\LibraryOfWPFControls\LibraryOfWPFControls.csproj">
       <Project>{a5932abc-910b-4a80-ada0-0732ff08d520}</Project>
       <Name>LibraryOfWPFControls</Name>
     </ProjectReference>

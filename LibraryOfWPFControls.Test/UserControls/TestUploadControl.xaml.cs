@@ -14,7 +14,7 @@ namespace LibraryOfWPFControls.Test.UserControls
 
             if (!ViewModelBase.IsInDesignModeStatic)
             {
-                var vm = new Lazy<HomeViewModel>(() => HomeViewModel.Instance);
+                Lazy<HomeViewModel> vm = new Lazy<HomeViewModel>(() => HomeViewModel.Instance);
                 DataContext = vm.Value;
             }
         }

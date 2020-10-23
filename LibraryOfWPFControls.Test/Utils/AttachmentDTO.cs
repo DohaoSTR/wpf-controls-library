@@ -8,7 +8,7 @@ namespace LibraryOfWPFControls.Test.Utils
 
         public string ID
         {
-            get { return _ID; }
+            get => _ID;
             set { _ID = value; RaisePropertyChanged("ID"); }
         }
 
@@ -16,7 +16,7 @@ namespace LibraryOfWPFControls.Test.Utils
 
         public string ZDDWID
         {
-            get { return _ZDDWID; }
+            get => _ZDDWID;
             set { _ZDDWID = value; RaisePropertyChanged("ZDDWID"); }
         }
 
@@ -24,7 +24,7 @@ namespace LibraryOfWPFControls.Test.Utils
 
         public string ZDDWMC
         {
-            get { return _ZDDWMC; }
+            get => _ZDDWMC;
             set { _ZDDWMC = value; RaisePropertyChanged("ZDDWMC"); }
         }
 
@@ -32,7 +32,7 @@ namespace LibraryOfWPFControls.Test.Utils
 
         public string FJMC
         {
-            get { return _FJMC; }
+            get => _FJMC;
             set { _FJMC = value; RaisePropertyChanged("FJMC"); }
         }
 
@@ -40,7 +40,7 @@ namespace LibraryOfWPFControls.Test.Utils
 
         public string FJLX
         {
-            get { return _FJLX; }
+            get => _FJLX;
             set { _FJLX = value; RaisePropertyChanged("FJLX"); }
         }
     }

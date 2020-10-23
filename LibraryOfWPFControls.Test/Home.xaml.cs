@@ -29,52 +29,53 @@ namespace ZdfFlatUI.Test
         {
             InitializeComponent();
 
-            MenuList = new ObservableCollection<MenuInfo>();
-
-            MenuList.Add(new MenuInfo()
+            MenuList = new ObservableCollection<MenuInfo>
             {
-                Name = "Редактируемый текстовый элемент по двойному нажатию",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Переключатель (да/нет)",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Список изображений",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Слайдер числовых значений",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Элемент для выбора времени/даты",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Поле форматированного ввода",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Элемент для выбора файла",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Обозреватель свойств объекта",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Выбор директории",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Выбор цвета",
-            });
-            MenuList.Add(new MenuInfo()
-            {
-                Name = "Выбор шрифта и его параметров",
-            });
+                new MenuInfo()
+                {
+                    Name = "Редактируемый текстовый элемент по двойному нажатию",
+                },
+                new MenuInfo()
+                {
+                    Name = "Переключатель (да/нет)",
+                },
+                new MenuInfo()
+                {
+                    Name = "Список изображений",
+                },
+                new MenuInfo()
+                {
+                    Name = "Слайдер числовых значений",
+                },
+                new MenuInfo()
+                {
+                    Name = "Элемент для выбора времени/даты",
+                },
+                new MenuInfo()
+                {
+                    Name = "Поле форматированного ввода",
+                },
+                new MenuInfo()
+                {
+                    Name = "Элемент для выбора файла",
+                },
+                new MenuInfo()
+                {
+                    Name = "Обозреватель свойств объекта",
+                },
+                new MenuInfo()
+                {
+                    Name = "Выбор директории",
+                },
+                new MenuInfo()
+                {
+                    Name = "Выбор цвета",
+                },
+                new MenuInfo()
+                {
+                    Name = "Выбор шрифта и его параметров",
+                }
+            };
 
             menu.GroupItemsSource = MenuList;
             menu.GroupDescriptions = "GroupName";
