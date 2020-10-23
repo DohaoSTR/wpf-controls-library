@@ -1,87 +1,5 @@
 ﻿namespace ZdfFlatUI
 {
-    public enum EnumPlacement
-    {
-        /// <summary>
-        /// 左上
-        /// </summary>
-        LeftTop,
-        /// <summary>
-        /// 左中
-        /// </summary>
-        LeftCenter,
-        /// <summary>
-        /// 左下
-        /// </summary>
-        LeftBottom,
-        /// <summary>
-        /// 右上
-        /// </summary>
-        RightTop,
-        /// <summary>
-        /// 右中
-        /// </summary>
-        RightCenter,
-        /// <summary>
-        /// 右下
-        /// </summary>
-        RightBottom,
-        /// <summary>
-        /// 上左
-        /// </summary>
-        TopLeft,
-        /// <summary>
-        /// 上中
-        /// </summary>
-        TopCenter,
-        /// <summary>
-        /// 上右
-        /// </summary>
-        TopRight,
-        /// <summary>
-        /// 下左
-        /// </summary>
-        BottomLeft,
-        /// <summary>
-        /// 下中
-        /// </summary>
-        BottomCenter,
-        /// <summary>
-        /// 下右
-        /// </summary>
-        BottomRight,
-    }
-
-    public enum EnumLoadingType
-    {
-        /// <summary>
-        /// 两个环形
-        /// </summary>
-        DoubleArc,
-        /// <summary>
-        /// 两个圆
-        /// </summary>
-        DoubleRound,
-        /// <summary>
-        /// 一个圆
-        /// </summary>
-        SingleRound,
-        /// <summary>
-        /// 仿Win10加载条
-        /// </summary>
-        Win10,
-        /// <summary>
-        /// 仿Android加载条
-        /// </summary>
-        Android,
-        /// <summary>
-        /// 仿苹果加载条
-        /// </summary>
-        Apple,
-        Cogs,
-        Normal,
-    }
-
     public enum FlatButtonSkinEnum
     {
         Yes,
@@ -171,16 +89,6 @@
         四,
         五,
         六,
-    }
-
-    public enum EnumHeadingType
-    {
-        H1,
-        H2,
-        H3,
-        H4,
-        H5,
-        H6,
     }
 
     public enum EnumChooseBoxType

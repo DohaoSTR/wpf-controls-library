@@ -6,18 +6,7 @@
         <ResourceDictionary Source="/WPF.UI;component/Resources/PathGeometry.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="ButtonStyle" TargetType="{x:Type ZUI:PathIconButton}">
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Width" Value="35" />
-        <Setter Property="Height" Value="35" />
-        <Setter Property="Background" Value="#22000000" />
-        <Setter Property="MouseOverBackground" Value="#44000000" />
-        <Setter Property="PressedBackground" Value="#55000000" />
-        <Setter Property="CornerRadius" Value="100" />
-        <Setter Property="PathWidth" Value="10" />
-        <Setter Property="NormalPathColor" Value="White" />
-        <Setter Property="MouseOverPathColor" Value="White" />
-        <Setter Property="PressedPathColor" Value="White" />
+    <Style x:Key="ButtonStyle">
     </Style>
 
     <Style TargetType="{x:Type ZUI:Carousel}">
@@ -49,9 +38,9 @@
                                     Margin="0,10,0,0"
                                     Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-                        <ZUI:PathIconButton x:Name="PART_LastButton" HorizontalAlignment="Left" PathData="{StaticResource Icon_Left}" Margin="20,0,0,0"
+                        <Button x:Name="PART_LastButton" HorizontalAlignment="Left"  Margin="20,0,0,0"
                                             Style="{StaticResource ButtonStyle}"/>
-                        <ZUI:PathIconButton x:Name="PART_NextButton" HorizontalAlignment="Right" PathData="{StaticResource Icon_Right}" Margin="0,0,20,0"
+                        <Button x:Name="PART_NextButton" HorizontalAlignment="Right" Margin="0,0,20,0"
                                             Style="{StaticResource ButtonStyle}"/>
 
                         <VisualStateManager.VisualStateGroups>

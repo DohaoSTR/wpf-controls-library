@@ -157,14 +157,8 @@
     <Compile Include="MyControls\NavigateMenu\Implementation\NavigateMenu.cs" />
     <Compile Include="Converters\InverseBooleanVisibilityConverter.cs" />
     <Compile Include="Converters\ValueIsZeroConverter.cs" />
-    <Compile Include="MyControls\Button\Implementation\FlatButton.cs" />
-    <Compile Include="MyControls\Button\Implementation\PathButton.cs" />
-    <Compile Include="MyControls\Button\Implementation\PathIconButton.cs" />
-    <Compile Include="MyControls\Primitives\CircleBase.cs" />
     <Compile Include="MyControls\Primitives\MyCalendar.cs" />
-    <Compile Include="MyControls\Primitives\MyEventArgs\ItemMouseDoubleClickEventArgs.cs" />
-    <Compile Include="MyControls\Primitives\MyEventArgs\ItemMouseRightButtonDownEventArgs.cs" />
-    <Compile Include="MyControls\Primitives\MyEventArgs\ItemMouseSingleClickEventArgs.cs" />
+    <Compile Include="MyControls\Primitives\ItemMouseSingleClickEventArgs.cs" />
     <Compile Include="MyControls\Primitives\NumberBox.cs" />
     <Compile Include="MyControls\RadionButton\Implementation\ZRadionButton.cs" />
     <Compile Include="MyControls\ScrollViewer\Implementation\ZScrollViewer.cs" />
@@ -183,14 +177,9 @@
     <Compile Include="MyControls\ToggleButton\Implementation\AnimationButton.cs" />
     <Compile Include="MyControls\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="MyControls\Upload\Implementation\Upload.cs" />
-    <Compile Include="Utils\CommonUtil.cs" />
     <Compile Include="Utils\DateTimeHelper.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\VisualHelper.cs" />
-    <Page Include="MyControls\Button\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\ChooseBox\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -319,21 +308,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\DateControl\DateTimePickerStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\DateControl\DateTimePicker_CalendarStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Themes\DateControl\CalendarStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\DateControl\FlatDatePickerStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\DateControl\TimePickerStyle.xaml">
       <SubType>Designer</SubType>
@@ -342,18 +319,6 @@
     <Page Include="Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Button\Themes\FlatButtonStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControls\Button\Themes\PathButtonStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControls\Button\Themes\PathIconButtonStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MyControls\TextBox\Themes\IconTextBoxStyle.xaml">
       <Generator>MSBuild:Compile</Generator>

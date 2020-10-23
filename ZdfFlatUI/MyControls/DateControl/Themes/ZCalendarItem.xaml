@@ -59,46 +59,26 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <ZUI:PathIconButton x:Name="PART_PreviousYearButton"
+                        <Button x:Name="PART_PreviousYearButton"
                                             Grid.Column="0"
-                                            Margin="15,0,0,0"
-                                            NormalPathColor="#C3CEE1"
-                                            MouseOverPathColor="#3399FF"
-                                            PathData="{StaticResource DoubleLeft}" />
-                        <ZUI:PathIconButton x:Name="PART_PreviousMonthButton"
+                                            Margin="15,0,0,0" />
+                        <Button x:Name="PART_PreviousMonthButton"
                                             Grid.Column="1"
                                             Width="10"
-                                            Margin="15,0,0,0"
-                                            NormalPathColor="#C3CEE1"
-                                            MouseOverPathColor="#3399FF"
-                                            PathData="{StaticResource Left}"
-                                            PathWidth="6" />
+                                            Margin="15,0,0,0"/>
 
-                        <ZUI:PathIconButton x:Name="PART_NextMonthButton"
+                        <Button x:Name="PART_NextMonthButton"
                                             Grid.Column="3"
                                             Width="10"
                                             Margin="0,0,15,0"
-                                            NormalPathColor="#C3CEE1"
-                                            MouseOverPathColor="#3399FF"
-                                            PathData="{StaticResource Left}"
-                                            PathWidth="6"
                                             RenderTransformOrigin="0.5,0.5">
-                            <ZUI:PathIconButton.LayoutTransform>
-                                <RotateTransform Angle="180" />
-                            </ZUI:PathIconButton.LayoutTransform>
-                        </ZUI:PathIconButton>
+                        </Button>
 
-                        <ZUI:PathIconButton x:Name="PART_NextYearButton"
+                        <Button x:Name="PART_NextYearButton"
                                             Grid.Column="4"
                                             Margin="0,0,15,0"
-                                            NormalPathColor="#C3CEE1"
-                                            MouseOverPathColor="#3399FF"
-                                            PathData="{StaticResource DoubleLeft}"
                                             RenderTransformOrigin="0.5,0.5">
-                            <ZUI:PathIconButton.LayoutTransform>
-                                <RotateTransform Angle="180" />
-                            </ZUI:PathIconButton.LayoutTransform>
-                        </ZUI:PathIconButton>
+                        </Button>
 
                         <Button x:Name="PART_HeaderButton"
                                 Grid.Row="0"

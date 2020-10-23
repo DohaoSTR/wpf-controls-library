@@ -239,9 +239,9 @@
                                                                       Visibility="Collapsed"
                                                                       Style="{StaticResource ChooseTimeToggleButton}"/>
                                                         <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Right" Orientation="Horizontal">
-                                                            <ZUI:FlatButton x:Name="PART_ClearDate" Width="40" Height="22" Margin="0,0,5,0"
-                                                                            HorizontalAlignment="Right" Content="清空" Foreground="#657180" Type="text" />
-                                                            <ZUI:FlatButton x:Name="PART_ConfirmSelected" Width="40" Height="22" Margin="0,0,7,0"
+                                                            <Button x:Name="PART_ClearDate" Width="40" Height="22" Margin="0,0,5,0"
+                                                                            HorizontalAlignment="Right" Content="清空" Foreground="#657180"/>
+                                                            <Button x:Name="PART_ConfirmSelected" Width="40" Height="22" Margin="0,0,7,0"
                                                                             HorizontalAlignment="Right" Content="确定" />
                                                         </StackPanel>
 
