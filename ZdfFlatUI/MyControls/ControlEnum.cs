@@ -1,40 +1,5 @@
 ﻿namespace ZdfFlatUI
 {
-    #region DashboardSkinEnum
-    /// <summary>
-    /// 仪表盘类型
-    /// </summary>
-    public enum DashboardSkinEnum
-    {
-        /// <summary>
-        /// 速度
-        /// </summary>
-        Speed,
-        /// <summary>
-        /// 流量
-        /// </summary>
-        Flow,
-    }
-    #endregion
-
-    #region ProgressBarSkinEnum
-    /// <summary>
-    /// 进度条类型
-    /// </summary>
-    public enum ProgressBarSkinEnum
-    {
-        /// <summary>
-        /// 方形进度条
-        /// </summary>
-        Rectangle,
-        /// <summary>
-        /// 环形进度条
-        /// </summary>
-        Circle,
-    }
-    #endregion
-
-    #region EnumPlacement
     public enum EnumPlacement
     {
         /// <summary>
@@ -86,63 +51,7 @@
         /// </summary>
         BottomRight,
     }
-    #endregion
 
-    #region PlacementDirection
-    public enum EnumPlacementDirection
-    {
-        Left,
-        Top,
-        Right,
-        Bottom,
-    }
-    #endregion
-
-    #region EnumPromptType
-    /// <summary>
-    /// 提示类型
-    /// </summary>
-    public enum EnumPromptType
-    {
-        /// <summary>
-        /// 消息
-        /// </summary>
-        Info,
-        /// <summary>
-        /// 警告
-        /// </summary>
-        Warn,
-        /// <summary>
-        /// 失败
-        /// </summary>
-        Error,
-        /// <summary>
-        /// 成功
-        /// </summary>
-        Success,
-    }
-    #endregion
-
-    #region EnumCompare
-    public enum EnumCompare
-    {
-        /// <summary>
-        /// 小于
-        /// </summary>
-        Less,
-        /// <summary>
-        /// 等于
-        /// </summary>
-        Equal,
-        /// <summary>
-        /// 大于
-        /// </summary>
-        Large,
-        None,
-    }
-    #endregion
-
-    #region EnumLoadingType
     public enum EnumLoadingType
     {
         /// <summary>
@@ -172,26 +81,7 @@
         Cogs,
         Normal,
     }
-    #endregion
 
-    #region CloseBoxTypeEnum
-    public enum CloseBoxTypeEnum
-    {
-        /// <summary>
-        /// 关闭窗口
-        /// </summary>
-        Close,
-        /// <summary>
-        /// 隐藏窗口
-        /// </summary>
-        Hide,
-    }
-    #endregion
-
-    #region FlatButtonSkinEnum
-    /// <summary>
-    /// Button类型
-    /// </summary>
     public enum FlatButtonSkinEnum
     {
         Yes,
@@ -206,9 +96,7 @@
         error,
         warning,
     }
-    #endregion
 
-    #region EnumTrigger
     public enum EnumTrigger
     {
         /// <summary>
@@ -224,17 +112,13 @@
         /// </summary>
         Custom,
     }
-    #endregion
 
-    #region EnumTabControlType
     public enum EnumTabControlType
     {
         Line,
         Card,
     }
-    #endregion
 
-    #region IconType
     public enum EnumIconType
     {
         Info,
@@ -249,9 +133,7 @@
         Star_Half,
         Star_Full,
     }
-    #endregion
 
-    #region EnumDatePickerType
     public enum EnumDatePickerType
     {
         /// <summary>
@@ -279,9 +161,7 @@
         /// </summary>
         DateTimeRange,
     }
-    #endregion
 
-    #region DayTitle
     public enum DayTitle
     {
         日 = 0,
@@ -292,27 +172,7 @@
         五,
         六,
     }
-    #endregion
 
-    #region EnumPlayState 音视频播放状态枚举
-    public enum EnumPlayState
-    {
-        /// <summary>
-        /// 播放
-        /// </summary>
-        Play,
-        /// <summary>
-        /// 暂停
-        /// </summary>
-        Pause,
-        /// <summary>
-        /// 停止
-        /// </summary>
-        Stop,
-    }
-    #endregion
-
-    #region EnumHeadingType 标题类型
     public enum EnumHeadingType
     {
         H1,
@@ -322,76 +182,7 @@
         H5,
         H6,
     }
-    #endregion
 
-    #region EnumPatternType 正则类型
-    /// <summary>
-    /// 正则类型枚举
-    /// </summary>
-    public enum EnumPatternType
-    {
-        None,
-        /// <summary>
-        /// 不为空
-        /// </summary>
-        NotEmpty,
-        /// <summary>
-        /// 数字
-        /// </summary>
-        OnlyNumber,
-        /// <summary>
-        /// IP地址
-        /// </summary>
-        IPV4,
-        /// <summary>
-        /// IP地址
-        /// </summary>
-        IPV6,
-        /// <summary>
-        /// 邮箱
-        /// </summary>
-        Email,
-        /// <summary>
-        /// 15位身份证
-        /// </summary>
-        IdCard15,
-        /// <summary>
-        /// 18位身份证
-        /// </summary>
-        IdCard18,
-        /// <summary>
-        /// 手机号
-        /// </summary>
-        MobilePhone,
-        /// <summary>
-        /// 座机、固话
-        /// </summary>
-        Telephone,
-        /// <summary>
-        /// 只能录入中文
-        /// </summary>
-        OnlyChinese,
-    }
-    #endregion
-
-    #region EnumValidateTrigger 校验模式
-    /// <summary>
-    /// 校验模式
-    /// </summary>
-    public enum EnumValidateTrigger
-    {
-        /// <summary>
-        /// 属性值改变时触发
-        /// </summary>
-        PropertyChanged,
-        /// <summary>
-        /// 控件失去焦点时触发
-        /// </summary>
-        LostFocus,
-    }
-    #endregion
-
-    #region EnumChooseBoxType
     public enum EnumChooseBoxType
     {
         /// <summary>
@@ -407,5 +198,4 @@
         /// </summary>
         Folder,
     }
-    #endregion
 }

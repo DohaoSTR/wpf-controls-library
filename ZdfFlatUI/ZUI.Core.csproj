@@ -135,41 +135,21 @@
     <Compile Include="Converters\HourConvert.cs" />
     <Compile Include="ExtensionFunc\ItemsControlExtensions.cs" />
     <Compile Include="ExtensionFunc\ScrollViewerBehavior.cs" />
-    <Compile Include="ExtensionFunc\ValidateBehavior.cs" />
-    <Compile Include="MyControls\AutoComplete\Implementation\AutoCompleteBox.cs" />
-    <Compile Include="MyControls\CheckBox\Implementation\ZCheckBox.cs" />
-    <Compile Include="MyControls\CheckComboBox\Implementation\CheckComboBox.cs" />
-    <Compile Include="MyControls\CheckComboBox\Implementation\CheckComboBoxItem.cs" />
     <Compile Include="MyControls\ChooseBox\Implementation\ChooseBox.cs" />
-    <Compile Include="MyControls\Heading\Implementation\Heading.cs" />
-    <Compile Include="MyControls\Poptip\Implementation\Poptip.cs" />
-    <Compile Include="MyControls\Popup\Implementation\PopupEx.cs" />
     <Compile Include="MyControls\Primitives\IconTextBoxBase.cs" />
     <Compile Include="MyControls\Primitives\ZTextBoxBase.cs" />
-    <Compile Include="MyControls\TextBox\Implementation\IpTextBox.cs" />
-    <Compile Include="MyControls\TextBox\Implementation\NumbericTextBox.cs" />
     <Compile Include="MyControls\TextBox\Implementation\ZPasswordBox.cs" />
-    <Compile Include="MyControls\ToggleButton\Implementation\ZToggleButton.cs" />
     <Compile Include="MyControls\ColorSelector\Implementation\ColorItem.cs" />
     <Compile Include="MyControls\ColorSelector\Implementation\ColorSelector.cs" />
-    <Compile Include="MyControls\ComboBox\Implementation\ZComboBox.cs" />
     <Compile Include="MyControls\ControlEnum.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZCalendar.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZCalendarButton.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZCalendarDayButton.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZCalendarItem.cs" />
     <Compile Include="MyControls\DateControl\Implementation\ZDatePicker.cs" />
-    <Compile Include="MyControls\Decorator\AngleBorder.cs" />
     <Compile Include="MyControls\DropDownButton\Implementation\DropDownButton.cs" />
     <Compile Include="MyControls\Icon\Implementation\Icon.cs" />
-    <Compile Include="MyControls\ListView\Implementation\FlatListView.cs" />
-    <Compile Include="MyControls\ListView\Implementation\GridLineDecorator.cs" />
-    <Compile Include="MyControls\ListView\Implementation\GridViewColumnHelper.cs" />
-    <Compile Include="MyControls\ListView\Implementation\VisualService.cs" />
     <Compile Include="MyControls\Expander\Implementation\ZExpander.cs" />
-    <Compile Include="MyControls\GroupBox\Implementation\ZGroupBox.cs" />
-    <Compile Include="MyControls\Loading\Implementation\Loading.cs" />
-    <Compile Include="MyControls\CheckBox\Implementation\FlatCheckBox.cs" />
     <Compile Include="MyControls\DateControl\DateTimePicker.cs" />
     <Compile Include="MyControls\DateControl\FlatDatePicker.cs" />
     <Compile Include="MyControls\DateControl\TimePicker.cs" />
@@ -180,7 +160,6 @@
     <Compile Include="MyControls\Button\Implementation\FlatButton.cs" />
     <Compile Include="MyControls\Button\Implementation\PathButton.cs" />
     <Compile Include="MyControls\Button\Implementation\PathIconButton.cs" />
-    <Compile Include="MyControls\Button\Implementation\PathTextButton.cs" />
     <Compile Include="MyControls\Primitives\CircleBase.cs" />
     <Compile Include="MyControls\Primitives\MyCalendar.cs" />
     <Compile Include="MyControls\Primitives\MyEventArgs\ItemMouseDoubleClickEventArgs.cs" />
@@ -197,9 +176,7 @@
     <Compile Include="MyControls\TagControls\Implementation\TagBox.cs" />
     <Compile Include="MyControls\TextBox\Implementation\IconTextBox.cs" />
     <Compile Include="MyControls\TextBox\Implementation\ZTextBox.cs" />
-    <Compile Include="MyControls\TextBox\Implementation\TagTextBox.cs" />
     <Compile Include="MyControls\TextBox\Implementation\TitleTextBox.cs" />
-    <Compile Include="MyControls\TextBox\Implementation\ValidateTextBox.cs" />
     <Compile Include="MyControls\TimePicker\Implementation\TimeButton.cs" />
     <Compile Include="MyControls\TimePicker\Implementation\TimeSelector.cs" />
     <Compile Include="MyControls\TimePicker\Implementation\ZTimePicker.cs" />
@@ -208,23 +185,9 @@
     <Compile Include="MyControls\Upload\Implementation\Upload.cs" />
     <Compile Include="Utils\CommonUtil.cs" />
     <Compile Include="Utils\DateTimeHelper.cs" />
-    <Compile Include="Utils\DoubleUtil.cs" />
     <Compile Include="Utils\Extensions.cs" />
-    <Compile Include="Utils\UIElementEx.cs" />
     <Compile Include="Utils\VisualHelper.cs" />
-    <Page Include="MyControls\AutoComplete\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Button\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\CheckBox\Themes\ZCheckBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\CheckComboBox\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -239,10 +202,6 @@
     <Page Include="MyControls\ColorSelector\Themes\ColorSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\ComboBox\Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MyControls\DateControl\Themes\ZCalendar.xaml">
       <SubType>Designer</SubType>
@@ -268,55 +227,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\Heading\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Icon\Themes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\ListView\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Poptip\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\Expander\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\GroupBox\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Loading\Themes\Apple.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Loading\Themes\Cogs.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Loading\Themes\DoubleArc.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Loading\Themes\DoubleRound.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Loading\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Loading\Themes\Normal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\Loading\Themes\SingleRound.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -353,14 +268,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\TextBox\Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\TextBox\Themes\IpTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MyControls\TextBox\Themes\NumbericTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -408,10 +315,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\CheckBox\Themes\DefaultCheckBoxStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Color.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -452,23 +355,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MyControls\Button\Themes\PathTextButtonStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MyControls\TextBox\Themes\IconTextBoxStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MyControls\TextBox\Themes\TagTextBoxStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\TextBox\Themes\TitleTextBoxStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\TextBox\Themes\ValidateTextBoxStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -505,9 +396,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MyControls\Popup\Themes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DLL\CalcBinding.dll" />
     <Content Include="DLL\DynamicExpresso.Core.dll" />

@@ -88,43 +88,6 @@
                 <WPF.UI:IconTextBox Width="200" Height="30" Margin="10,5" CornerRadius="0"
                                     IconForeground="#6C86F4" IconPlacement="Right" IsShowIcon="False" Watermark="请输入用户名" />
             </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <WPF.UI:NumbericTextBox Width="200" Height="25" Margin="0,0,10,0" PatternType="NotEmpty" />
-                <WPF.UI:NumbericTextBox Width="200" Height="25" Margin="0,0,10,0" Pattern="" />
-                <WPF.UI:NumbericTextBox Width="200" Height="25" Margin="0,0,10,0" ErrorContent="IP地址不正确"
-                                        Pattern="^((2[0-4]\d|25[0-5]|(1\d{2})|([1-9]?[0-9]))\.){3}(2[0-4]\d|25[0-4]|(1\d{2})|([1-9][0-9])|([1-9]))$" />
-                <WPF.UI:NumbericTextBox Width="200" Height="25" Margin="0,0,10,0" PatternType="MobilePhone" />
-                <WPF.UI:NumbericTextBox Width="200" Height="25" Margin="0,0,10,0" PatternType="IdCard18" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <WPF.UI:NumbericTextBox Width="200" Height="30" Margin="0,11,10,0" CornerRadius="3"
-                                        PatternType="OnlyChinese" ValidateTrigger="LostFocus" />
-                <WPF.UI:AutoCompleteBox x:Name="AutoCompleteBox" Width="200" Height="30"
-                                        WPF.UI:WatermarkAdorner.Watermark="输入查询关键字">
-                    <WPF.UI:AutoCompleteBox.FilterMemberSource>
-                        <WPF.UI:PropertyFilterDescription PropertyName="" />
-                    </WPF.UI:AutoCompleteBox.FilterMemberSource>
-                </WPF.UI:AutoCompleteBox>
-            </StackPanel>
-
-            <StackPanel Margin="0,10" Orientation="Horizontal">
-                <WPF.UI:IpTextBox Width="160" Height="25" />
-                <WPF.UI:IpTextBox Width="160" Height="25" Margin="10,0,0,0" Type="SubnetMask" />
-            </StackPanel>
-
-            <StackPanel HorizontalAlignment="Left" 
-                        WPF.UI:ValidateBehavior.StartValidate="{Binding IsChecked, ElementName=btnStartValidate}"
-                        Orientation="Vertical">
-                <WPF.UI:NumbericTextBox Width="200" Height="28" Margin="0,3" PatternType="NotEmpty"
-                                        WPF.UI:WatermarkAdorner.Watermark="水印测试" />
-                <WPF.UI:NumbericTextBox Width="200" Height="28" Margin="0,3" PatternType="NotEmpty"
-                                        WPF.UI:WatermarkAdorner.Watermark="水印测试"
-                                        WPF.UI:WatermarkAdorner.WatermarkShowMode="VisibleWhenIsEmpty"/>
-                <WPF.UI:NumbericTextBox Width="200" Height="28" Margin="0,3" PatternType="NotEmpty"
-                                        ErrorContent="文本框不能为空"/>
-                <WPF.UI:FlatToggleButton x:Name="btnStartValidate" Margin="0,3" Content="开始校验" />
-            </StackPanel>
         </StackPanel>
     </WPF.UI:ZScrollViewer>
 </UserControl>

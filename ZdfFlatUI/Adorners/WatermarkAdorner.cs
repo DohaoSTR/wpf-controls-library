@@ -16,7 +16,7 @@ namespace ZdfFlatUI
         /// </summary>
         VisibleWhenIsEmpty,
         /// <summary>
-        /// 当文本框失去焦点且文本框没有内容时显示水印
+        /// 当文本框失去焦点且文本框没有内容时显示水印EnumWatermarkShowMode
         /// </summary>
         VisibleWhenLostFocusAndEmpty,
     }
