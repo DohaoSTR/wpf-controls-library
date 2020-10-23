@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryOfWPFControls.Test", "LibraryOfWPFControls.Test\LibraryOfWPFControls.Test.csproj", "{D7373C6B-98F7-4E70-8396-CE83E7D3B20E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZUI.Core", "ZdfFlatUI\ZUI.Core.csproj", "{A5932ABC-910B-4A80-ADA0-0732FF08D520}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryOfWPFControls", "ZdfFlatUI\LibraryOfWPFControls.csproj", "{A5932ABC-910B-4A80-ADA0-0732FF08D520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -176,9 +176,9 @@
     <Resource Include="Images\img5.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ZdfFlatUI\ZUI.Core.csproj">
+    <ProjectReference Include="..\ZdfFlatUI\LibraryOfWPFControls.csproj">
       <Project>{a5932abc-910b-4a80-ada0-0732ff08d520}</Project>
-      <Name>ZUI.Core</Name>
+      <Name>LibraryOfWPFControls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
