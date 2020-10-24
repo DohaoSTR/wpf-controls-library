@@ -125,7 +125,7 @@ namespace ZdfFlatUI
         {
             if (mPasswordBuilder != null)
             {
-                Clear();
+                mPasswordBuilder.Clear();
             }
             else
             {
@@ -137,10 +137,10 @@ namespace ZdfFlatUI
                 mPasswordBuilder.Append(PasswordChar);
             }
 
-            return ToString();
+            return mPasswordBuilder.ToString();
         }
 
-        private void ZPasswordBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void ZPasswordBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!mIsHandledTextChanged)
             {
@@ -157,7 +157,6 @@ namespace ZdfFlatUI
             {
                 SetText(ConvertToPasswordChar(Text.Length));
             }
-
             SelectionStart = Text.Length + 1;
         }
 

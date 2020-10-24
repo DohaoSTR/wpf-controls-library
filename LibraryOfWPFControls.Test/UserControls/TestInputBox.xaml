@@ -5,35 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LibraryOfWPFControls.Test.UserControls" xmlns:WPF.UI="clr-namespace:ZdfFlatUI;assembly=WPF.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WPF.UI;component/Resources/DefaultStyle.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
+             d:DesignHeight="450" d:DesignWidth="1000">
     <WPF.UI:ZScrollViewer>
-        <StackPanel Margin="10">
-            <StackPanel Orientation="Horizontal" Margin="10">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10" Width="860">
                 <WPF.UI:ZPasswordBox x:Name="passwordBox" Width="200" Height="28" Margin="0,5"
                                      IconBackground="AliceBlue" IconForeground="Gray"
-                                     Password="{Binding .}" />
+                                     Watermark="Введите пароль"/>
                 <WPF.UI:ZPasswordBox x:Name="passwordBox1" Width="200" Height="28" Margin="10,5"
                                      IconBackground="AliceBlue" IconForeground="Gray" IsCanSeePassword="False"
-                                     Password="{Binding .}"
                                      Watermark="Введите пароль" />
                 <WPF.UI:ZPasswordBox x:Name="passwordBox2" Width="200" Height="28" Margin="10,5"
                                      BorderThickness="0,0,0,1" CornerRadius="0" IconBackground="Transparent" IconBorderThickness="0"
                                      IconForeground="Gray" Watermark="Введите пароль" />
-
                 <WPF.UI:ZPasswordBox x:Name="passwordBox3" Width="200" Height="28" Margin="10,5"
                                      BorderThickness="0,0,0,1" CornerRadius="0" IconBackground="Transparent" IconBorderThickness="0"
                                      IconForeground="Gray" IsShowIcon="False" Watermark="Введите пароль" />
                 <TextBlock Text="{Binding Password, ElementName=passwordBox, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="10" Width="860">
                 <WPF.UI:IconTextBox Width="200" Height="28" Margin="0,5" BorderThickness="1,1,1,1"
                                     CornerRadius="3" IconBackground="AliceBlue" IconForeground="Gray" IconPlacement="Left"
                                     IconWidth="11" Watermark="Введите пароль" />
@@ -46,7 +37,7 @@
                 <WPF.UI:IconTextBox Width="200" Height="30" Margin="10,5" Padding="10,0,0,0"
                                     CornerRadius="14" IconForeground="#6C86F4" IconPlacement="Right" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="10" Width="860">
                 <WPF.UI:IconTextBox Width="200" Height="30" Margin="0,5" Padding="10,0,0,0"
                                     CornerRadius="15" IconForeground="#6C86F4" IconPlacement="Right" Watermark="Введите логин" />
                 <WPF.UI:IconTextBox Width="200" Height="30" Margin="10,5" CornerRadius="0"

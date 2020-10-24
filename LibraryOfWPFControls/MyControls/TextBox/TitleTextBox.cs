@@ -66,11 +66,10 @@ namespace ZdfFlatUI
             PART_ClearText = VisualHelper.FindVisualElement<Path>(this, "PART_ClearText");
             if (PART_ClearText != null)
             {
-                MouseLeftButtonDown += PART_ClearText_MouseLeftButtonDown;
+                PART_ClearText.MouseLeftButtonDown += PART_ClearText_MouseLeftButtonDown;
             }
 
             PART_ScrollViewer = VisualHelper.FindVisualElement<ScrollViewer>(this, "PART_ContentHost");
-
             PreviewMouseWheel += TitleTextBox_PreviewMouseWheel;
         }
 
@@ -78,7 +77,7 @@ namespace ZdfFlatUI
         {
             if (TitleOrientation == TitleOrientationEnum.Vertical && PART_ScrollViewer != null)
             {
-                ScrollToVerticalOffset(VerticalOffset - e.Delta);
+                PART_ScrollViewer.ScrollToVerticalOffset(PART_ScrollViewer.VerticalOffset - e.Delta);
             }
         }
 

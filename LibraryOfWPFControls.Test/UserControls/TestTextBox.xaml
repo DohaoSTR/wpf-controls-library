@@ -6,13 +6,6 @@
              xmlns:local="clr-namespace:LibraryOfWPFControls.Test.UserControls" xmlns:WPF.UI="clr-namespace:ZdfFlatUI;assembly=WPF.UI"
              d:DesignHeight="800"
              d:DesignWidth="1100" mc:Ignorable="d">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WPF.UI;component/Resources/DefaultStyle.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <WPF.UI:ZScrollViewer>
         <StackPanel Margin="10" DataContext="fdas23">
             <StackPanel Margin="0,2" Orientation="Horizontal">
