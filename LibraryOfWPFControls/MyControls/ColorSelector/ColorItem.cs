@@ -60,7 +60,7 @@ namespace ZdfFlatUI
         {
             if (!IsEnabled)
             {
-                VisualStateManager.GoToState(this, (base.Content is Control) ? "Normal" : "Disabled", useTransitions);
+                VisualStateManager.GoToState(this, (Content is Control) ? "Normal" : "Disabled", useTransitions);
             }
             else if (IsMouseOver)
             {

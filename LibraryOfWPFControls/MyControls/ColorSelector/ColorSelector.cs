@@ -24,7 +24,7 @@ namespace ZdfFlatUI
                 if (!string.IsNullOrEmpty(DisplayMemberPath))
                 {
                     Binding binding = new Binding(DisplayMemberPath);
-                    colorItem.SetBinding(ColorItem.BackgroundProperty, binding);
+                    colorItem.SetBinding(BackgroundProperty, binding);
                 }
                 else
                 {

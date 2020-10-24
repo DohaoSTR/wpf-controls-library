@@ -6,7 +6,7 @@ namespace ZdfFlatUI.MyControls.Primitives
 {
     public class IconTextBoxBase : ZTextBoxBase
     {
-        [Bindable(true), Description("获取或者设置是否显示图标")]
+        [Bindable(true)]
         public bool IsShowIcon
         {
             get => (bool)GetValue(IsShowIconProperty);
@@ -16,7 +16,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         public static readonly DependencyProperty IsShowIconProperty =
             DependencyProperty.Register("IsShowIcon", typeof(bool), typeof(IconTextBoxBase), new PropertyMetadata(true));
 
-        [Bindable(true), Description("获取或者设置图标边框背景色")]
+        [Bindable(true)]
         public Brush IconBackground
         {
             get => (Brush)GetValue(IconBackgroundProperty);
@@ -26,7 +26,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         public static readonly DependencyProperty IconBackgroundProperty =
             DependencyProperty.Register("IconBackground", typeof(Brush), typeof(IconTextBoxBase));
 
-        [Bindable(true), Description("获取或者设置图标的颜色")]
+        [Bindable(true)]
         public Brush IconForeground
         {
             get => (Brush)GetValue(IconForegroundProperty);
@@ -36,7 +36,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         public static readonly DependencyProperty IconForegroundProperty =
             DependencyProperty.Register("IconForeground", typeof(Brush), typeof(IconTextBoxBase));
 
-        [Bindable(true), Description("获取或者设置图标边框背景色")]
+        [Bindable(true)]
         public Brush IconBorderBrush
         {
             get => (Brush)GetValue(IconBorderBrushProperty);
@@ -55,7 +55,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         public static readonly DependencyProperty IconBorderThicknessProperty =
             DependencyProperty.Register("IconBorderThickness", typeof(Thickness), typeof(IconTextBoxBase));
 
-        [Bindable(true), Description("获取或者设置图标的大小")]
+        [Bindable(true)]
         public double IconWidth
         {
             get => (double)GetValue(IconWidthProperty);
@@ -65,7 +65,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         public static readonly DependencyProperty IconWidthProperty =
             DependencyProperty.Register("IconWidth", typeof(double), typeof(IconTextBoxBase));
 
-        [Bindable(true), Description("获取或者设置图标的内边距")]
+        [Bindable(true)]
         public Thickness IconPadding
         {
             get => (Thickness)GetValue(IconPaddingProperty);
@@ -75,7 +75,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         public static readonly DependencyProperty IconPaddingProperty =
             DependencyProperty.Register("IconPadding", typeof(Thickness), typeof(IconTextBoxBase));
 
-        [Bindable(true), Description("获取或者设置图标边框的圆角（可以不用手动设置，系统会根据密码框的圆角值自动设置该值）")]
+        [Bindable(true)]
         public CornerRadius IconCornerRadius
         {
             get => (CornerRadius)GetValue(IconCornerRadiusProperty);
@@ -85,7 +85,7 @@ namespace ZdfFlatUI.MyControls.Primitives
         public static readonly DependencyProperty IconCornerRadiusProperty =
             DependencyProperty.Register("IconCornerRadius", typeof(CornerRadius), typeof(IconTextBoxBase));
 
-        [Bindable(true), Description("获取或者设置密码框图标")]
+        [Bindable(true)]
         public PathGeometry IconPathData
         {
             get => (PathGeometry)GetValue(IconPathDataProperty);

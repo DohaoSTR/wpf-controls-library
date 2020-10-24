@@ -42,10 +42,10 @@ namespace ZdfFlatUI
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(NavigateMenu), new FrameworkPropertyMetadata(typeof(NavigateMenu)));
 
-            NavigateMenu.GroupDescriptionsProperty = DependencyProperty.Register("GroupDescriptions", typeof(string), typeof(NavigateMenu));
-            NavigateMenu.GroupItemsSourceProperty = DependencyProperty.Register("GroupItemsSource", typeof(IEnumerable), typeof(NavigateMenu));
-            NavigateMenu.MyGroupStyleProperty = DependencyProperty.Register("MyGroupStyle", typeof(GroupStyle), typeof(NavigateMenu));
-            NavigateMenu.ShowGroupProperty = DependencyProperty.Register("ShowGroup", typeof(bool), typeof(NavigateMenu));
+            GroupDescriptionsProperty = DependencyProperty.Register("GroupDescriptions", typeof(string), typeof(NavigateMenu));
+            GroupItemsSourceProperty = DependencyProperty.Register("GroupItemsSource", typeof(IEnumerable), typeof(NavigateMenu));
+            MyGroupStyleProperty = DependencyProperty.Register("MyGroupStyle", typeof(GroupStyle), typeof(NavigateMenu));
+            ShowGroupProperty = DependencyProperty.Register("ShowGroup", typeof(bool), typeof(NavigateMenu));
         }
 
         protected override DependencyObject GetContainerForItemOverride()
@@ -71,7 +71,7 @@ namespace ZdfFlatUI
                 Source = viewSource
             };
 
-            BindingOperations.SetBinding(this, NavigateMenu.ItemsSourceProperty, binding);
+            BindingOperations.SetBinding(this, ItemsSourceProperty, binding);
         }
     }
 }

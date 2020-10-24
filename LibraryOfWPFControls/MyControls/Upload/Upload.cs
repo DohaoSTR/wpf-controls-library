@@ -27,11 +27,11 @@ namespace ZdfFlatUI
         {
             add
             {
-                base.AddHandler(UploadEvent, value);
+                AddHandler(UploadEvent, value);
             }
             remove
             {
-                base.RemoveHandler(UploadEvent, value);
+                RemoveHandler(UploadEvent, value);
             }
         }
 

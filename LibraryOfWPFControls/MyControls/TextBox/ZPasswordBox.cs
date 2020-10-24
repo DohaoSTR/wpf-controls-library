@@ -15,7 +15,7 @@ namespace ZdfFlatUI
         private bool mIsHandledTextChanged = true;
         private StringBuilder mPasswordBuilder;
 
-        [Bindable(true), Description("获取或者设置是否能看见密码")]
+        [Bindable(true)]
         public bool IsCanSeePassword
         {
             get => (bool)GetValue(IsCanSeePasswordProperty);
@@ -33,7 +33,7 @@ namespace ZdfFlatUI
             }
         }
 
-        [Bindable(true), Description("获取或者设置当前密码值")]
+        [Bindable(true)]
         public string Password
         {
             get => (string)GetValue(PasswordProperty);
@@ -43,7 +43,7 @@ namespace ZdfFlatUI
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(ZPasswordBox), new PropertyMetadata(string.Empty));
 
-        [Bindable(true), Description("获取或者设置PasswordBox的屏蔽字符")]
+        [Bindable(true)]
         public char PasswordChar
         {
             get => (char)GetValue(PasswordCharProperty);

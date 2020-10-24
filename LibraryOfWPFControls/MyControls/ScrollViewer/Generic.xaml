@@ -176,8 +176,7 @@
                         <EventTrigger RoutedEvent="MouseLeave" SourceName="Bd">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <DoubleAnimation BeginTime="0:0:1" Duration="0:0:0.5" Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity"
-                                                     To="0" />
+                                    <DoubleAnimation BeginTime="0:0:1" Duration="0:0:0.5" Storyboard.TargetName="PART_HorizontalScrollBar" Storyboard.TargetProperty="Opacity" To="0" />
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
