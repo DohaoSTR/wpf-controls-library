@@ -7,21 +7,13 @@ namespace ZdfFlatUI
 {
     public class NavigateMenu : ListBox
     {
-        #region Private属性
         private readonly CollectionViewSource viewSource = new CollectionViewSource();
-        #endregion
 
-        #region 依赖属性定义
         public static readonly DependencyProperty GroupDescriptionsProperty;
         public static readonly DependencyProperty GroupItemsSourceProperty;
         public static readonly DependencyProperty MyGroupStyleProperty;
         public static readonly DependencyProperty ShowGroupProperty;
-        #endregion
 
-        #region 依赖属性set get
-        /// <summary>
-        /// 
-        /// </summary>
         public string GroupDescriptions
         {
             get => (string)GetValue(GroupDescriptionsProperty);
@@ -45,9 +37,7 @@ namespace ZdfFlatUI
             get => (bool)GetValue(ShowGroupProperty);
             set => SetValue(ShowGroupProperty, value);
         }
-        #endregion
 
-        #region Constructors
         static NavigateMenu()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(NavigateMenu), new FrameworkPropertyMetadata(typeof(NavigateMenu)));
@@ -57,9 +47,7 @@ namespace ZdfFlatUI
             NavigateMenu.MyGroupStyleProperty = DependencyProperty.Register("MyGroupStyle", typeof(GroupStyle), typeof(NavigateMenu));
             NavigateMenu.ShowGroupProperty = DependencyProperty.Register("ShowGroup", typeof(bool), typeof(NavigateMenu));
         }
-        #endregion
 
-        #region Override方法
         protected override DependencyObject GetContainerForItemOverride()
         {
             return new NavigateMenuItem();
@@ -68,15 +56,6 @@ namespace ZdfFlatUI
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-
-            //ResourceDictionary rd = new ResourceDictionary();
-            //rd.Source = new Uri("/WPF.UI;component/MyControls/NavigateMenu/Themes/Generic.xaml", UriKind.Relative);
-            //this.Resources.MergedDictionaries.Add(rd);
-
-            //Style style = this.Resources.MergedDictionaries[0]["NavigateMenuGroupStyle"] as Style;
-            //this.GroupStyle.Clear();
-            //this.GroupStyle.Add(new System.Windows.Controls.GroupStyle() { ContainerStyle = style });
-
             if (!string.IsNullOrEmpty(GroupDescriptions))
             {
                 string[] list = GroupDescriptions.Split(',');
@@ -93,17 +72,6 @@ namespace ZdfFlatUI
             };
 
             BindingOperations.SetBinding(this, NavigateMenu.ItemsSourceProperty, binding);
-
-
         }
-        #endregion
-
-        #region Private方法
-
-        #endregion
-
-        #region Public方法
-
-        #endregion
     }
 }

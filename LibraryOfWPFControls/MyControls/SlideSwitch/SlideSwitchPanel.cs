@@ -24,21 +24,16 @@ namespace ZdfFlatUI
             ChildCount = InternalChildren.Count;
         }
 
-        #region 依赖属性
         public static readonly DependencyProperty IndexProperty = DependencyProperty.Register("Index",
             typeof(int),
             typeof(SlideSwitchPanel),
             new FrameworkPropertyMetadata(1, new PropertyChangedCallback(OnIndexChanged)));
 
-        /// <summary>
-        /// 索引，值从1开始，不是从0开始的
-        /// </summary>
         public int Index
         {
             get => (int)GetValue(IndexProperty);
             set => SetValue(IndexProperty, value);
         }
-        #endregion
 
         public static RoutedEvent IndexChangedEvent = EventManager.RegisterRoutedEvent("IndexChanged", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<int>), typeof(SlideSwitchPanel));
         public event RoutedPropertyChangedEventHandler<int> IndexChanged
@@ -47,7 +42,6 @@ namespace ZdfFlatUI
             remove { RemoveHandler(IndexChangedEvent, value); }
         }
 
-        #region Override
         protected override Size MeasureOverride(Size constraint)
         {
             Size size = new Size(initWidth, initHeight);
@@ -68,8 +62,6 @@ namespace ZdfFlatUI
             }
             return arrangeSize;
         }
-
-        #endregion
 
         private static void OnIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

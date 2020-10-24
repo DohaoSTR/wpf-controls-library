@@ -5,11 +5,6 @@ namespace ZdfFlatUI.MyControls.Primitives
 {
     public class ZTextBoxBase : TextBox
     {
-        #region Watermark
-
-        /// <summary>
-        /// 获取或者设置水印
-        /// </summary>
         public string Watermark
         {
             get => (string)GetValue(WatermarkProperty);
@@ -18,10 +13,6 @@ namespace ZdfFlatUI.MyControls.Primitives
 
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.Register("Watermark", typeof(string), typeof(ZTextBoxBase));
-
-        #endregion
-
-        #region CornerRadius
 
         public CornerRadius CornerRadius
         {
@@ -34,14 +25,11 @@ namespace ZdfFlatUI.MyControls.Primitives
 
         private static void CornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ZTextBoxBase textbox = d as ZTextBoxBase;
-            if (textbox != null && e.NewValue != null)
+            if (d is ZTextBoxBase textbox && e.NewValue != null)
             {
                 textbox.OnCornerRadiusChanged((CornerRadius)e.NewValue);
             }
         }
-
-        #endregion
 
         public virtual void OnCornerRadiusChanged(CornerRadius newValue) { }
     }

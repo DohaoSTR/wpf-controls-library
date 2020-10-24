@@ -7,19 +7,9 @@ namespace ZdfFlatUI
 {
     public class ColorItem : ContentControl
     {
-        #region private fields
-
-        #endregion
-
-        #region Property
         private ColorSelector ParentColorSelector => ParentSelector as ColorSelector;
 
         internal Selector ParentSelector => ItemsControl.ItemsControlFromItemContainer(this) as Selector;
-        #endregion
-
-        #region DependencyProperty
-
-        #region IsSelected
 
         public bool IsSelected
         {
@@ -45,10 +35,6 @@ namespace ZdfFlatUI
             colorItem.UpdateVisualState(true);
         }
 
-        #endregion
-
-        #region Color
-
         public Brush Color
         {
             get => (Brush)GetValue(ColorProperty);
@@ -58,20 +44,10 @@ namespace ZdfFlatUI
         public static readonly DependencyProperty ColorProperty =
             DependencyProperty.Register("Color", typeof(Brush), typeof(ColorItem));
 
-        #endregion
-
-        #endregion
-
-        #region Constructors
-
         static ColorItem()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorItem), new FrameworkPropertyMetadata(typeof(ColorItem)));
         }
-
-        #endregion
-
-        #region Override
 
         public override void OnApplyTemplate()
         {
@@ -80,18 +56,13 @@ namespace ZdfFlatUI
             MouseLeftButtonUp += ColorItem_MouseLeftButtonUp;
         }
 
-
-        #endregion
-
-        #region private function
-
         private void UpdateVisualState(bool useTransitions)
         {
-            if (!base.IsEnabled)
+            if (!IsEnabled)
             {
                 VisualStateManager.GoToState(this, (base.Content is Control) ? "Normal" : "Disabled", useTransitions);
             }
-            else if (base.IsMouseOver)
+            else if (IsMouseOver)
             {
                 VisualStateManager.GoToState(this, "MouseOver", useTransitions);
             }
@@ -105,20 +76,12 @@ namespace ZdfFlatUI
                 {
                     VisualStateManager.GoToState(this, "Selected", useTransitions);
                 }
-                else
-                {
-                    //VisualStates.GoToState(this, useTransitions, new string[]
-                    //{
-                    //    "SelectedUnfocused",
-                    //    "Selected"
-                    //});
-                }
             }
             else
             {
                 VisualStateManager.GoToState(this, "Unselected", useTransitions);
             }
-            if (base.IsKeyboardFocused)
+            if (IsKeyboardFocused)
             {
                 VisualStateManager.GoToState(this, "Focused", useTransitions);
             }
@@ -130,28 +93,22 @@ namespace ZdfFlatUI
 
         private void OnUnselected(RoutedEventArgs routedEventArgs)
         {
-            HandleIsSelectedChanged(false, routedEventArgs);
+            HandleIsSelectedChanged(routedEventArgs);
         }
 
         private void OnSelected(RoutedEventArgs routedEventArgs)
         {
-            HandleIsSelectedChanged(true, routedEventArgs);
+            HandleIsSelectedChanged(routedEventArgs);
         }
 
-        private void HandleIsSelectedChanged(bool newValue, RoutedEventArgs e)
+        private void HandleIsSelectedChanged(RoutedEventArgs e)
         {
-            base.RaiseEvent(e);
+            RaiseEvent(e);
         }
-
-        #endregion
-
-        #region Event Implement Function
 
         private void ColorItem_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ParentColorSelector.SetItemSelected(this);
         }
-
-        #endregion
     }
 }

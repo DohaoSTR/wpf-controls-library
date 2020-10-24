@@ -26,17 +26,6 @@
 						        BorderThickness="{TemplateBinding BorderThickness}"
 						        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
 						        UseLayoutRounding="{TemplateBinding UseLayoutRounding}" />
-
-                        <!--<VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="SelectStates">
-                                <VisualState x:Name="Selected">
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="InnerBorder" Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)"
-                                                        Duration="00:00:0.3" To="#FFFFFF"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>-->
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">

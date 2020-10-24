@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ZUI="clr-namespace:ZdfFlatUI">
     
-    <!--#region 图标-->
     <PathFigureCollection x:Key="Left">M15.41,16.58L10.83,12 15.41,7.41 14,6 8,12 14,18 15.41,16.58z</PathFigureCollection>
     <PathFigureCollection x:Key="Right">M8.59,16.58L13.17,12 8.59,7.41 10,6 16,12 10,18 8.59,16.58z</PathFigureCollection>
     <PathFigureCollection x:Key="Info">M8.59,16.58L13.17,12 8.59,7.41 10,6 16,12 10,18 8.59,16.58z</PathFigureCollection>
@@ -15,8 +14,7 @@
     <PathFigureCollection x:Key="Star_Empty">M12,15.39L8.24,17.66 9.23,13.38 5.91,10.5 10.29,10.13 12,6.09 13.71,10.13 18.09,10.5 14.77,13.38 15.76,17.66 M22,9.24L14.81,8.63 12,2 9.19,8.63 2,9.24 7.45,13.97 5.82,21 12,17.27 18.18,21 16.54,13.97 22,9.24z</PathFigureCollection>
     <PathFigureCollection x:Key="Star_Half">M12,15.89L12,6.59 13.71,10.63 18.09,11 14.77,13.88 15.76,18.16 M22,9.74L14.81,9.13 12,2.5 9.19,9.13 2,9.74 7.45,14.47 5.82,21.5 12,17.77 18.18,21.5 16.54,14.47 22,9.74z</PathFigureCollection>
     <PathFigureCollection x:Key="Star_Full">M12,17.27L18.18,21 16.54,13.97 22,9.24 14.81,8.62 12,2 9.19,8.62 2,9.24 7.45,13.97 5.82,21 12,17.27z</PathFigureCollection>
-    <!--#endregion-->
-    
+
     <Style TargetType="{x:Type ZUI:Icon}">
         <Setter Property="BorderBrush" Value="Black" />
         <Setter Property="BorderThickness" Value="1" />

@@ -13,81 +13,54 @@ namespace ZdfFlatUI
     [TemplatePart(Name = "PART_NextButton", Type = typeof(Button))]
     public class Carousel : Control
     {
-        #region Private属性
         private SlideSwitchPanel PART_SlideSwitchPanel;
         private StackPanel PART_IndexPanel;
         private Button PART_LastButton;
         private Button PART_NextButton;
-        /// <summary>
-        /// 轮播的子项的个数
-        /// </summary>
         private int ChildCount;
-        /// <summary>
-        /// 自动轮播定时器
-        /// </summary>
         private readonly Timer autoPlayTimer;
-        /// <summary>
-        /// 索引器分组依据，需唯一
-        /// </summary>
         private string GroupName;
-        #endregion
 
-        #region 依赖属性定义
         public static readonly DependencyProperty ItemsSourceProperty;
         public static readonly DependencyProperty ItemTemplateProperty;
         public static readonly DependencyProperty AutoPlayProperty;
         public static readonly DependencyProperty AutoPlaySpeedProperty;
-        #endregion
 
-        #region 依赖属性set get
-        /// <summary>
-        /// 轮播数据源
-        /// </summary>
         public IEnumerable ItemsSource
         {
             get => (IEnumerable)GetValue(ItemsSourceProperty);
             set => SetValue(ItemsSourceProperty, value);
         }
 
-        /// <summary>
-        /// 轮播的Item的数据模板
-        /// </summary>
         public DataTemplate ItemTemplate
         {
             get => (DataTemplate)GetValue(ItemTemplateProperty);
             set => SetValue(ItemTemplateProperty, value);
         }
-        /// <summary>
-        /// 是否自动播放
-        /// </summary>
+
         public bool AutoPlay
         {
             get => (bool)GetValue(AutoPlayProperty);
             set => SetValue(AutoPlayProperty, value);
         }
-        /// <summary>
-        /// 自动播放速度
-        /// </summary>
+
         public double AutoPlaySpeed
         {
             get => (double)GetValue(AutoPlaySpeedProperty);
             set => SetValue(AutoPlaySpeedProperty, value);
         }
-        #endregion
 
-        #region Constructors
         static Carousel()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Carousel), new FrameworkPropertyMetadata(typeof(Carousel)));
-            Carousel.ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(Carousel));
-            Carousel.ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(Carousel));
-            Carousel.AutoPlayProperty = DependencyProperty.Register("AutoPlay", typeof(bool), typeof(Carousel), new PropertyMetadata(false, OnAutoPlayChangedCallback));
-            Carousel.AutoPlaySpeedProperty = DependencyProperty.Register("AutoPlaySpeed", typeof(double), typeof(Carousel), new PropertyMetadata(2d, OnAutoPlaySpeedChangedCallback));
+            ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(Carousel));
+            ItemTemplateProperty = DependencyProperty.Register("ItemTemplate", typeof(DataTemplate), typeof(Carousel));
+            AutoPlayProperty = DependencyProperty.Register("AutoPlay", typeof(bool), typeof(Carousel), new PropertyMetadata(false, OnAutoPlayChangedCallback));
+            AutoPlaySpeedProperty = DependencyProperty.Register("AutoPlaySpeed", typeof(double), typeof(Carousel), new PropertyMetadata(2d, OnAutoPlaySpeedChangedCallback));
         }
 
         public Carousel()
         {
-            //初始化，防止出现"未将对象引用设置到对象的实例"的错误
             ItemsSource = new List<object>();
             if (autoPlayTimer == null)
             {
@@ -105,9 +78,7 @@ namespace ZdfFlatUI
         {
 
         }
-        #endregion
 
-        #region 依赖属性回调
         private static void OnAutoPlaySpeedChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Carousel carousel = d as Carousel;
@@ -122,9 +93,7 @@ namespace ZdfFlatUI
             Carousel carousel = d as Carousel;
             carousel.autoPlayTimer.Enabled = (bool)e.NewValue;
         }
-        #endregion
 
-        #region Override方法
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
@@ -164,12 +133,7 @@ namespace ZdfFlatUI
 
             VisualStateManager.GoToState(this, "Normal", true);
         }
-        #endregion
 
-        #region Private方法
-        /// <summary>
-        /// 添加子控件
-        /// </summary>
         private void AddChildToPanel()
         {
             if (ItemsSource == null)
@@ -191,9 +155,6 @@ namespace ZdfFlatUI
             }
         }
 
-        /// <summary>
-        /// 添加索引控件
-        /// </summary>
         private void AddIndexControlToPanel()
         {
             if (PART_SlideSwitchPanel == null)
@@ -210,7 +171,6 @@ namespace ZdfFlatUI
             {
                 ZRadionButton radioButton = new ZRadionButton
                 {
-                    //使用随机数作为RadioButton的分组依据，防止一个界面出现多个Carousel时，RadioButton选中出现问题
                     GroupName = "Index" + GroupName
                 };
                 radioButton.Checked += RadioButton_Checked;
@@ -221,7 +181,7 @@ namespace ZdfFlatUI
 
         private void HandleButtonMouse(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            //VisualStateManager.GoToState(this, "ButtonMouseOver", true);
+
         }
 
         private void PART_NextButton_Click(object sender, RoutedEventArgs e)
@@ -239,7 +199,6 @@ namespace ZdfFlatUI
             int index = PART_SlideSwitchPanel.Index;
             index--;
 
-            //当索引小于等于0时，切换到最大的索引的位置
             if (index <= 0)
             {
                 index = ChildCount;
@@ -311,7 +270,6 @@ namespace ZdfFlatUI
             int index = PART_SlideSwitchPanel.Index;
             index++;
 
-            //当索引超过最大值时，回到第一个
             if (index > ChildCount)
             {
                 index = 1;
@@ -319,6 +277,5 @@ namespace ZdfFlatUI
 
             PART_SlideSwitchPanel.Index = index;
         }
-        #endregion
     }
 }

@@ -8,24 +8,10 @@ namespace ZdfFlatUI
 {
     public class ColorSelector : Selector
     {
-        #region private fields
-
-        #endregion
-
-        #region DependencyProperty
-
-        #endregion
-
-        #region Constructors
-
         static ColorSelector()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ColorSelector), new FrameworkPropertyMetadata(typeof(ColorSelector)));
         }
-
-        #endregion
-
-        #region Override
 
         protected override void PrepareContainerForItemOverride(DependencyObject element, object item)
         {
@@ -66,10 +52,6 @@ namespace ZdfFlatUI
             base.OnApplyTemplate();
         }
 
-        #endregion
-
-        #region private function
-
         public void SetItemSelected(ColorItem selectedItem)
         {
             if (Items == null)
@@ -90,11 +72,5 @@ namespace ZdfFlatUI
                 }
             }
         }
-
-        #endregion
-
-        #region Event Implement Function
-
-        #endregion
     }
 }

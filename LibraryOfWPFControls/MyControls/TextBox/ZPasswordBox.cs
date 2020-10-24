@@ -10,25 +10,11 @@ namespace ZdfFlatUI
 {
     public class ZPasswordBox : IconTextBoxBase
     {
-        #region private fields
-
         private ToggleButton PART_SeePassword;
 
-        /// <summary>
-        /// 该属性是为了防止明文转化为密文后，设置Text时，再次触发Text_Changed事件
-        /// </summary>
         private bool mIsHandledTextChanged = true;
         private StringBuilder mPasswordBuilder;
 
-        #endregion
-
-        #region DependencyProperty
-
-        #region IsCanSeePassword
-
-        /// <summary>
-        /// 获取或者设置是否能看见密码
-        /// </summary>
         [Bindable(true), Description("获取或者设置是否能看见密码")]
         public bool IsCanSeePassword
         {
@@ -41,20 +27,12 @@ namespace ZdfFlatUI
 
         private static void IsCanSeePasswordChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ZPasswordBox passowrdBox = d as ZPasswordBox;
-            if (passowrdBox != null && passowrdBox.PART_SeePassword != null)
+            if (d is ZPasswordBox passowrdBox && passowrdBox.PART_SeePassword != null)
             {
                 passowrdBox.PART_SeePassword.Visibility = (bool)e.NewValue ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
-        #endregion
-
-        #region Password
-
-        /// <summary>
-        /// 获取或者设置当前密码值
-        /// </summary>
         [Bindable(true), Description("获取或者设置当前密码值")]
         public string Password
         {
@@ -65,13 +43,6 @@ namespace ZdfFlatUI
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(ZPasswordBox), new PropertyMetadata(string.Empty));
 
-        #endregion
-
-        #region PasswordChar
-
-        /// <summary>
-        /// 获取或者设置PasswordBox的屏蔽字符
-        /// </summary>
         [Bindable(true), Description("获取或者设置PasswordBox的屏蔽字符")]
         public char PasswordChar
         {
@@ -81,14 +52,6 @@ namespace ZdfFlatUI
 
         public static readonly DependencyProperty PasswordCharProperty =
             DependencyProperty.Register("PasswordChar", typeof(char), typeof(ZPasswordBox), new PropertyMetadata('●'));
-
-        #endregion
-
-        #endregion
-
-        #region Private DependencyProperty
-
-        #region ShowPassword
 
         public bool ShowPassword
         {
@@ -101,27 +64,16 @@ namespace ZdfFlatUI
 
         private static void ShowPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ZPasswordBox passwordBox = d as ZPasswordBox;
-            if (passwordBox != null)
+            if (d is ZPasswordBox passwordBox)
             {
                 passwordBox.SelectionStart = passwordBox.Text.Length + 1;
             }
         }
 
-        #endregion
-
-        #endregion
-
-        #region Constructors
-
         static ZPasswordBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ZPasswordBox), new FrameworkPropertyMetadata(typeof(ZPasswordBox)));
         }
-
-        #endregion
-
-        #region Override
 
         public override void OnApplyTemplate()
         {
@@ -134,21 +86,15 @@ namespace ZdfFlatUI
             }
             SetEvent();
 
-            //回显密码
             SetText(ConvertToPasswordChar(Password.Length));
 
-            //密码框禁止复制
-            CommandBindings.Add(new System.Windows.Input.CommandBinding(ApplicationCommands.Copy, CommandBinding_Executed, CommandBinding_CanExecute));
+            CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, CommandBinding_Executed, CommandBinding_CanExecute));
         }
 
         public override void OnCornerRadiusChanged(CornerRadius newValue)
         {
-            //根据密码框边框圆角自动设置图标背景框圆角
             IconCornerRadius = new CornerRadius(newValue.TopLeft, 0, 0, newValue.BottomLeft);
         }
-        #endregion
-
-        #region private function
 
         private void SetEvent()
         {
@@ -175,16 +121,11 @@ namespace ZdfFlatUI
             mIsHandledTextChanged = true;
         }
 
-        /// <summary>
-        /// 明文密码转化为特定字符
-        /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
         private string ConvertToPasswordChar(int length)
         {
             if (mPasswordBuilder != null)
             {
-                mPasswordBuilder.Clear();
+                Clear();
             }
             else
             {
@@ -196,12 +137,8 @@ namespace ZdfFlatUI
                 mPasswordBuilder.Append(PasswordChar);
             }
 
-            return mPasswordBuilder.ToString();
+            return ToString();
         }
-
-        #endregion
-
-        #region Event Implement Function
 
         private void ZPasswordBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
@@ -212,9 +149,7 @@ namespace ZdfFlatUI
 
             foreach (TextChange c in e.Changes)
             {
-                //从密码文中根据本次Change对象的索引和长度删除对应个数的字符
                 Password = Password.Remove(c.Offset, c.RemovedLength);
-                //将Text新增的部分记录给密码文
                 Password = Password.Insert(c.Offset, Text.Substring(c.Offset, c.AddedLength));
             }
 
@@ -223,7 +158,6 @@ namespace ZdfFlatUI
                 SetText(ConvertToPasswordChar(Text.Length));
             }
 
-            //将光标放到最后面
             SelectionStart = Text.Length + 1;
         }
 
@@ -236,6 +170,5 @@ namespace ZdfFlatUI
         {
             e.Handled = true;
         }
-        #endregion
     }
 }

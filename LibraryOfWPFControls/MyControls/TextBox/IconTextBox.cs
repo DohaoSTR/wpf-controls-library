@@ -4,9 +4,6 @@ using ZdfFlatUI.MyControls.Primitives;
 
 namespace ZdfFlatUI
 {
-    /// <summary>
-    /// 带图标的文本输入框
-    /// </summary>
     public class IconTextBox : IconTextBoxBase
     {
         public enum IconPlacementEnum
@@ -19,8 +16,6 @@ namespace ZdfFlatUI
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(IconTextBox), new FrameworkPropertyMetadata(typeof(IconTextBox)));
         }
-
-        #region 事件定义
 
         public static readonly RoutedEvent EnterKeyClickEvent = EventManager.RegisterRoutedEvent("EnterKeyClick",
             RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<object>), typeof(IconTextBox));
@@ -43,17 +38,10 @@ namespace ZdfFlatUI
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, EnterKeyClickEvent);
             RaiseEvent(arg);
         }
-        #endregion
-
-        #region 依赖属性
-
-        #region Path相关属性
 
         public static readonly DependencyProperty IconPlacementProperty = DependencyProperty.Register("IconPlacement"
             , typeof(IconPlacementEnum), typeof(IconTextBox));
-        /// <summary>
-        /// 文本输入框的图标显示位置
-        /// </summary>
+
         public IconPlacementEnum IconPlacement
         {
             get => (IconPlacementEnum)GetValue(IconPlacementProperty);
@@ -62,17 +50,12 @@ namespace ZdfFlatUI
 
         public static readonly DependencyProperty IconColorProperty = DependencyProperty.Register("IconColor"
             , typeof(Brush), typeof(IconTextBox));
-        /// <summary>
-        /// 图标的颜色
-        /// </summary>
+
         public Brush IconColor
         {
             get => (Brush)GetValue(IconColorProperty);
             set => SetValue(IconColorProperty, value);
         }
-        #endregion
-
-        #endregion
 
         public IconTextBox() : base()
         {

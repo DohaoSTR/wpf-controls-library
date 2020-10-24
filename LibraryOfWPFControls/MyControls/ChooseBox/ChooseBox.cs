@@ -12,16 +12,8 @@ namespace ZdfFlatUI
 
     public class ChooseBox : TextBox
     {
-        #region private fields
         private Button PART_ChooseButton;
-        #endregion
 
-        #region DependencyProperty
-
-        #region ChooseButtonStyle
-        /// <summary>
-        /// 获取或者设置选择按钮的样式
-        /// </summary>
         public Style ChooseButtonStyle
         {
             get => (Style)GetValue(ChooseButtonStyleProperty);
@@ -30,10 +22,6 @@ namespace ZdfFlatUI
 
         public static readonly DependencyProperty ChooseButtonStyleProperty =
             DependencyProperty.Register("ChooseButtonStyle", typeof(Style), typeof(ChooseBox));
-
-        #endregion
-
-        #region ChooseBoxType
 
         public EnumChooseBoxType ChooseBoxType
         {
@@ -44,10 +32,6 @@ namespace ZdfFlatUI
         public static readonly DependencyProperty ChooseBoxTypeProperty =
             DependencyProperty.Register("ChooseBoxType", typeof(EnumChooseBoxType), typeof(ChooseBox), new PropertyMetadata(EnumChooseBoxType.SingleFile));
 
-        #endregion
-
-        #region ChooseButtonWidth
-
         public double ChooseButtonWidth
         {
             get => (double)GetValue(ChooseButtonWidthProperty);
@@ -57,20 +41,10 @@ namespace ZdfFlatUI
         public static readonly DependencyProperty ChooseButtonWidthProperty =
             DependencyProperty.Register("ChooseButtonWidth", typeof(double), typeof(ChooseBox), new PropertyMetadata(20d));
 
-        #endregion
-
-        #endregion
-
-        #region Constructors
-
         static ChooseBox()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ChooseBox), new FrameworkPropertyMetadata(typeof(ChooseBox)));
         }
-
-        #endregion
-
-        #region Override
 
         public override void OnApplyTemplate()
         {
@@ -83,13 +57,6 @@ namespace ZdfFlatUI
             }
         }
 
-        #endregion
-
-        #region private function
-
-        #endregion
-
-        #region Event Implement Function
         private void PART_ChooseButton_Click(object sender, RoutedEventArgs e)
         {
             switch (ChooseBoxType)
@@ -99,8 +66,6 @@ namespace ZdfFlatUI
                     {
                         Multiselect = false
                     };
-                    //"文本文件|*.*|C#文件|*.cs|所有文件|*.*"
-                    //openFileDialog.Filter = this.Filter;
                     if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         Text = openFileDialog.FileName;
@@ -119,6 +84,5 @@ namespace ZdfFlatUI
                     break;
             }
         }
-        #endregion
     }
 }
