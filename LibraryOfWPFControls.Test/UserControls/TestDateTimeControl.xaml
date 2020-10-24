@@ -29,7 +29,7 @@
                             </Grid.ColumnDefinitions>
                             <Border BorderBrush="#CCCCCC" BorderThickness="1,1,0,1" Background="#F6F6F6" 
                                     SnapsToDevicePixels="True" UseLayoutRounding="True" Padding="5,0">
-                                <TextBlock Text="时间" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Text="Время" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                             <Border x:Name="Border" Grid.Column="1"
                                     Background="{TemplateBinding Background}"
@@ -46,18 +46,18 @@
                                         <ColumnDefinition Width="auto" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Primitives:NumberBox Title="小时" Grid.Column="0" BorderThickness="0" EndNumber="23"
+                                    <Primitives:NumberBox Title="Час" Grid.Column="0" BorderThickness="0" EndNumber="23"
                                                           SelectedItem="{Binding Hour,
                                                                                  RelativeSource={RelativeSource TemplatedParent}}"
                                                           StartNumber="0" />
                                     <TextBlock Grid.Column="1" VerticalAlignment="Center" Text=":" />
-                                    <Primitives:NumberBox Title="分钟" Grid.Column="2" BorderThickness="0" EndNumber="59"
+                                    <Primitives:NumberBox Title="Минута" Grid.Column="2" BorderThickness="0" EndNumber="59"
                                                           MaxDropDownWidth="280"
                                                           SelectedItem="{Binding Minute,
                                                                                  RelativeSource={RelativeSource TemplatedParent}}"
                                                           ShowShadow="True" StartNumber="0" />
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" Text=":" />
-                                    <Primitives:NumberBox Title="秒数" Grid.Column="4" BorderThickness="0" EndNumber="59"
+                                    <Primitives:NumberBox Title="Секунда" Grid.Column="4" BorderThickness="0" EndNumber="59"
                                                           MaxDropDownWidth="280"
                                                           SelectedItem="{Binding Second,
                                                                                  RelativeSource={RelativeSource TemplatedParent}}"
@@ -78,9 +78,9 @@
                     <WPF.UI:TimePicker x:Name="timePicker" Width="80" Height="25" Margin="0,10"
                                         Value="02:01:03" />
                     <Button x:Name="btnGetDate" Height="25" Margin="5,5" Click="btnGetDate_Click"
-                            Content="获取日期" />
+                            Content="Вывести дату" />
                     <Button x:Name="btnSetDate" Height="25" Margin="5,5" Click="btnSetDate_Click"
-                            Content="设置日期" />
+                            Content="Обновить дату" />
                 </StackPanel>
                 <StackPanel>
                     <WPF.UI:TimePicker x:Name="timePicker1" Width="120" Height="25" Margin="0,10"
@@ -91,20 +91,14 @@
                 <StackPanel>
                     <WPF.UI:DateTimePicker x:Name="dateTimePicker" Width="200" Height="22" DateFormat="yyyy-MM-dd HH:mm:ss" />
                     <Button x:Name="btnGetDateTimePicker" Height="25" Margin="5,5" Click="btnGetDateTimePicker_Click"
-                            Content="获取日期" />
+                            Content="Вывести время" />
                     <Button x:Name="btnSetDateTimePicker" Height="25" Margin="5,5" Click="btnSetDateTimePicker_Click"
-                            Content="设置日期" />
+                            Content="Обновить время" />
                 </StackPanel>
             </StackPanel>
         </TabItem>
-        <TabItem Header="ZCalendar日历">
+        <TabItem Header="ZCalendar">
             <StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-                    <TextBlock Text="Light" VerticalAlignment="Center" />
-                    <WPF.UI:FlatToggleButton x:Name="tgTheme" Margin="10,0" 
-                                             />
-                    <TextBlock Text="Dark" VerticalAlignment="Center" />
-                </StackPanel>
                 <WPF.UI:ZCalendar HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </TabItem>
@@ -122,16 +116,14 @@
                 <WPF.UI:ZDatePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="220" Height="28"
                                     Type="SingleDateRange" IsShowShortCuts="True" CornerRadius="3"
                                     DateStringFormat="yyyy/MM/dd"/>
-
                 <WPF.UI:ZDatePicker x:Name="dateControl7" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220" Height="28"
                                     Type="DateTime" IsShowShortCuts="True" CornerRadius="3"
                                     DateStringFormat="yyyy/MM/dd"/>
             </UniformGrid>
         </TabItem>
-        <TabItem Header="Calendar日历">
-            <UniformGrid Columns="2">
-                <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="MultipleRange" />
-
+        <TabItem Header="Calendar">
+            <UniformGrid Columns="0">
+                <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="MultipleRange"/>
             </UniformGrid>
         </TabItem>
     </WPF.UI:ZTabControl>

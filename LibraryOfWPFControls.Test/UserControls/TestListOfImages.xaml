@@ -11,12 +11,12 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <WPF.UI:Carousel VerticalAlignment="Top" x:Name="Carousel" HorizontalAlignment="Center">
+        <WPF.UI:Carousel VerticalAlignment="Center" x:Name="Carousel" HorizontalAlignment="Center">
             <WPF.UI:Carousel.ItemTemplate>
                 <DataTemplate>
                     <Border Background="#506B9E" Padding="50,40" SnapsToDevicePixels="True" UseLayoutRounding="True">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="测试：" Foreground="White" />
+                            <TextBlock Text="Изображение - " Foreground="White" />
                             <TextBlock Text="{Binding .}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </StackPanel>
                     </Border>
@@ -25,11 +25,7 @@
         </WPF.UI:Carousel>
 
         <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <WPF.UI:Carousel Grid.Row="1" VerticalAlignment="Top" x:Name="Carousel2" HorizontalAlignment="Center"
+            <WPF.UI:Carousel Grid.Row="1" VerticalAlignment="Center" x:Name="Carousel2" HorizontalAlignment="Center"
                              AutoPlay="{Binding IsChecked, ElementName=toggleBtnAutoPlay}" 
                              AutoPlaySpeed="{Binding Value, ElementName=FlatSilder}">
                 <WPF.UI:Carousel.ItemTemplate>

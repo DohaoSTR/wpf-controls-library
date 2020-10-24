@@ -6,16 +6,8 @@ using System.Windows.Media.Animation;
 
 namespace ZdfFlatUI
 {
-    /// <summary>
-    /// ItemsControl扩展方法
-    /// </summary>
     public static class ItemsControlExtensions
     {
-        /// <summary>
-        /// 平滑滚动至指定元素
-        /// </summary>
-        /// <param name="itemsControl"></param>
-        /// <param name="item"></param>
         public static void AnimateScrollIntoView(this ItemsControl itemsControl, object item)
         {
             ScrollViewer scrollViewer = Utils.VisualHelper.FindVisualChild<ScrollViewer>(itemsControl);
@@ -33,9 +25,6 @@ namespace ZdfFlatUI
 
             int index = itemsControl.ItemContainerGenerator.IndexFromContainer(container);
 
-            //平滑滚动到元素所在位置
-            //double toValue = scrollViewer.ScrollableHeight * ((double)index / itemsControl.Items.Count);
-            //平滑滚动，将选中的元素置顶
             double toValue = VisualTreeHelper.GetOffset(container).Y;
 
             DoubleAnimation verticalAnimation = new DoubleAnimation

@@ -6,25 +6,12 @@ using System.Windows.Media;
 
 namespace ZdfFlatUI
 {
-    /// <summary>
-    /// 水印显示方式
-    /// </summary>
     public enum EnumWatermarkShowMode
     {
-        /// <summary>
-        /// 当文本框为空时就显示水印，不管该文本框有没有获得焦点
-        /// </summary>
         VisibleWhenIsEmpty,
-        /// <summary>
-        /// 当文本框失去焦点且文本框没有内容时显示水印EnumWatermarkShowMode
-        /// </summary>
         VisibleWhenLostFocusAndEmpty,
     }
 
-    /// <summary>
-    /// TextBox文本框通用水印
-    /// </summary>
-    /// <remarks>add by zhidf 2017.9.3</remarks>
     public class WatermarkAdorner : Adorner
     {
         private readonly TextBox adornedTextBox;
@@ -32,7 +19,6 @@ namespace ZdfFlatUI
         private readonly TextBlock textBlock;
         private readonly EnumWatermarkShowMode showModel;
 
-        #region Watermark
         public static string GetWatermark(DependencyObject obj)
         {
             return (string)obj.GetValue(WatermarkProperty);
@@ -46,9 +32,6 @@ namespace ZdfFlatUI
         public static readonly DependencyProperty WatermarkProperty =
             DependencyProperty.RegisterAttached("Watermark", typeof(string), typeof(WatermarkAdorner)
                 , new PropertyMetadata(string.Empty, WatermarkChangedCallBack));
-        #endregion
-
-        #region WatermarkShowMode
 
         public static EnumWatermarkShowMode GetWatermarkShowMode(DependencyObject obj)
         {
@@ -63,14 +46,11 @@ namespace ZdfFlatUI
         public static readonly DependencyProperty WatermarkShowModeProperty =
             DependencyProperty.RegisterAttached("WatermarkShowMode", typeof(EnumWatermarkShowMode), typeof(WatermarkAdorner), new PropertyMetadata(EnumWatermarkShowMode.VisibleWhenLostFocusAndEmpty));
 
-        #endregion
-
         private static void WatermarkChangedCallBack(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             try
             {
-                FrameworkElement element = d as FrameworkElement;
-                if (element != null)
+                if (d is FrameworkElement element)
                 {
                     AdornerLayer adornerLayer = AdornerLayer.GetAdornerLayer(element);
 
@@ -82,14 +62,11 @@ namespace ZdfFlatUI
                     {
                         WatermarkAdorner adorner = null;
 
-                        //增加Initialized事件处理是为了解决当水印放置在TabControl中时导致水印频繁的Loaded和Unload
                         element.Initialized += (o1, e1) =>
                         {
                             adorner = new WatermarkAdorner(element);
                         };
 
-                        //layer为null，说明还未load过（整个可视化树中没有装饰层的情况不考虑）
-                        //在控件的loaded事件内生成装饰件
                         element.Loaded += (s1, e1) =>
                         {
                             AdornerLayer v = AdornerLayer.GetAdornerLayer(element);
@@ -110,9 +87,7 @@ namespace ZdfFlatUI
                 }
             }
             catch (Exception)
-            {
-
-            }
+            { }
         }
 
         public WatermarkAdorner(UIElement adornedElement) : base(adornedElement)
@@ -150,14 +125,14 @@ namespace ZdfFlatUI
                 {
                     HorizontalAlignment = adornedTextBox.HorizontalContentAlignment,
                     VerticalAlignment = adornedTextBox.VerticalContentAlignment,
-                    Text = WatermarkAdorner.GetWatermark(adornedElement),
+                    Text = GetWatermark(adornedElement),
                     Foreground = new SolidColorBrush(Color.FromRgb(153, 153, 153)),
                     Margin = new Thickness(5, 0, 2, 0),
                 };
 
                 _visuals.Add(textBlock);
 
-                showModel = WatermarkAdorner.GetWatermarkShowMode(adornedElement);
+                showModel = GetWatermarkShowMode(adornedElement);
             }
             IsHitTestVisible = false;
         }

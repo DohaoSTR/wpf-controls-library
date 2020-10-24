@@ -10,7 +10,7 @@
         <WPF.UI:ColorSelector x:Name="ColorSelector">
         </WPF.UI:ColorSelector>
         <TextBlock>
-            <Run Text="颜色值：" />
+            <Run Text="RGB：" />
             <Run Text="{Binding SelectedValue, ElementName=ColorSelector}" />
         </TextBlock>
     </StackPanel>

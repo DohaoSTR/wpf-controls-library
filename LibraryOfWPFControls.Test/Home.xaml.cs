@@ -33,7 +33,7 @@ namespace ZdfFlatUI.Test
             {
                 new MenuInfo()
                 {
-                    Name = "Редактируемый текстовый элемент по двойному нажатию",
+                    Name = "Редактируемый текстовый элемент",
                 },
                 new MenuInfo()
                 {
@@ -49,19 +49,15 @@ namespace ZdfFlatUI.Test
                 },
                 new MenuInfo()
                 {
-                    Name = "Элемент для выбора времени/даты",
+                    Name = "Выбор времени/даты",
                 },
                 new MenuInfo()
                 {
-                    Name = "Поле форматированного ввода",
+                    Name = "Поля форматированного ввода",
                 },
                 new MenuInfo()
                 {
                     Name = "Элемент для выбора файла",
-                },
-                new MenuInfo()
-                {
-                    Name = "Обозреватель свойств объекта",
                 },
                 new MenuInfo()
                 {
@@ -71,10 +67,6 @@ namespace ZdfFlatUI.Test
                 {
                     Name = "Выбор цвета",
                 },
-                new MenuInfo()
-                {
-                    Name = "Выбор шрифта и его параметров",
-                }
             };
 
             menu.GroupItemsSource = MenuList;
@@ -88,7 +80,7 @@ namespace ZdfFlatUI.Test
                 MenuInfo info = menu.SelectedItem as MenuInfo;
                 switch (info.Name)
                 {
-                    case "Редактируемый текстовый элемент по двойному нажатию":
+                    case "Редактируемый текстовый элемент":
                         ControlPanel.Content = new TestTextBox();
                         break;
                     case "Переключатель (да/нет)":
@@ -100,17 +92,14 @@ namespace ZdfFlatUI.Test
                     case "Слайдер числовых значений":
                         ControlPanel.Content = new TestSlider();
                         break;
-                    case "Элемент для выбора времени/даты":
+                    case "Выбор времени/даты":
                         ControlPanel.Content = new TestDateTimeControl();
                         break;
-                    case "Поле форматированного ввода":
-                        ControlPanel.Content = new TestTextBox();
+                    case "Поля форматированного ввода":
+                        ControlPanel.Content = new TestInputBox();
                         break;
                     case "Элемент для выбора файла":
                         ControlPanel.Content = new TestUploadControl();
-                        break;
-                    case "Обозреватель свойств объекта":
-                        //ControlPanel.Content = new TestSlider();
                         break;
                     case "Выбор директории":
                         ControlPanel.Content = new TestChooseBox();
@@ -118,13 +107,6 @@ namespace ZdfFlatUI.Test
                     case "Выбор цвета":
                         ControlPanel.Content = new TestColorSelector();
                         break;
-                    case "Выбор шрифта и его параметров":
-                        //ControlPanel.Content = new TestSlider();
-                        break;
-
-                        // разделить редактируемый текствой элемент и поля форматированного ввода
-                        // В библиотеке есть множество одиночных элементов которые можно использовать
-                        // Сделать нормальный выбор цвета
                 }
             }
         }

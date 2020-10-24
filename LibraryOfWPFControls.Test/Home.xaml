@@ -7,16 +7,11 @@
         xmlns:WPF.UI="clr-namespace:ZdfFlatUI;assembly=WPF.UI"
         mc:Ignorable="d"
         Title="Home" Height="700" Width="1200">
-    
-    <Grid Background="#EEEEEE">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
+    <Grid Background="#EEEEEE">
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="240" />
+                <ColumnDefinition Width="250" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -27,8 +22,7 @@
                 </Border.Effect>
             </Border>
 
-            <WPF.UI:NavigateMenu x:Name="menu" FontSize="13" Margin="0,5" SelectionChanged="menu_SelectionChanged"
-                                 >
+            <WPF.UI:NavigateMenu x:Name="menu" FontSize="13" Margin="0,5" SelectionChanged="menu_SelectionChanged">
                 <WPF.UI:NavigateMenu.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}" />

@@ -5,28 +5,17 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d">
 
     <SolidColorBrush x:Key="CalendarBorderColor" Color="#BDBEBF" />
-    <!--  日历整个背景色  -->
     <SolidColorBrush x:Key="CalendarBackground" Color="#21A7ED" />
-    <!--  日历下半部分的背景色  -->
     <SolidColorBrush x:Key="CalendarBottomBackground" Color="#FFFFFF" />
-    <!--  月视图_今日背景色  -->
     <SolidColorBrush x:Key="MonthViewTodayBackground" Color="#FFFF7152" />
-    <!--  月视图_鼠标悬浮背景色  -->
     <SolidColorBrush x:Key="MonthViewHighlightBackground" Color="#C2C3C9" />
-    <!--  月视图_选中背景色  -->
     <SolidColorBrush x:Key="MonthViewSelectedBackground" Color="#C2C3C9" />
 
-    <!--  年视图_选中背景色  -->
     <SolidColorBrush x:Key="YearViewSelectedBackground" Color="#FFCDE9D9" />
-    <!--  年视图_鼠标悬浮背景色  -->
     <SolidColorBrush x:Key="YearViewHightlightBackground" Color="#FFEEEEEE" />
-    <!--  上一个按钮颜色  -->
     <SolidColorBrush x:Key="PreviousButtonColor" Color="#FF73A9D8" />
-    <!--  上一个按钮悬浮时的颜色  -->
     <SolidColorBrush x:Key="PreviousOverButtonColor" Color="#FF000000" />
-    <!--  下一个按钮颜色  -->
     <SolidColorBrush x:Key="NextButtonColor" Color="#FF73A9D8" />
-    <!--  下一个按钮悬浮时的颜色  -->
     <SolidColorBrush x:Key="NextOverButtonColor" Color="#FF000000" />
     <SolidColorBrush x:Key="DatePickerBorderColor" Color="#C2C3C9" />
 
@@ -135,7 +124,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarDayButton}">
                     <Grid>
-                        <!--  当天日期背景样式  -->
                         <Rectangle x:Name="TodayBackground"
                                    Width="{StaticResource DayButtonWidth}"
                                    Fill="{StaticResource MonthViewTodayBackground}"
@@ -240,7 +228,6 @@
                                     <VisualTransition GeneratedDuration="0" />
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Active" />
-                                <!--  设置不属于当月的日期的字体颜色  -->
                                 <VisualState x:Name="Inactive">
                                     <Storyboard>
                                         <ColorAnimation Duration="0" Storyboard.TargetName="NormalText"
@@ -287,7 +274,6 @@
                     <ControlTemplate.Resources>
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
                             <StackPanel Margin="-5,0,-5,6" Background="{StaticResource CalendarBackground}">
-                                <!--  显示周一到周五  -->
                                 <TextBlock Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="微软雅黑"
                                            FontSize="12" FontWeight="Bold" Foreground="#FFFFFF"
                                            Text="{Binding}" />
@@ -308,7 +294,6 @@
                                    Opacity="0" RadiusX="2" RadiusY="2" Stretch="Fill"
                                    Stroke="{StaticResource DisabledColor}"
                                    StrokeThickness="1" Visibility="Collapsed" />
-                        <!--<Path Data="M0,10 9,0 18,10z" Width="18" HorizontalAlignment="Left" SnapsToDevicePixels="True" StrokeThickness="0" Fill="{StaticResource CalendarBorderColor}" Margin="10,0" />-->
                         <Border Grid.Row="1"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -325,8 +310,6 @@
                                         <RowDefinition Height="Auto" MinHeight="40" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
-                                    
-                                    <!--  左右切换按钮  -->
                                     <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
                                         <Button x:Name="PART_PreviousButton" Grid.Row="0" Grid.Column="2" Width="Auto"
                                                 Height="Auto" Margin="0,15,0,10" HorizontalAlignment="Stretch" Focusable="False"
@@ -336,13 +319,10 @@
                                                 Height="Auto" Margin="20,15,0,10" HorizontalAlignment="Stretch" Focusable="False"
                                                 Template="{StaticResource NextButtonTemplate}" />
                                     </StackPanel>
-                                    
-                                    <!--  当前年月显示，比如2017年1月  -->
+
                                     <Button x:Name="PART_HeaderButton" Grid.Row="0" Grid.Column="0" Margin="10,15,20,10"
                                             HorizontalAlignment="Left" VerticalAlignment="Stretch" Focusable="False" FontSize="14"
                                             Template="{StaticResource HeaderButtonTemplate}" />
-
-                                    <!--  月视图，1号~31号，分为49格  -->
                                     <Border Grid.Row="1" Grid.ColumnSpan="3"
                                             Background="{StaticResource CalendarBottomBackground}"
                                             Padding="5,0,5,5">
@@ -369,8 +349,6 @@
                                             </Grid.RowDefinitions>
                                         </Grid>
                                     </Border>
-
-                                    <!--  年视图，分为12格  -->
                                     <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Padding="5,5,0,5">
                                         <Grid x:Name="PART_YearView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                               Background="{StaticResource CalendarBottomBackground}"
@@ -431,11 +409,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CalendarButton}">
                     <Grid>
-                        <!--  年视图，选中  -->
                         <Rectangle x:Name="SelectedBackground"
                                    Fill="{StaticResource MonthViewTodayBackground}"
                                    RadiusX="1" RadiusY="1" StrokeThickness="0" />
-                        <!--  年视图，悬浮  -->
                         <Rectangle x:Name="Background"
                                    Fill="{TemplateBinding Background}"
                                    Opacity="0" RadiusX="1" RadiusY="1" StrokeThickness="0" />

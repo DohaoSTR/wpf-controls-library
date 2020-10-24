@@ -6,36 +6,21 @@ namespace ZdfFlatUI
 {
     public class Upload : ButtonBase
     {
-        #region Private属性
-
-        #endregion
-
-        #region 依赖属性定义
         public static readonly DependencyProperty MultiSelectProperty;
         public static readonly DependencyProperty FilterProperty;
-        #endregion
 
-        #region 依赖属性set get
-        /// <summary>
-        /// 是否可以选择多个文件
-        /// </summary>
         public bool MultiSelect
         {
             get => (bool)GetValue(MultiSelectProperty);
             set => SetValue(MultiSelectProperty, value);
         }
 
-        /// <summary>
-        /// 文件过滤器
-        /// </summary>
         public string Filter
         {
             get => (string)GetValue(FilterProperty);
             set => SetValue(FilterProperty, value);
         }
-        #endregion
 
-        #region 路由事件
         public static readonly RoutedEvent UploadEvent;
 
         public event RoutedPropertyChangedEventHandler<object> FileUpload
@@ -56,9 +41,7 @@ namespace ZdfFlatUI
                 new RoutedPropertyChangedEventArgs<object>(oldValue, newValue, UploadEvent);
             RaiseEvent(arg);
         }
-        #endregion
 
-        #region Constructors
         static Upload()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Upload), new FrameworkPropertyMetadata(typeof(Upload)));
@@ -70,16 +53,14 @@ namespace ZdfFlatUI
                 , RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<object>)
                 , typeof(Upload));
         }
-        #endregion
 
-        #region Override方法
         protected override void OnDrop(DragEventArgs e)
         {
             base.OnDrop(e);
 
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                Array files = (System.Array)e.Data.GetData(DataFormats.FileDrop);
+                Array files = (Array)e.Data.GetData(DataFormats.FileDrop);
                 OnFileUpload(null, files);
             }
         }
@@ -92,10 +73,6 @@ namespace ZdfFlatUI
         protected override void OnDragEnter(DragEventArgs e)
         {
             base.OnDragEnter(e);
-
-            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            //    e.Effects = DragDropEffects.Link;
-            //else e.Effects = DragDropEffects.None;
         }
 
         protected override void OnClick()
@@ -105,7 +82,6 @@ namespace ZdfFlatUI
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog
             {
                 Multiselect = MultiSelect,
-                //"文本文件|*.*|C#文件|*.cs|所有文件|*.*"
                 Filter = Filter
             };
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -114,10 +90,5 @@ namespace ZdfFlatUI
                 OnFileUpload(null, files);
             }
         }
-        #endregion
-
-        #region Private方法
-
-        #endregion
     }
 }

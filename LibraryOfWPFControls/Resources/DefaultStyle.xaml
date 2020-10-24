@@ -3,7 +3,5 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="PathGeometry.xaml" />
         <ResourceDictionary Source="AutoDisappearScrollViewerStyle.xaml" />
-        <ResourceDictionary Source="ContextMenuStyle.xaml" />
-        <ResourceDictionary Source="ComboBoxStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

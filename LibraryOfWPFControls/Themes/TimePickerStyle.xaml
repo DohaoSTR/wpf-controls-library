@@ -31,7 +31,7 @@
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Primitives:NumberBox Title="小时" Grid.Column="0" BorderThickness="0" EndNumber="23"
+                            <Primitives:NumberBox Title="Час" Grid.Column="0" BorderThickness="0" EndNumber="23"
                                                   FontFamily="{TemplateBinding FontFamily}"
                                                   FontSize="{TemplateBinding FontSize}"
                                                   FontStretch="{TemplateBinding FontStretch}"
@@ -45,7 +45,7 @@
                                        FontStretch="{TemplateBinding FontStretch}"
                                        FontWeight="{TemplateBinding FontWeight}"
                                        Text=":" />
-                            <Primitives:NumberBox Title="分钟" Grid.Column="2" BorderThickness="0" EndNumber="59"
+                            <Primitives:NumberBox Title="Минута" Grid.Column="2" BorderThickness="0" EndNumber="59"
                                                   FontFamily="{TemplateBinding FontFamily}"
                                                   FontSize="{TemplateBinding FontSize}"
                                                   FontStretch="{TemplateBinding FontStretch}"
@@ -60,7 +60,7 @@
                                        FontStretch="{TemplateBinding FontStretch}"
                                        FontWeight="{TemplateBinding FontWeight}"
                                        Text=":" />
-                            <Primitives:NumberBox Title="秒数" Grid.Column="4" BorderThickness="0" EndNumber="59"
+                            <Primitives:NumberBox Title="Секунда" Grid.Column="4" BorderThickness="0" EndNumber="59"
                                                   FontFamily="{TemplateBinding FontFamily}"
                                                   FontSize="{TemplateBinding FontSize}"
                                                   FontStretch="{TemplateBinding FontStretch}"

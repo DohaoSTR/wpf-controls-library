@@ -4,12 +4,6 @@ namespace ZdfFlatUI.Utils
 {
     public class DateTimeHelper
     {
-        /// <summary>
-        /// 判断月份是否相等
-        /// </summary>
-        /// <param name="dt1"></param>
-        /// <param name="dt2"></param>
-        /// <returns></returns>
         public static bool MonthIsEqual(DateTime dt1, DateTime dt2)
         {
             bool flag = false;

@@ -4,13 +4,8 @@ using System.Windows.Data;
 
 namespace ZdfFlatUI.Converters
 {
-    /// <summary>
-    /// true则隐藏，false则显示
-    /// </summary>
     public class InverseBooleanVisibilityConverter : IValueConverter
     {
-        #region IValueConverter 成员
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             bool flag = System.Convert.ToBoolean(value);
@@ -28,7 +23,5 @@ namespace ZdfFlatUI.Converters
         {
             return null;
         }
-
-        #endregion
     }
 }

@@ -4,13 +4,8 @@ using System.Windows.Data;
 
 namespace ZdfFlatUI.Converters
 {
-    /// <summary>
-    /// true则隐藏，false则显示
-    /// </summary>
     public class CalendarDayButtonTypeConverter : IMultiValueConverter
     {
-        #region IValueConverter 成员
-
         public object Convert(object[] value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             string str = string.Empty;
@@ -35,10 +30,10 @@ namespace ZdfFlatUI.Converters
             }
             return str;
         }
+
         public object[] ConvertBack(object value, Type[] targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return null;
         }
-        #endregion
     }
 }
