@@ -12,20 +12,9 @@
         <ResourceDictionary Source="/WPF.UI;component/MyControls/Expander/Generic.xaml" />
         <ResourceDictionary Source="/WPF.UI;component/MyControls/ScrollViewer/Generic.xaml" />
         <ResourceDictionary Source="/WPF.UI;component/MyControls/SlideSwitch/Generic.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/DropDownButton/Generic.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/TabControl/Generic.xaml" />
         <ResourceDictionary Source="/WPF.UI;component/MyControls/Icon/Generic.xaml" /> 
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/DateControl/ZCalendar.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/DateControl/ZCalendarItem.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/DateControl/ZCalendarButton.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/DateControl/ZCalendarDayButton.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/DateControl/ZDatePicker.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/TimePicker/TimeSelector.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/TimePicker/ZTimePicker.xaml" />
         <ResourceDictionary Source="/WPF.UI;component/MyControls/ColorSelector/ColorSelector.xaml" />
         <ResourceDictionary Source="/WPF.UI;component/MyControls/ColorSelector/ColorItem.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/TagControls/TagStyle.xaml" />
-        <ResourceDictionary Source="/WPF.UI;component/MyControls/TagControls/TagBoxStyle.xaml" />
         <ResourceDictionary Source="/WPF.UI;component/MyControls/ChooseBox/Generic.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

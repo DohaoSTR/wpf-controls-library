@@ -6,9 +6,6 @@ using System.Windows.Media;
 
 namespace ZdfFlatUI
 {
-    /// <summary>
-    /// 颜色选择器
-    /// </summary>
     public class ColorSelector : Selector
     {
         #region private fields

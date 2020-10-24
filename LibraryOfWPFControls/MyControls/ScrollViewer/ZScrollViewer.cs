@@ -5,16 +5,6 @@ namespace ZdfFlatUI
 {
     public class ZScrollViewer : ScrollViewer
     {
-        #region Private属性
-
-        #endregion
-
-        #region 依赖属性定义
-
-        #endregion
-
-        #region 依赖属性set get
-
         public double VerticalOffsetEx
         {
             get => (double)GetValue(VerticalOffsetExProperty);
@@ -30,24 +20,9 @@ namespace ZdfFlatUI
             scrollViewer.ScrollToVerticalOffset((double)e.NewValue);
         }
 
-        #endregion
-
-        #region Constructors
         static ZScrollViewer()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ZScrollViewer), new FrameworkPropertyMetadata(typeof(ZScrollViewer)));
         }
-        #endregion
-
-        #region Override方法
-
-        #endregion
-
-        #region Private方法
-        public void aa()
-        {
-
-        }
-        #endregion
     }
 }

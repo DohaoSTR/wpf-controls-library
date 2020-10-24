@@ -49,10 +49,6 @@ namespace ZdfFlatUI.Test
                 },
                 new MenuInfo()
                 {
-                    Name = "Выбор времени/даты",
-                },
-                new MenuInfo()
-                {
                     Name = "Поля форматированного ввода",
                 },
                 new MenuInfo()
@@ -91,9 +87,6 @@ namespace ZdfFlatUI.Test
                         break;
                     case "Слайдер числовых значений":
                         ControlPanel.Content = new TestSlider();
-                        break;
-                    case "Выбор времени/даты":
-                        ControlPanel.Content = new TestDateTimeControl();
                         break;
                     case "Поля форматированного ввода":
                         ControlPanel.Content = new TestInputBox();

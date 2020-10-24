@@ -3,6 +3,13 @@ using System.Windows.Controls;
 
 namespace ZdfFlatUI
 {
+    public enum EnumChooseBoxType
+    {
+        SingleFile,
+        MultiFile,
+        Folder,
+    }
+
     public class ChooseBox : TextBox
     {
         #region private fields

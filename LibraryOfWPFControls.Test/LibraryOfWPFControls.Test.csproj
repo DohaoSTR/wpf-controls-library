@@ -86,9 +86,6 @@
     <Compile Include="UserControls\TestColorSelector.xaml.cs">
       <DependentUpon>TestColorSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TestDateTimeControl.xaml.cs">
-      <DependentUpon>TestDateTimeControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\TestListOfImages.xaml.cs">
       <DependentUpon>TestListOfImages.xaml</DependentUpon>
     </Compile>
@@ -116,10 +113,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\TestColorSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\TestDateTimeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -128,55 +128,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adorners\WatermarkAdorner.cs" />
-    <Compile Include="BaseControl\TextBoxBase.cs" />
-    <Compile Include="Converters\CalendarDayButtonTypeConverter.cs" />
-    <Compile Include="ExtensionFunc\ItemsControlExtensions.cs" />
-    <Compile Include="ExtensionFunc\ScrollViewerBehavior.cs" />
+    <Compile Include="Utils\TextBoxBase.cs" />
     <Compile Include="MyControls\ChooseBox\ChooseBox.cs" />
     <Compile Include="MyControls\Primitives\IconTextBoxBase.cs" />
     <Compile Include="MyControls\Primitives\ZTextBoxBase.cs" />
     <Compile Include="MyControls\TextBox\ZPasswordBox.cs" />
     <Compile Include="MyControls\ColorSelector\ColorItem.cs" />
     <Compile Include="MyControls\ColorSelector\ColorSelector.cs" />
-    <Compile Include="MyControls\ControlEnum.cs" />
-    <Compile Include="MyControls\DateControl\ZCalendar.cs" />
-    <Compile Include="MyControls\DateControl\ZCalendarButton.cs" />
-    <Compile Include="MyControls\DateControl\ZCalendarDayButton.cs" />
-    <Compile Include="MyControls\DateControl\ZCalendarItem.cs" />
-    <Compile Include="MyControls\DateControl\ZDatePicker.cs" />
-    <Compile Include="MyControls\DropDownButton\DropDownButton.cs" />
     <Compile Include="MyControls\Icon\Icon.cs" />
     <Compile Include="MyControls\Expander\ZExpander.cs" />
-    <Compile Include="MyControls\DateControl\DateTimePicker.cs" />
-    <Compile Include="MyControls\DateControl\FlatDatePicker.cs" />
-    <Compile Include="MyControls\DateControl\TimePicker.cs" />
     <Compile Include="MyControls\NavigateMenu\NavigateMenuItem.cs" />
     <Compile Include="MyControls\NavigateMenu\NavigateMenu.cs" />
-    <Compile Include="Converters\InverseBooleanVisibilityConverter.cs" />
-    <Compile Include="Converters\ValueIsZeroConverter.cs" />
-    <Compile Include="MyControls\Primitives\MyCalendar.cs" />
-    <Compile Include="MyControls\Primitives\ItemMouseSingleClickEventArgs.cs" />
-    <Compile Include="MyControls\Primitives\NumberBox.cs" />
+    <Compile Include="Utils\InverseBooleanVisibilityConverter.cs" />
+    <Compile Include="Utils\ValueIsZeroConverter.cs" />
     <Compile Include="MyControls\RadionButton\ZRadionButton.cs" />
     <Compile Include="MyControls\ScrollViewer\ZScrollViewer.cs" />
     <Compile Include="MyControls\Slider\FlatSilder.cs" />
     <Compile Include="MyControls\SlideSwitch\Carousel.cs" />
     <Compile Include="MyControls\SlideSwitch\SlideSwitchPanel.cs" />
-    <Compile Include="MyControls\TabControl\ZTabControl.cs" />
-    <Compile Include="MyControls\TagControls\Tag.cs" />
-    <Compile Include="MyControls\TagControls\TagBox.cs" />
     <Compile Include="MyControls\TextBox\IconTextBox.cs" />
     <Compile Include="MyControls\TextBox\ZTextBox.cs" />
     <Compile Include="MyControls\TextBox\TitleTextBox.cs" />
-    <Compile Include="MyControls\TimePicker\TimeButton.cs" />
-    <Compile Include="MyControls\TimePicker\TimeSelector.cs" />
-    <Compile Include="MyControls\TimePicker\ZTimePicker.cs" />
     <Compile Include="MyControls\ToggleButton\AnimationButton.cs" />
     <Compile Include="MyControls\ToggleButton\FlatToggleButton.cs" />
     <Compile Include="MyControls\Upload\Upload.cs" />
-    <Compile Include="Utils\DateTimeHelper.cs" />
-    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\VisualHelper.cs" />
     <Page Include="MyControls\ChooseBox\Generic.xaml">
       <SubType>Designer</SubType>
@@ -187,30 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\ColorSelector\ColorSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\DateControl\ZCalendar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\DateControl\ZCalendarButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\DateControl\ZCalendarDayButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\DateControl\ZCalendarItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\DateControl\ZDatePicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\DropDownButton\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,31 +193,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MyControls\TabControl\Generic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\TagControls\TagBoxStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\TagControls\TagStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyControls\TextBox\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\TextBox\ZPasswordBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\TimePicker\TimeSelector.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyControls\TimePicker\ZTimePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -295,14 +226,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Color.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\CalendarStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\TimePickerStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

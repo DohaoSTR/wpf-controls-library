@@ -15,15 +15,7 @@ namespace ZdfFlatUI
         #endregion
 
         #region 依赖属性set get
-        public EnumIconType Type
-        {
-            get => (EnumIconType)GetValue(TypeProperty);
-            set => SetValue(TypeProperty, value);
-        }
 
-        // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(EnumIconType), typeof(Icon));
 
         public PathFigureCollection Data
         {
