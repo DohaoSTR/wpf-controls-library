@@ -71,16 +71,10 @@ namespace ZdfFlatUI
 
             PART_Thumb = GetTemplateChild("PART_Thumb") as Thumb;
             PART_Track = GetTemplateChild("PART_Track") as Track;
-            if (PART_Thumb != null)
-            {
-                PART_Thumb.PreviewMouseLeftButtonDown += PART_Thumb_PreviewMouseLeftButtonDown;
-                PART_Thumb.PreviewMouseLeftButtonUp += PART_Thumb_PreviewMouseLeftButtonUp;
-            }
-            if (PART_Track != null)
-            {
-                PART_Track.MouseLeftButtonDown += PART_Track_MouseLeftButtonDown;
-                PART_Track.MouseLeftButtonUp += PART_Track_MouseLeftButtonUp;
-            }
+            PART_Thumb.PreviewMouseLeftButtonDown += PART_Thumb_PreviewMouseLeftButtonDown;
+            PART_Thumb.PreviewMouseLeftButtonUp += PART_Thumb_PreviewMouseLeftButtonUp;
+            PART_Track.MouseLeftButtonDown += PART_Track_MouseLeftButtonDown;
+            PART_Track.MouseLeftButtonUp += PART_Track_MouseLeftButtonUp;
             ValueChanged += FlatSilder_ValueChanged;
         }
 

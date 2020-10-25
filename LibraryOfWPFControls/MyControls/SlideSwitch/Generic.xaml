@@ -38,10 +38,10 @@
                                     Margin="0,10,0,0"
                                     Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-                        <Button x:Name="PART_LastButton" HorizontalAlignment="Left"  Margin="20,0,0,0"
-                                            Style="{StaticResource ButtonStyle}"/>
-                        <Button x:Name="PART_NextButton" HorizontalAlignment="Right" Margin="0,0,20,0"
-                                            Style="{StaticResource ButtonStyle}"/>
+                        <Button x:Name="PART_LastButton" HorizontalAlignment="Left"  Margin="20,0,0,0" Width="35" Height="35" 
+                                Background="Transparent" BorderThickness="0" Content="&lt;" FontSize="20" Foreground="AntiqueWhite"/>
+                        <Button x:Name="PART_NextButton" HorizontalAlignment="Right" Margin="0,0,20,0" Width="35" Height="35" 
+                                Background="Transparent" BorderThickness="0" Content=">" FontSize="20" Foreground="AntiqueWhite"/>
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">

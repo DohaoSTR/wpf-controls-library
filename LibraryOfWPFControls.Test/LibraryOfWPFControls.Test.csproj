@@ -169,13 +169,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\img1.png" />
-    <Resource Include="Images\img2.png" />
-    <Resource Include="Images\img3.png" />
-    <Resource Include="Images\img4.png" />
-    <Resource Include="Images\img5.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LibraryOfWPFControls\LibraryOfWPFControls.csproj">
       <Project>{a5932abc-910b-4a80-ada0-0732ff08d520}</Project>
       <Name>LibraryOfWPFControls</Name>
